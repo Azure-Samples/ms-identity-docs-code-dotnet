@@ -1,57 +1,16 @@
-# Project Name
+# Microsoft identity platform product documentation backing code
 
-(short, 1-3 sentenced, description of the project)
+This repo contains code used to directly support the product documentation for the [Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/). It is a mono-repo that contains all of the referenced tutorials relating to C#-based implementations using the [Microsoft Autentication Library for .NET](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) and [Microsoft.Identity.Web](https://github.com/AzureAD/microsoft-identity-web).
 
-## Features
+## Content
 
-This project framework provides the following features:
+This repo contains the following code to directly support the product docs:
 
-* Feature 1
-* Feature 2
-* ...
-
-## Getting Started
-
-### Prerequisites
-
-(ideally very short, if any)
-
-- OS
-- Library version
-- ...
-
-### Installation
-
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
-
-### Quickstart
-(Add steps to get up and running quickly)
-
-1. git clone [repository clone url]
-2. cd [respository name]
-3. ...
-
-
-## Demo
-
-A demo app is included to show how to use the project.
-
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
+* Coming Soon!
 
 ## Resources
 
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...
+- [Microsoft identity platform product documentation](https://docs.microsoft.com/azure/active-directory/develop/)
+- [Microsoft Authentication Library (MSAL) documentation](https://docs.microsoft.com/azure/active-directory/develop/msal-overview)
+- [Microsoft Authentication Library for .NET, UWP, NetCore, Xamarin Android and iOS](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet)
+- [Microsoft Authentication Library for ASP.NET (Microsoft.Identity.Web)](https://github.com/AzureAD/microsoft-identity-web)
