@@ -6,9 +6,9 @@ The sample code provided here has been created using minimal web API in ASP.NET 
 
 ## Prerequisites
 
-1. Download .NET 6.0 SDK https://dotnet.microsoft.com/download/dotnet/6.0
+1. [Download .NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
-## Scaffold
+## Scaffold the web API by using the ASP.NET Core Minimal Api project template
 
 1. execute the following command to create the new web api project
 
