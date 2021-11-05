@@ -8,6 +8,55 @@ The sample code provided here has been created using minimal web API in ASP.NET 
 
 1. [Download .NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
+## Register the web API application in your Azure Active Directory
+
+1. Choose a password for the Azure AD App
+
+   ```bash
+   AZURE_AD_APP_SECRET=<at-least-sixteen-characters-here>
+   ```
+
+1. Register a new Azure AD App
+
+   ```bash
+   AZURE_AD_APP_DETAILS_MINIMAL_API=$(az ad app create --display-name "active-directory-dotnet-minimal-api-aspnetcore" --password ${AZURE_AD_APP_SECRET} --available-to-other-tenants -o json) && \
+   AZURE_AD_APP_CLIENT_ID_MINIMAL_API=$(echo $AZURE_AD_APP_DETAILS_MINIMAL_API | jq ".appId" -r)
+   ```
+
+1. Disable the default scope for `user_impersonation`
+
+   ```bash
+   AZURE_AD_APP_USER_IMPERSONATION_SCOPE=$(echo $AZURE_AD_APP_DETAILS_MINIMAL_API | jq '.oauth2Permissions[0].isEnabled = false' | jq -r '.oauth2Permissions') && \
+   az ad app update --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API --set oauth2Permissions="$AZURE_AD_APP_USER_IMPERSONATION_SCOPE"
+   ```
+
+1. Create a new manifest scope for `access_as_user`
+
+   ```bash
+   cat > access_as_user_scope.json <<EOF
+   [
+     {
+       "adminConsentDescription": "Allows the app to access Minimal Api (active-directory-dotnet-minimal-api-aspnetcore) as the signed-in user.",
+       "adminConsentDisplayName": "Access Minimal Api (active-directory-dotnet-minimal-api-aspnetcore)",
+       "id": "1658e205-0e89-43a3-b107-b06a3e6dc60d",
+       "isEnabled": true,
+       "lang": null,
+       "origin": "Application",
+       "type": "User",
+       "userConsentDescription": "Allow the application to access Minimal (active-directory-dotnet-minimal-aspnetcore) on your behalf.",
+       "userConsentDisplayName": "Access Minimal Api (active-directory-dotnet-minimal-aspnetcore)",
+       "value": "access_as_user"
+     }
+   ]
+   EOF
+   ```
+
+1. Set the api uri and the `access_as_user` scope
+
+   ```bash
+   az ad app update --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API --identifier-uris "api://${AZURE_AD_APP_CLIENT_ID_MINIMAL_API}" --set oauth2Permissions=@access_as_user_scope.json
+   ```
+
 ## Scaffold the web API by using the ASP.NET Core Minimal Api project template
 
 1. execute the following command to create the new web api project
@@ -20,6 +69,29 @@ The sample code provided here has been created using minimal web API in ASP.NET 
 
    ```bash
    dotnet add package Microsoft.Identity.Web
+   ```
+
+## Configure the web API
+
+1. create the `appsettings.json` file with the Azure AD app comfiguration
+
+   ```bash
+   cat > appsettings.json <<EOF
+   {
+     "AzureAd": {
+       "Instance": "https://login.microsoftonline.com/",
+       "ClientId": "\${AZURE_AD_APP_CLIENT_ID_MINIMAL_API}",
+       "TenantId": "common"
+     },
+     "Logging": {
+       "LogLevel": {
+         "Default": "Information",
+         "Microsoft.AspNetCore": "Warning"
+       }
+     },
+     "AllowedHosts": "*"
+   }
+   EOF
    ```
 
 ## Run the web API
@@ -35,6 +107,15 @@ The sample code provided here has been created using minimal web API in ASP.NET 
 1. once the app is listening, execute the following to send the a request.
 
    ```bash
-   curl -X GET https://localhost:7188/weatherforecast -k
+   curl -X GET https://localhost:5001/weatherforecast -ki
    ```
 
+   :book: since the request is sent without a Bearer Token, it is expected to receive an Unauthorized reponse `401`. The web API is now protected
+
+## Clean up
+
+1. Delete the Azure AD app
+
+   ```bash
+   az ad app delete --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API
+   ```
