@@ -80,8 +80,8 @@ The sample code provided here has been created using minimal web API in ASP.NET 
    {
      "AzureAd": {
        "Instance": "https://login.microsoftonline.com/",
-       "ClientId": "\${AZURE_AD_APP_CLIENT_ID_MINIMAL_API}",
-       "TenantId": "\$(az account show --query tenantId --output tsv)"
+       "ClientId": "${AZURE_AD_APP_CLIENT_ID_MINIMAL_API}",
+       "TenantId": "$(az account show --query tenantId --output tsv)"
      },
      "Logging": {
        "LogLevel": {
