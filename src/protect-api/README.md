@@ -1,6 +1,22 @@
 # Protected ASP.NET Core minimal API | Microsoft identity platform
 
-The sample code provided here has been created using minimal web API in ASP.NET Core 6.0, and slightly modified to be protected for a single organization using [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0) that interacts with [Microsoft Authentication Library (MSAL)](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-overview).  In other words, a very minimalist web api is secured by adding an authorization layer before user requests can reach protected resources.  At this point it is expected that the user authentication had already happened, so a token containing user's information is being sent in the request headers to be used in the authorization process.
+The sample code provided here has been created using minimal web API in ASP.NET Core 6.0, and slightly modified to be protected for a single organization using [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0) that interacts with [Microsoft Authentication Library (MSAL)](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-overview).  In other words, a very minimalist web api is secured by adding an authorization layer before user requests can reach protected resources.  At this point it is expected that the user sign-in had already happened, so api calls can be made in the name of the signed-in user. For that to be possible a token containing user's information is being sent in the request headers and used in the authorization process.
+
+```output
+┌────────────────────────┐                               ┌─────────────────────────────┐
+│                        │                               │                             │
+│   ASP.NET Core 6       │        Http Request           │  ASP.NET Core 6             │
+│                        ├──────────────────────────────►│                             │
+│   Proctected Web App   │  Authorization Bearer 1NS...  │  Protected Minimal Web Api  │
+│                        │                               │                             │
+└────────────────────────┘                               └─────────────────────────────┘
+
+Scenario:
+
+A protected web app allows users to sign in, it enables the possiblity of acquiring and validating their tokens.
+
+Later the web app can make calls to protected Apis in the name of the signed-in users.
+```
 
 :link: For more information about how to proctect your projects, please let's take a look at https://docs.microsoft.com/en-us/azure/active-directory/develop/sample-v2-code. To know more about how this sample has been generated, please visit https://docs.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio-code
 
