@@ -19,7 +19,7 @@ The sample code provided here has been created using minimal web API in ASP.NET 
 1. Register a new Azure AD App
 
    ```bash
-   AZURE_AD_APP_DETAILS_MINIMAL_API=$(az ad app create --display-name "active-directory-dotnet-minimal-api-aspnetcore" --password ${AZURE_AD_APP_SECRET} -o json) && \
+   AZURE_AD_APP_DETAILS_MINIMAL_API=$(az ad app create --display-name "active-directory-dotnet-minimal-api-aspnetcore" -o json) && \
    AZURE_AD_APP_CLIENT_ID_MINIMAL_API=$(echo $AZURE_AD_APP_DETAILS_MINIMAL_API | jq ".appId" -r)
    ```
 
