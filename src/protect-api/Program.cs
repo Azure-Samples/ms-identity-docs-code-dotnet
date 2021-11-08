@@ -19,7 +19,6 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-
 // <ms_docref_enable_authn_capabilities>
 app.UseAuthentication();
 // </ms_docref_enable_authn_capabilities>
@@ -31,7 +30,6 @@ var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
-
 
 // <ms_docref_protect_endpoint>
 app.MapGet("/weatherforecast", [Authorize] () =>
