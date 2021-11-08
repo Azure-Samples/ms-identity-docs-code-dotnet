@@ -53,7 +53,7 @@ The sample code provided here has been created using minimal web API in ASP.NET 
 
 ## Scaffold the web API by using the ASP.NET Core Minimal Api project template
 
-1. execute the following command to create the new web api project
+1. Execute the following command to create the new web api project
 
    ```bash
    dotnet new webapi -minimal -o <name>
@@ -67,7 +67,7 @@ The sample code provided here has been created using minimal web API in ASP.NET 
 
 ## Configure the web API
 
-1. create the `appsettings.json` file with the Azure AD app comfiguration
+1. Create the `appsettings.json` file with the Azure AD app comfiguration
 
    ```bash
    cat > appsettings.json <<EOF
@@ -90,7 +90,7 @@ The sample code provided here has been created using minimal web API in ASP.NET 
 
 ## Run the web API
 
-1. execute the following command to get the app up and running:
+1. Execute the following command to get the app up and running:
 
    ```bash
    dotnet run
@@ -98,13 +98,13 @@ The sample code provided here has been created using minimal web API in ASP.NET 
 
 ## Send request to the web API
 
-1. once the app is listening, execute the following to send the a request.
+1. Once the app is listening, execute the following to send the a request.
 
    ```bash
    curl -X GET https://localhost:5001/weatherforecast -ki
    ```
 
-   :book: since the request is sent without a Bearer Token, it is expected to receive an Unauthorized reponse `401`. The web API is now protected
+   :book: Since the request is sent without a Bearer Token, it is expected to receive an Unauthorized reponse `401`. The web API is now protected
 
 ## Clean up
 
