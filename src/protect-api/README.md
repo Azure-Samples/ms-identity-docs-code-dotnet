@@ -10,12 +10,6 @@ The sample code provided here has been created using minimal web API in ASP.NET 
 
 ## Register the web API application in your Azure Active Directory
 
-1. Choose a password for the Azure AD App
-
-   ```bash
-   AZURE_AD_APP_SECRET=<at-least-sixteen-characters-here>
-   ```
-
 1. Register a new Azure AD App
 
    ```bash
