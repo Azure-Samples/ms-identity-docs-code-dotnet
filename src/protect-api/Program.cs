@@ -17,7 +17,6 @@ builder.Services.AddAuthorization();
 
 WebApplication app = builder.Build();
 
-app.UseHttpsRedirection();
 
 // <ms_docref_enable_authn_capabilities>
 app.UseAuthentication();
