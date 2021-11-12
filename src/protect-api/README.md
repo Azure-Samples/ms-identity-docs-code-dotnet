@@ -91,7 +91,8 @@ Later the web app can make calls to protected Apis in the name of the signed-in 
      "AzureAd": {
        "Instance": "https://login.microsoftonline.com/",
        "ClientId": "${AZURE_AD_APP_CLIENT_ID_MINIMAL_API}",
-       "TenantId": "$(az account show --query tenantId --output tsv)"
+       "TenantId": "$(az account show --query tenantId --output tsv)",
+       "Scopes": "access_as_user"
      },
      "Logging": {
        "LogLevel": {

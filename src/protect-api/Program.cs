@@ -9,7 +9,11 @@ using Microsoft.Identity.Web;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(config =>
+{
+    config.AddPolicy("AuthZPolicy", policyBuilder =>
+        policyBuilder.Requirements.Add(new ScopeAuthorizationRequirement() { RequiredScopesConfigurationKey = $"AzureAd:Scopes" }));
+});
 // </ms_docref_add_msal>
 
 // <ms_docref_enable_authz_capabilities>
@@ -24,7 +28,7 @@ var summaries = new[]
 };
 
 // <ms_docref_protect_endpoint>
-app.MapGet("/weatherforecast", [Authorize] () =>
+app.MapGet("/weatherforecast", [Authorize (Policy="AuthZPolicy")] () =>
 {
     var forecast =  Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
