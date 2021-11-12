@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.Identity.Web;
 // </ms_docref_import_types>
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // <ms_docref_add_msal>
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -15,7 +15,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization();
 // </ms_docref_add_default_authz_policies>
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 app.UseHttpsRedirection();
 
