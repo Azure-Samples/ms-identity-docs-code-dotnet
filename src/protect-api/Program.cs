@@ -5,23 +5,16 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.Identity.Web;
 // </ms_docref_import_types>
 
-WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-
 // <ms_docref_add_msal>
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
-// </ms_docref_add_msal>
-// <ms_docref_add_default_authz_policies>
 builder.Services.AddAuthorization();
-// </ms_docref_add_default_authz_policies>
+// </ms_docref_add_msal>
 
-WebApplication app = builder.Build();
-
-
-// <ms_docref_enable_authn_capabilities>
-app.UseAuthentication();
-// </ms_docref_enable_authn_capabilities>
 // <ms_docref_enable_authz_capabilities>
+WebApplication app = builder.Build();
+app.UseAuthentication();
 app.UseAuthorization();
 // </ms_docref_enable_authz_capabilities>
 
