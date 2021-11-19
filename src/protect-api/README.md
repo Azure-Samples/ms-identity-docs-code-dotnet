@@ -1,19 +1,19 @@
-# Protected ASP.NET Core minimal API | Microsoft identity platform
+# Protected ASP.NET Core minimal web API | Microsoft identity platform
 
 The sample code provided here has been created using minimal web API in ASP.NET Core 6.0, and slightly modified to be protected for a single organization using [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0) that interacts with [Microsoft Authentication Library (MSAL)](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-overview).  In other words, a very minimalist web api is secured by adding an authorization layer before user requests can reach protected resources.  At this point it is expected that the user sign-in had already happened, so api calls can be made in the name of the signed-in user. For that to be possible a token containing user's information is being sent in the request headers and used in the authorization process.
 
 ```output
-┌────────────────────────┐                               ┌─────────────────────────────┐
-│                        │                               │                             │
-│   ASP.NET Core 6       │        Http Request           │  ASP.NET Core 6             │
-│                        ├──────────────────────────────►│                             │
-│   Protected Web App    │  Authorization Bearer 1NS...  │  Protected Minimal Web Api  │
-│                        │                               │                             │
-└────────────────────────┘                               └─────────────────────────────┘
+┌──────────────────────────────────┐                               ┌─────────────────────────────┐
+│                                  │                               │                             │
+│   ASP.NET Core 6                 │        Http Request           │  ASP.NET Core 6             │
+│                                  ├──────────────────────────────►│                             │
+│   Web app that signs in users    │  Authorization Bearer 1NS...  │  Protected Minimal web Api  │
+│                                  │  with access_as_user scope    │                             │
+└──────────────────────────────────┘                               └─────────────────────────────┘
 
 Scenario:
 
-A protected web app allows users to sign in, it enables the possibility of acquiring and validating their tokens.
+An (ASP.NET Core) web app that allows users to sign in enables the possibility of acquiring and validating their tokens for specific audiences and scopes.
 
 Later the web app can make calls to protected Apis in the name of the signed-in users.
 ```
@@ -24,9 +24,9 @@ Later the web app can make calls to protected Apis in the name of the signed-in 
 
 1. [Download .NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
-## Register the web API application in your Azure Active Directory
+## Register the web API application in your Azure Active Directory (Azure AD)
 
-1. Register a new Azure AD App
+1. Register a new Azure AD app
 
    ```bash
    AZURE_AD_APP_DETAILS_MINIMAL_API=$(az ad app create --display-name "active-directory-dotnet-minimal-api-aspnetcore" -o json) && \
@@ -61,7 +61,7 @@ Later the web app can make calls to protected Apis in the name of the signed-in 
    EOF
    ```
 
-1. Set the api uri and the `access_as_user` scope
+1. Set a global unique URI that identify the web API and add the `access_as_user` scope
 
    ```bash
    az ad app update --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API --identifier-uris "api://${AZURE_AD_APP_CLIENT_ID_MINIMAL_API}" --set oauth2Permissions=@access_as_user_scope.json
