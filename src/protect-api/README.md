@@ -8,7 +8,7 @@ The sample code provided here has been created using minimal web API in ASP.NET 
 │   ASP.NET Core 6                 │        Http Request           │  ASP.NET Core 6             │
 │                                  ├──────────────────────────────►│                             │
 │   Web app that signs in users    │  Authorization Bearer 1NS...  │  Protected Minimal web Api  │
-│                                  │  with access_as_user scope    │                             │
+│                                  │  with forescast.read scope    │                             │
 └──────────────────────────────────┘                               └─────────────────────────────┘
 
 Scenario:
@@ -40,10 +40,10 @@ Later the web app can make calls to protected Apis in the name of the signed-in 
    az ad app update --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API --set oauth2Permissions="$AZURE_AD_APP_USER_IMPERSONATION_SCOPE"
    ```
 
-1. Create a new manifest scope for `access_as_user`
+1. Create a new manifest scope for `forescast.read`
 
    ```bash
-   cat > access_as_user_scope.json <<EOF
+   cat > forescast.read.json <<EOF
    [
      {
        "adminConsentDescription": "Allows the app to access Minimal Api (active-directory-dotnet-minimal-api-aspnetcore) as the signed-in user.",
@@ -55,16 +55,16 @@ Later the web app can make calls to protected Apis in the name of the signed-in 
        "type": "User",
        "userConsentDescription": "Allow the application to access Minimal (active-directory-dotnet-minimal-aspnetcore) on your behalf.",
        "userConsentDisplayName": "Access Minimal Api (active-directory-dotnet-minimal-aspnetcore)",
-       "value": "access_as_user"
+       "value": "forescast.read"
      }
    ]
    EOF
    ```
 
-1. Set a global unique URI that identify the web API and add the `access_as_user` scope
+1. Set a global unique URI that identify the web API and add the `forescast.read` scope
 
    ```bash
-   az ad app update --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API --identifier-uris "api://${AZURE_AD_APP_CLIENT_ID_MINIMAL_API}" --set oauth2Permissions=@access_as_user_scope.json
+   az ad app update --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API --identifier-uris "api://${AZURE_AD_APP_CLIENT_ID_MINIMAL_API}" --set oauth2Permissions=@forescast.read.json
    ```
 
 ## Scaffold the web API by using the ASP.NET Core Minimal Api project template
@@ -92,7 +92,7 @@ Later the web app can make calls to protected Apis in the name of the signed-in 
        "Instance": "https://login.microsoftonline.com/",
        "ClientId": "${AZURE_AD_APP_CLIENT_ID_MINIMAL_API}",
        "TenantId": "$(az account show --query tenantId --output tsv)",
-       "Scopes": "access_as_user"
+       "Scopes": "forescast.read"
      },
      "Logging": {
        "LogLevel": {
