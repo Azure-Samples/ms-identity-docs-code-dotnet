@@ -7,18 +7,18 @@ The sample code provided here has been created using minimal web API in ASP.NET 
 │                        │                               │                             │
 │   ASP.NET Core 6       │        Http Request           │  ASP.NET Core 6             │
 │                        ├──────────────────────────────►│                             │
-│   Proctected Web App   │  Authorization Bearer 1NS...  │  Protected Minimal Web Api  │
+│   Protected Web App    │  Authorization Bearer 1NS...  │  Protected Minimal Web Api  │
 │                        │                               │                             │
 └────────────────────────┘                               └─────────────────────────────┘
 
 Scenario:
 
-A protected web app allows users to sign in, it enables the possiblity of acquiring and validating their tokens.
+A protected web app allows users to sign in, it enables the possibility of acquiring and validating their tokens.
 
 Later the web app can make calls to protected Apis in the name of the signed-in users.
 ```
 
-:link: For more information about how to proctect your projects, please let's take a look at https://docs.microsoft.com/en-us/azure/active-directory/develop/sample-v2-code. To know more about how this sample has been generated, please visit https://docs.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio-code
+:link: For more information about how to protect your projects, please let's take a look at https://docs.microsoft.com/en-us/azure/active-directory/develop/sample-v2-code. To know more about how this sample has been generated, please visit https://docs.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio-code
 
 ## Prerequisites
 
@@ -83,7 +83,7 @@ Later the web app can make calls to protected Apis in the name of the signed-in 
 
 ## Configure the web API
 
-1. Create the `appsettings.json` file with the Azure AD app comfiguration
+1. Create the `appsettings.json` file with the Azure AD app configuration
 
    ```bash
    cat > appsettings.json <<EOF
@@ -121,7 +121,7 @@ Later the web app can make calls to protected Apis in the name of the signed-in 
    curl -X GET https://localhost:5001/weatherforecast -ki
    ```
 
-   :book: Since the request is sent without a Bearer Token, it is expected to receive an Unauthorized reponse `401`. The web API is now protected
+   :book: Since the request is sent without a Bearer Token, it is expected to receive an Unauthorized response `401`. The web API is now protected
 
 ## Clean up
 
