@@ -45,7 +45,6 @@ Later the web app can make calls to the Microsoft 365 Graph API on behalf of sig
 
 1. An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
-1. Install [JQ](https://stedolan.github.io/jq/download/)
 
 ## Register the web API application in your Azure Active Directory
 
@@ -58,9 +57,8 @@ Later the web app can make calls to the Microsoft 365 Graph API on behalf of sig
 1. Register a new Azure AD App with a reply url
 
    ```bash
-   AZURE_AD_APP_DETAILS_WEBAPP=$(az ad app create --display-name "active-directory-dotnet-webapp-aspnetcore" --password ${AZURE_AD_APP_SECRET} --reply-urls "https://localhost:5001/signin-oidc" -o json) && \
-   AZURE_AD_APP_CLIENT_ID_WEBAPP=$(echo $AZURE_AD_APP_DETAILS_WEBAPP | jq ".appId" -r) && \
-   AZURE_AD_APP_DOMAIN=$(echo $AZURE_AD_APP_DETAILS_WEBAPP | jq ".publisherDomain" -r)
+   AZURE_AD_APP_CLIENT_ID_WEBAPP=$(az ad app create --display-name "active-directory-dotnet-webapp-aspnetcore" --password ${AZURE_AD_APP_SECRET} --reply-urls "https://localhost:5001/signin-oidc" --query appId -o tsv) && \
+   AZURE_AD_APP_DOMAIN=$(az ad app show --id $AZURE_AD_APP_CLIENT_ID_WEBAPP --query publisherDomain -o tsv)
    ```
 
 1. Setup a Front-channel logout URL
