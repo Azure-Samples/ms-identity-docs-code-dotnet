@@ -9,7 +9,7 @@ using Microsoft.Identity.Client;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Essentials;
 
-namespace Mobile
+namespace XPlat
 {
     public partial class MainPage : ContentPage
     {

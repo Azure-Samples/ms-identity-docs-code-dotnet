@@ -4,16 +4,16 @@
 		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) and '$(MSBuildRuntimeType)' == 'Full'">$(TargetFrameworks);net6.0-windows10.0.19041</TargetFrameworks>
 		<OutputType>Exe</OutputType>
-		<RootNamespace>Mobile</RootNamespace>
+		<RootNamespace>XPlat</RootNamespace>
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
 
 		<!-- Display name -->
-		<ApplicationTitle>Mobile</ApplicationTitle>
+		<ApplicationTitle>XPlat</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.Mobile</ApplicationId>
+		<ApplicationId>com.companyname.XPlat</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationVersion>1</ApplicationVersion>

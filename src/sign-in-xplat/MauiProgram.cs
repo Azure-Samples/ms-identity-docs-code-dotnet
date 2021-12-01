@@ -1,7 +1,7 @@
 ﻿using Microsoft.Maui.Hosting;
 using Microsoft.Maui.Controls.Hosting;
 
-namespace Mobile
+namespace XPlat
 {
     public static class MauiProgram
 	{

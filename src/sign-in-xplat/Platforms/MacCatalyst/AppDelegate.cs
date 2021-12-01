@@ -2,7 +2,7 @@
 using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 
-namespace Mobile
+namespace XPlat
 {
 	[Register("AppDelegate")]
 	public class AppDelegate : MauiUIApplicationDelegate

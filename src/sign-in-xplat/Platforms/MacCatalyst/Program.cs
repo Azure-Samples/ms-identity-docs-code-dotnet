@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace Mobile
+namespace XPlat
 {
 	public class Program
 	{
