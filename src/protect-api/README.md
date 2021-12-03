@@ -46,6 +46,51 @@ Use the following settings for your app registration:
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
+<details>
+  <summary>:computer: Alternative: Register the application using az-cli</summary>
+
+1. Register a new Azure AD app
+
+   ```bash
+   AZURE_AD_APP_DETAILS_MINIMAL_API=$(az ad app create --display-name "active-directory-dotnet-minimal-api-aspnetcore" -o json) && \
+   AZURE_AD_APP_CLIENT_ID_MINIMAL_API=$(echo $AZURE_AD_APP_DETAILS_MINIMAL_API | jq ".appId" -r)
+   ```
+
+1. Disable the default scope for `user_impersonation`
+
+   ```bash
+   AZURE_AD_APP_USER_IMPERSONATION_SCOPE=$(echo $AZURE_AD_APP_DETAILS_MINIMAL_API | jq '.oauth2Permissions[0].isEnabled = false' | jq -r '.oauth2Permissions') && \
+   az ad app update --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API --set oauth2Permissions="$AZURE_AD_APP_USER_IMPERSONATION_SCOPE"
+   ```
+
+1. Create a new manifest scope for `forescast.read`
+
+   ```bash
+   cat > forescast.read.json <<EOF
+   [
+     {
+       "adminConsentDescription": "Allows the app to access Minimal Api (active-directory-dotnet-minimal-api-aspnetcore) as the signed-in user.",
+       "adminConsentDisplayName": "Access Minimal Api (active-directory-dotnet-minimal-api-aspnetcore)",
+       "id": "1658e205-0e89-43a3-b107-b06a3e6dc60d",
+       "isEnabled": true,
+       "lang": null,
+       "origin": "Application",
+       "type": "User",
+       "userConsentDescription": "Allow the application to access Minimal (active-directory-dotnet-minimal-aspnetcore) on your behalf.",
+       "userConsentDisplayName": "Access Minimal Api (active-directory-dotnet-minimal-aspnetcore)",
+       "value": "forescast.read"
+     }
+   ]
+   EOF
+   ```
+
+1. Set a global unique URI that identify the web API and add the `forescast.read` scope
+
+   ```bash
+   az ad app update --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API --identifier-uris "api://${AZURE_AD_APP_CLIENT_ID_MINIMAL_API}" --set oauth2Permissions=@forescast.read.json
+   ```
+</details>
+
 ### 2. Configure the web API
 
 1. Create the `appsettings.json` file with the Azure AD app configuration
