@@ -93,6 +93,17 @@ Use the following settings for your app registration:
 
 ### 2. Configure the web API
 
+1. Open the `Api.csrpoj` under the the `protect-api` folder in your code editor.
+1. Open the `appsettings.json` file and modify the following code:
+
+   ```json
+   "ClientId": "Enter_the_Application_Id_here",
+   "TenantId": "Enter_the_Tenant_Info_Here"
+   ```
+
+<details>
+  <summary>:computer: Alternative: modify the `appsettings.json` file from your terminal</summary>
+
 1. Create the `appsettings.json` file with the Azure AD app configuration
 
    ```bash
@@ -114,6 +125,7 @@ Use the following settings for your app registration:
    }
    EOF
    ```
+</details>
 
 ## Run the application
 
