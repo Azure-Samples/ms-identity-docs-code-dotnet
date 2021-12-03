@@ -1,4 +1,18 @@
-# ASP.NET Core minimal web API - Protected API | Microsoft identity platform
+---
+# Metadata required by https://docs.microsoft.com/samples/browse/
+# Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
+languages:
+- csharp
+page_type: sample
+name: ASP.NET Core minimal web API that protects API
+description: "This ASP.NET Core minimal web API protects an API endpoint. The code in this sample is used by one or more articles on docs.microsoft.com."
+products:
+- azure
+- azure-active-directory
+- ms-graph
+urlFragment: ms-identity-docs-code-csharp
+---
+# ASP.NET Core minimal web API - Protects API | Microsoft identity platform
 
 The sample code provided here has been created using minimal web API in ASP.NET Core 6.0, and slightly modified to be protected for a single organization using [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0) that interacts with [Microsoft Authentication Library (MSAL)](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-overview).  In other words, a very minimalist web api is secured by adding an authorization layer before user requests can reach protected resources.  At this point it is expected that the user sign-in had already happened, so api calls can be made in the name of the signed-in user. For that to be possible a token containing user's information is being sent in the request headers and used in the authorization process.
 
