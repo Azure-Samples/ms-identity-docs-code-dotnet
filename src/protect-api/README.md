@@ -145,6 +145,7 @@ Use the following settings for your app registration:
 
 ## About the code
 
+The ASP.NET Core minimal web API application protects its weather endpoint, so it will only authorize calls in the name of signed-in users.
 
 ```output
 ┌──────────────────────────────────┐                               ┌─────────────────────────────┐
