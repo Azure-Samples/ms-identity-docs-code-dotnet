@@ -67,20 +67,6 @@ Later the web app can make calls to protected Apis in the name of the signed-in 
    az ad app update --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API --identifier-uris "api://${AZURE_AD_APP_CLIENT_ID_MINIMAL_API}" --set oauth2Permissions=@forescast.read.json
    ```
 
-## Scaffold the web API by using the ASP.NET Core Minimal Api project template
-
-1. Execute the following command to create the new web api project
-
-   ```bash
-   dotnet new webapi -minimal -o <name>
-   ```
-
-1. Add donet package for ASP.NET Core Identity
-
-   ```bash
-   dotnet add package Microsoft.Identity.Web
-   ```
-
 ## Configure the web API
 
 1. Create the `appsettings.json` file with the Azure AD app configuration
