@@ -5,7 +5,7 @@ languages:
 - csharp
 page_type: sample
 name: ASP.NET Core minimal web API that protects API
-description: "This ASP.NET Core minimal web API protects an API endpoint. The code in this sample is used by one or more articles on docs.microsoft.com."
+description: This ASP.NET Core minimal web API protects an API endpoint. The code in this sample is used by one or more articles on docs.microsoft.com.
 products:
 - azure
 - azure-active-directory
@@ -36,11 +36,15 @@ First, complete the steps in [Register an application with the Microsoft identit
 
 Use the following settings for your app registration:
 
-- Name: `active-directory-dotnet-minimal-api-aspnetcore` (suggested)
-- Supported account types: **Accounts in any organizational directory and personal Microsoft accounts**
-- Platform type: `web`
-- Indentifier URIs: `api://{AZURE_AD_APP_CLIENT_ID_MINIMAL_API}`
-- Scopes: `Forecast.Read`
+| App registration <br/> setting | Value for this sample app                          | Notes                                                                                                       |
+|:------------------------------:|:---------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
+| **Name**                       | `active-directory-dotnet-minimal-api-aspnetcore`   | Suggested value for this sample. <br/> You can change the app name at any time.                             |
+| **Supported account types**    | **My organization only**                           | Required for this sample. <br/> Support for the Single tenant.                                              |
+| **Platform type**              | `Web`                                              | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
+| **Identifier URI**             | `api://{clientId}`                                 | Suggested value for this sample. <br/> You must change the client id using the Value shown in Azure portal. |
+| **Scopes**                     | `Forecast.Read`                                    | Required value for this sample.                                                                             |
+
+> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
 ### 2. Configure the web API
 
