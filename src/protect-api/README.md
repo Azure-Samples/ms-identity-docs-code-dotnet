@@ -47,7 +47,7 @@ Use the following settings for your app registration:
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
 <details>
-  <summary>:computer: Alternative: Register the application using az-cli</summary>
+  <summary>:computer: Alternative: register the application using az-cli</summary>
 
 1. Register a new Azure AD app
 
@@ -102,7 +102,7 @@ Use the following settings for your app registration:
    ```
 
 <details>
-  <summary>:computer: Alternative: modify the `appsettings.json` file from your terminal</summary>
+  <summary>:computer: Alternative: modify the appsettings.json file from your terminal</summary>
 
 1. Create the `appsettings.json` file with the Azure AD app configuration
 
@@ -175,7 +175,7 @@ An (ASP.NET Core) web app that allows users to sign in enables the possibility o
 Later the web app can make calls to protected Apis in the name of the signed-in users.
 ```
 
-:links: For more information about how to protect your projects, please let's take a look at https://docs.microsoft.com/en-us/azure/active-directory/develop/sample-v2-code. To know more about how this sample has been generated, please visit https://docs.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio-code
+:link: For more information about how to protect your projects, please let's take a look at https://docs.microsoft.com/en-us/azure/active-directory/develop/sample-v2-code. To know more about how this sample has been generated, please visit https://docs.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio-code
 
 ## Reporting problems
 
