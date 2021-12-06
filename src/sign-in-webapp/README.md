@@ -67,22 +67,6 @@ Later the web app can make calls to the Microsoft 365 Graph API on behalf of sig
    az ad app update --id $AZURE_AD_APP_CLIENT_ID_WEBAPP --set logoutUrl="https://localhost:5001/signout-oidc"
    ```
 
-## Scaffold the web app by using the ASP.NET Core Razor project template
-
-1. Install the latest `Microsoft.Identity.Web` templates from NuGet.org
-
-   ```bash
-   dotnet new --install Microsoft.Identity.Web.ProjectTemplates::1.21.0
-   ```
-
-1. Create a Microsoft identity platform (Azure AD v2.0) application. Execute the following command to create the web app project
-
-   ```bash
-   dotnet new webapp2 --auth SingleOrg --aad-instance "https://login.microsoftonline.com/" --client-id ${AZURE_AD_APP_CLIENT_ID_WEBAPP} --tenant-id $(az account show --query tenantId --output tsv) --domain ${AZURE_AD_APP_DOMAIN} --called-api-url "https://graph.microsoft.com/v1.0/me"
-   ```
-
-   :warning: Today, with ASP.NET Core 3.1 without Microsoft Identity Web, when running `dotnet new --auth` and creating a `webapp` from an ASP.NET core template, the application is targeting the Azure AD v1.0 endpoint. Microsoft Identity Web provides the glue between the ASP.NET Core middleware and MSAL .NET to bring a clearer, more robust developer experience, which also leverages the power of the Microsoft identity platform (formerly Azure AD v2.0 endpoint). `Microsoft.Identity.Web` is a simpler way to use Azure AD in ASP.NET Core web apps and web APIs. It doesn't replace ASP.NET Identity in any way, it doesn't replace AddOpenIdConnect, AddJwtBearer or AddCookie or any of the lower level primitives, but it does use and configure them correctly for Azure AD. It replaces AzureAD.UI and AzureADB2C.UI which are obsolete in .NET 5.0 or later. For more information, please take a look at https://github.com/AzureAD/microsoft-identity-web/wiki/Microsoft-Identity-Web-basics#why-use-microsoftidentityweb
-
 ## Configure the web app
 
 1. Set the client secret app
