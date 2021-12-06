@@ -26,7 +26,8 @@ The sample code provided here has been created using minimal web API in ASP.NET 
 
 ## Prerequisites
 
-1. [Download .NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
+1. An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
+1. [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 ## Setup
 
