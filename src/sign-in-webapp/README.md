@@ -1,6 +1,26 @@
+---
+# Metadata required by https://docs.microsoft.com/samples/browse/
+# Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
+languages:
+- csharp
+page_type: sample
+name: "ASP.NET Core 6.0 Web App Sign-in user"
+description: "This is a ASP.NET Core 6.0 Web App that sign-in users. The code in this sample is used by one or more articles on docs.microsoft.com."
+products:
+- azure
+- azure-active-directory
+- ms-graph
+urlFragment: ms-identity-docs-code-csharp
+---
 # ASP.NET Core 6.0 Web App - Sign-in user | Microsoft identity platform
 
+<!-- Build badges here
+![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
+-->
+
 The web app in this scenario has been created using the ASP.NET Core 6.0 Razor template, and slightly modified to add authentication enabling the users sign-in that follows the [Open Id Connect](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc) standard protocol. To lite up Open Id, it is using [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0) middlewares.  In other words, a simple web app is secured by adding an authentication layer allowing users to sign-in with their Work and school (Azure AD) accounts, and as a result it can make web API calls to protected resources on behalf of the signed-in user.
+
+<!-- IMAGE or CONSOLE OUTPUT of running/executed app -->
 
 > :page_with_curl: This sample application backs one or more technical articles on docs.microsoft.com. <!-- TODO: Link to first tutorial in series when published. -->
 
