@@ -13,6 +13,24 @@ The web app in this scenario has been created using the ASP.NET Core 6.0 Razor t
 
 ### 1. Register the web API application in your Azure Active Directory
 
+First, complete the steps in [Register an application with the Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the sample app.
+
+Use the following settings for your app registration:
+
+| App registration <br/> setting | Value for this sample app                          | Notes                                                                                                       |
+|:------------------------------:|:---------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
+| **Name**                       | `active-directory-dotnet-webapp-aspnetcore`        | Suggested value for this sample. <br/> You can change the app name at any time.                             |
+| **Supported account types**    | **My organization only**                           | Required for this sample. <br/> Support for the Single tenant.                                              |
+| **Platform type**              | `Web`                                              | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
+| **Redirect URIs**              | `https://localhost:5001/signin-oidc`               | Required value for this sample. <br/> You can change that later in your own implementation.                 |
+| **Front-channel logout URL**   | `https://localhost:5001/signout-oidc`              | Required value for this sample. <br/> You can change that later in your own implementation.                 |
+| **Client secret**              | _Value shown in Azure portal_                      | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).                 |
+
+> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
+
+<details>
+   <summary>:computer: Alternative: Register the application using az-cli</summary>
+
 1. Choose a password for the Azure AD App
 
     ```bash
@@ -31,6 +49,8 @@ The web app in this scenario has been created using the ASP.NET Core 6.0 Razor t
    ```bash
    az ad app update --id $AZURE_AD_APP_CLIENT_ID_WEBAPP --set logoutUrl="https://localhost:5001/signout-oidc"
    ```
+
+</details>
 
 ### 2. Configure the web app
 
