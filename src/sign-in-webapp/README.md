@@ -54,11 +54,55 @@ Use the following settings for your app registration:
 
 ### 2. Configure the web app
 
+1. Open the `WebApp.csrpoj` under the the `sign-in-webapp` folder in your code editor.
+1. Open the `appsettings.json` file and modify the following code:
+
+    ```json
+    "Domain": "[Enter the domain of your tenant, e.g. contoso.onmicrosoft.com]",
+    "TenantId": "[Enter 'common', or 'organizations' or the Tenant ID (Obtained from the Azure portal. Select 'Endpoints' from the 'App registrations' blade and use the GUID in any of the URLs), e.g. da41245a5-11b3-996c-00a8-4d99re19f292]",
+    "ClientId": "[Enter the Client Id (Application ID obtained from the Azure portal), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]",
+    "ClientSecret": "[Copy the client secret added to the app from the Azure portal]",
+    ```
+
+<details>
+   <summary>:computer: Alternative: modify the `appsettings.json` file from your terminal</summary>
+
+1. Create the `appsettings.json` file with the Azure AD app configuration
+
+   ```bash
+   cat > appsettings.json <<EOF
+   {
+     "AzureAd": {
+       "Instance": "https://login.microsoftonline.com/",
+       "Domain": "${AZURE_AD_APP_DOMAIN}",
+       "ClientId": "${AZURE_AD_APP_CLIENT_ID_WEBAPP}",
+       "TenantId": "$(az account show --query tenantId --output tsv)",
+       "ClientSecret": "[Copy the client secret added to the app from the Azure portal]",
+       "ClientCertificates": [
+       ],
+       "CallbackPath": "/signin-oidc"
+     },
+     "DownstreamApi": {
+       "BaseUrl": "https://graph.microsoft.com/v1.0/me",
+       "Scopes": "user.read"
+     },
+     "Logging": {
+       "LogLevel": {
+         "Default": "Information",
+         "Microsoft.AspNetCore": "Warning"
+       }
+     },
+     "AllowedHosts": "*"
+   }
+   EOF
+   ```
+
 1. Set the client secret app
 
    ```bash
    export AzureAd__ClientSecret=$AZURE_AD_APP_SECRET
    ```
+</details>
 
 ## Run the application
 
