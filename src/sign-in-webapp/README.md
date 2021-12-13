@@ -26,8 +26,8 @@ The web app in this scenario has been created using the ASP.NET Core 6.0 Razor t
 
 ## Prerequisites
 
-1. An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
-1. [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
+- An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
+- [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 ## Setup
 
