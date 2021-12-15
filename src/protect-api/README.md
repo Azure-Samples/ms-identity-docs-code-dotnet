@@ -94,7 +94,7 @@ Use the following settings for your app registration:
 
 ### 2. Configure the web API
 
-1. Open the `Api.csrpoj` under the the `protect-api` folder in your code editor.
+1. Open the `Api.csproj` under the the `protect-api` folder in your code editor.
 1. Open the `appsettings.json` file and modify the following code:
 
    ```json
@@ -146,7 +146,7 @@ Use the following settings for your app registration:
    curl -X GET https://localhost:5001/weatherforecast -ki
    ```
 
-   :book: Since the request is sent without a Bearer Token, it is expected to receive an Unauthorized response `401`. The web API is now protected
+   :information_source: Since the request is sent without a Bearer Token, it is expected to receive an Unauthorized response `401`. The web API is now protected
 
 ### 3. Clean up
 
