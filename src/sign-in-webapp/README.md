@@ -74,8 +74,8 @@ Use the following settings for your app registration:
 
 ### 2. Configure the web app
 
-1. Open the `WebApp.csrpoj` under the the `sign-in-webapp` folder in your code editor.
-1. Open the `appsettings.json` file and modify the following code:
+1. Open the _~/sign-in-webapp/WebApp.csrpoj_ in your code editor.
+1. Open the _appsettings.json_ file and modify the following code:
 
     ```json
     "Domain": "[Enter the domain of your tenant, e.g. contoso.onmicrosoft.com]",
@@ -87,7 +87,7 @@ Use the following settings for your app registration:
 <details>
    <summary>:computer: Alternative: modify the `appsettings.json` file from your terminal</summary>
 
-1. Create the `appsettings.json` file with the Azure AD app configuration
+1. Create the _appsettings.json_ file with the Azure AD app configuration
 
    ```bash
    cat > appsettings.json <<EOF
