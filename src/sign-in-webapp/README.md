@@ -51,7 +51,11 @@ Use the following settings for your app registration:
 <details>
    <summary>:computer: Alternative: Register the application using az-cli</summary>
 
-1. Choose a password for the Azure AD App
+1. Set a shell environment variable containing a client secret for the app (for the `--password` argument in the next step):
+
+    ```bash
+   export AZURE_AD_APP_SECRET=<at-least-sixteen-characters-here>
+    ```
 
     ```bash
     AZURE_AD_APP_SECRET=<at-least-sixteen-characters-here>
