@@ -54,11 +54,7 @@ Use the following settings for your app registration:
 1. Set a shell environment variable containing a client secret for the app (for the `--password` argument in the next step):
 
     ```bash
-   export AZURE_AD_APP_SECRET=<at-least-sixteen-characters-here>
-    ```
-
-    ```bash
-    AZURE_AD_APP_SECRET=<at-least-sixteen-characters-here>
+    export AZURE_AD_APP_SECRET=<at-least-sixteen-characters-here>
     ```
 
 1. Register a new Azure AD App with a reply url
