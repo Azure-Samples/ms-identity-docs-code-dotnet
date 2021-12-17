@@ -35,7 +35,11 @@ namespace XPlat
             try
             {
                 // Sign-in user using MSAL and obtain an access token for MS Graph
-                GraphServiceClient graphClient = await SignInAndInitializeGraphServiceClient(scopes);
+                GraphServiceClient graphClient = new GraphServiceClient(MSGraphURL,
+                    new DelegateAuthenticationProvider(async (requestMessage) =>
+                    {
+                        requestMessage.Headers.Authorization = new AuthenticationHeaderValue("bearer", await SignInUserAndGetTokenUsingMSAL(scopes));
+                    }));
 
                 // Call the /me endpoint of Graph
                 User graphUser = await graphClient.Me.Request().GetAsync();
@@ -111,21 +115,6 @@ namespace XPlat
 
             }
             return authResult.AccessToken;
-        }
-
-        /// <summary>
-        /// Sign in user using MSAL and obtain a token for MS Graph
-        /// </summary>
-        /// <returns>GraphServiceClient</returns>
-        private async static Task<GraphServiceClient> SignInAndInitializeGraphServiceClient(string[] scopes)
-        {
-            GraphServiceClient graphClient = new GraphServiceClient(MSGraphURL,
-                new DelegateAuthenticationProvider(async (requestMessage) =>
-                {
-                    requestMessage.Headers.Authorization = new AuthenticationHeaderValue("bearer", await SignInUserAndGetTokenUsingMSAL(scopes));
-                }));
-
-            return await Task.FromResult(graphClient);
         }
     }
 }
