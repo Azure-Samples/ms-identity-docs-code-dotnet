@@ -1,0 +1,17 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+
+@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h1>Welcome to User Sign In ASP.NET Core Blazor WebAssembly</h1>
+
+<AuthorizeView>
+  <NotAuthorized>
+    <div>This page can be accessed by all users, authenticated or not.</div>
+    <p>Click <a href="authentication/login">Log in</a> to sign into the application. Navigating to it while not logged in will automatically initiate the login process. Please note that it doesn't require that your user has any specific application roles assigned, and will access Microsoft Graph on your behalf.</p>
+  </NotAuthorized>
+  <Authorized>
+    You are now signed-in.
+  </Authorized>
+</AuthorizeView>
