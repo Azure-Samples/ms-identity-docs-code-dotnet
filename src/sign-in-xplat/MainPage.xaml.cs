@@ -34,6 +34,16 @@ namespace XPlat
         {
             try
             {
+                // Initialize the MSAL library by building a public client application
+                PublicClientApp ??= PublicClientApplicationBuilder.Create(ClientId)
+                    .WithAuthority(Authority)
+                    .WithRedirectUri($"https://login.microsoftonline.com/common/oauth2/nativeclient")
+                    .WithLogging((level, message, containsPii) =>
+                    {
+                        Debug.WriteLine($"MSAL: {level} {message} ");
+                    }, LogLevel.Warning, enablePiiLogging: false, enableDefaultPlatformLogging: true)
+                    .Build();
+
                 // Sign-in user using MSAL and obtain an access token for MS Graph
                 GraphServiceClient graphClient = new GraphServiceClient(MSGraphURL,
                     new DelegateAuthenticationProvider(async (requestMessage) =>
@@ -86,16 +96,6 @@ namespace XPlat
         /// <returns> Access Token</returns>
         private static async Task<string> SignInUserAndGetTokenUsingMSAL(string[] scopes)
         {
-            // Initialize the MSAL library by building a public client application
-            PublicClientApp = PublicClientApplicationBuilder.Create(ClientId)
-                .WithAuthority(Authority)
-                .WithRedirectUri($"https://login.microsoftonline.com/common/oauth2/nativeclient")
-                .WithLogging((level, message, containsPii) =>
-                {
-                    Debug.WriteLine($"MSAL: {level} {message} ");
-                }, LogLevel.Warning, enablePiiLogging: false, enableDefaultPlatformLogging: true)
-                .Build();
-
             IEnumerable<IAccount> accounts = await PublicClientApp.GetAccountsAsync().ConfigureAwait(false);
             IAccount firstAccount = accounts.FirstOrDefault();
 
@@ -112,7 +112,6 @@ namespace XPlat
                 authResult = await PublicClientApp.AcquireTokenInteractive(scopes)
                                                   .ExecuteAsync()
                                                   .ConfigureAwait(false);
-
             }
             return authResult.AccessToken;
         }
