@@ -12,7 +12,7 @@ products:
 - ms-graph
 urlFragment: ms-identity-docs-code-csharp
 ---
-# ASP.NET Core minimal web API - Protects API | Microsoft identity platform
+# ASP.NET Core minimal web API | web api | access control (protected routes) | Microsoft identity platform
 
 <!-- Build badges here
 ![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
@@ -37,13 +37,13 @@ First, complete the steps in [Register an application with the Microsoft identit
 
 Use the following settings for your app registration:
 
-| App registration <br/> setting | Value for this sample app                          | Notes                                                                                                       |
-|:------------------------------:|:---------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
-| **Name**                       | `active-directory-dotnet-minimal-api-aspnetcore`   | Suggested value for this sample. <br/> You can change the app name at any time.                             |
-| **Supported account types**    | **My organization only**                           | Required for this sample. <br/> Support for the Single tenant.                                              |
-| **Platform type**              | `Web`                                              | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
-| **Identifier URI**             | `api://{clientId}`                                 | Suggested value for this sample. <br/> You must change the client id using the Value shown in Azure portal. |
-| **Scopes**                     | `Forecast.Read`                                    | Required value for this sample.                                                                             |
+| App registration <br/> setting | Value for this sample app                                           | Notes                                                                                                       |
+|:------------------------------:|:--------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
+| **Name**                       | `active-directory-dotnet-minimal-api-aspnetcore`                    | Suggested value for this sample. <br/> You can change the app name at any time.                             |
+| **Supported account types**    | **Accounts in this organizational directory only (Single tenant)**  | Required for this sample. <br/> Support for the Single tenant.                                              |
+| **Platform type**              | **Web**                                                             | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
+| **Identifier URI**             | `api://{clientId}`                                                  | Suggested value for this sample. <br/> You must change the client id using the Value shown in Azure portal. |
+| **Scopes**                     | `Forecast.Read`                                                     | Required value for this sample.                                                                             |
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
