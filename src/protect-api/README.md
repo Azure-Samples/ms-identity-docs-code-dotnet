@@ -53,15 +53,14 @@ Use the following settings for your app registration:
 1. Register a new Azure AD app
 
    ```bash
-   AZURE_AD_APP_DETAILS_MINIMAL_API=$(az ad app create --display-name "active-directory-dotnet-minimal-api-aspnetcore" -o json) && \
-   AZURE_AD_APP_CLIENT_ID_MINIMAL_API=$(echo $AZURE_AD_APP_DETAILS_MINIMAL_API | jq ".appId" -r)
+   AZURE_AD_APP_CLIENT_ID_MINIMAL_API=$(az ad app create --display-name "active-directory-dotnet-minimal-api-aspnetcore" --query appId -o tsv)
    ```
 
 1. Disable the default scope for `user_impersonation`
 
    ```bash
-   AZURE_AD_APP_USER_IMPERSONATION_SCOPE=$(echo $AZURE_AD_APP_DETAILS_MINIMAL_API | jq '.oauth2Permissions[0].isEnabled = false' | jq -r '.oauth2Permissions') && \
-   az ad app update --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API --set oauth2Permissions="$AZURE_AD_APP_USER_IMPERSONATION_SCOPE"
+   AZURE_AD_APP_USER_IMPERSONATION_SCOPE=$(az ad app show --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API --query "oauth2Permissions[0]" -o json | sed 's#"isEnabled": true#"isEnabled": false#g') && \
+   az ad app update --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API --set oauth2Permissions="[$AZURE_AD_APP_USER_IMPERSONATION_SCOPE]"
    ```
 
 1. Create a new manifest scope for `forescast.read`
