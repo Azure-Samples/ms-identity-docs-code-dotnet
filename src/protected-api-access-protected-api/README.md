@@ -20,7 +20,44 @@ urlFragment: ms-identity-docs-code-csharp
 
 This sample demonstrates an ASP.NET Core minimal web API  that is both protected by Microsoft identity platform and accesses Microsoft Graph on behalf of the user by using [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0) that interacts with [Microsoft Authentication Library (MSAL)](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-overview).
 
-<!-- TODO: IMAGE or CONSOLE OUTPUT of running/executed app -->
+```console
+$ curl https://localhost:5001/me -H "Authorization: Bearer {valid-access-token}"
+Graph API call result:
+{
+   "version": "1.1",
+   "content": {
+      "headers": [
+         {
+            "key": "Content-Type",
+            "value": [
+               "application/json; odata.metadata=minimal; odata.streaming=true; IEEE754Compatible=false; charset=utf-8"
+            ]
+         }
+      ]
+   },
+   "statusCode": 200,
+   "reasonPhrase": "OK",
+   "headers": [
+     ...
+   ],
+   "trailingHeaders": [],
+   "requestMessage": {
+      "version": "1.1",
+      "versionPolicy": 0,
+      "content": null,
+      "method": {
+         "method": "GET"
+      },
+      "requestUri": "https://graph.microsoft.com/v1.0/me/",
+      "headers": [
+        ...
+      ],
+      "properties": {},
+      "options": {}
+   },
+   "isSuccessStatusCode": true
+}
+```
 
 > :page_with_curl: This sample application backs one or more technical articles on docs.microsoft.com. <!-- TODO: Link to first tutorial in series when published. -->
 
@@ -44,6 +81,8 @@ Use the following settings for your app registration:
 | **Platform type**              | **Web**                                                             | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
 | **Identifier URI**             | `api://{clientId}`                                                  | Suggested value for this sample. <br/> You must change the client id using the Value shown in Azure portal. |
 | **Expose an API**              | `api://{clientId}/user_impersonation`                               | Create a new delegated permission called user_impersonation. Required value for this sample.                |
+| **API Permissions**            | `https://graph.microsoft.com/User.Read`                             | Create a new delegated permission called for `Microsoft Graph User.Read`. Required value for this sample.   |
+| **Client secret**              | _Value shown in Azure portal_                                       | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).                 |
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
@@ -78,32 +117,8 @@ Third, modify the web API application to update the following settings to refere
    ```json
    "ClientId": "Enter_the_Application_Id_here",
    "TenantId": "Enter_the_Tenant_Info_Here"
+   "ClientSecret": "Enter_the_Client_Secret_here",
    ```
-
-<details>
-  <summary>:computer: Alternative: modify the appsettings.json file from your terminal</summary>
-
-1. Create the `appsettings.json` file with the Azure AD app configuration
-
-   ```bash
-   cat > appsettings.json <<EOF
-   {
-     "AzureAd": {
-       "Instance": "https://login.microsoftonline.com/",
-       "ClientId": "${AZURE_AD_APP_CLIENT_ID_PROTECTED_API}",
-       "TenantId": "$(az account show --query tenantId --output tsv)"
-     },
-     "Logging": {
-       "LogLevel": {
-         "Default": "Information",
-         "Microsoft.AspNetCore": "Warning"
-       }
-     },
-     "AllowedHosts": "*"
-   }
-   EOF
-   ```
-</details>
 
 ## Run the application
 
@@ -125,45 +140,47 @@ Third, modify the web API application to update the following settings to refere
 
    :information_source: Since the request is sent without a Bearer Token, it is expected to receive an Unauthorized response `401`. The web API is now protected
 
-1. Set a shell environment variable containing a client secret for the app (for the `--password` argument in the next step):
+1. Open postman, curl, or similar and make an HTTP GET request to **https://localhost:5001/me** with an `Authorization` header of `Bearer {valid-access-token}`. If everything worked, the sample app should produce output similar to this:
 
-    ```bash
-    AZURE_AD_CURL_APP_SECRET=<at-least-sixteen-characters-here>
-    ```
-
-1. Register the cUrl app in Azure AD. This will act as a user.
-
-   ```bash
-   AZURE_AD_APP_CLIENT_ID_CURL_APP=$(az ad app create --display-name "active-directory-curl-app" --password ${AZURE_AD_CURL_APP_SECRET} --query appId -o tsv)
-   ```
-
-1. Acquire an Azure Security Access Token
-
-   ```bash
-   # TODO
-   ```
-
-1. execute the following to send the another request. This time, it sends Authorization Beare {token} to gain access
-
-   ```bash
-   curl -X GET https://localhost:5001/me -ki
+   ```console
+   curl -X GET https://localhost:5001/me -ki -H "Authorization: Bearer {valid-access-token}"
+   {
+      "version": "1.1",
+      "content": {
+         "headers": [
+            {
+               "key": "Content-Type",
+               "value": [
+                  "application/json; odata.metadata=minimal; odata.streaming=true; IEEE754Compatible=false; charset=utf-8"
+               ]
+            }
+         ]
+      },
+      "statusCode": 200,
+      "reasonPhrase": "OK",
+      "headers": [
+        ...
+      ],
+      "trailingHeaders": [],
+      "requestMessage": {
+         "version": "1.1",
+         "versionPolicy": 0,
+         "content": null,
+         "method": {
+            "method": "GET"
+         },
+         "requestUri": "https://graph.microsoft.com/v1.0/me/",
+         "headers": [
+           ...
+         ],
+         "properties": {},
+         "options": {}
+      },
+      "isSuccessStatusCode": true
+   }
    ```
 
    :information_source: Since the request is sent with a Bearer Token, it is expected to receive an `OK` response `200`. The web API was already protected and now it demostrate it can access another protected API on behalf of the the user.
-
-### 3. Clean up
-
-1. Delete the Azure AD web api app
-
-   ```bash
-   az ad app delete --id $AZURE_AD_APP_CLIENT_ID_PROTECTED_API
-   ```
-
-1. Delete the Azure AD cUrl app
-
-   ```bash
-   az ad app delete --id $AZURE_AD_APP_CLIENT_ID_CURL_APP
-   ```
 
 ## About the code
 
