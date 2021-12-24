@@ -93,8 +93,7 @@ Use the following settings for your app registration:
 
 ### 2. Configure the web API
 
-1. Open the `Api.csproj` under the the `protect-api` folder in your code editor.
-1. Open the `appsettings.json` file and modify the following code:
+1. Open the _~/protected-api/appsettings.json_ file in your code editor and modify the following code:
 
    ```json
    "ClientId": "Enter_the_Application_Id_here",
