@@ -89,7 +89,9 @@ Use the following settings for your app registration:
 
 ## About the code
 
-The .NET MAUI Multi-platform App will allow users to sign-in, so it can retrieve a Security Token scoped specifically for the Microsoft Graph API, and will use that token to access the user's information.
+This .NET MAUI Multi-platform App uses the Microsoft Identity Client library and presents a simple UI that will popup a separated window allowing the user to sign in into their Azure AD single tenant orgnizations.
+
+When users sign in, a new token is acquired and passed in an Authorization header as Bearer for a subsequent call to Microsoft Graph Api endpoint `/me` using the Microsoft Graph library. After signing in, and if they've not previously done so, the user is asked to consent to the app's request for permission to access their data. Such data is going to be displayed in the UI.  When a signed-out user the account is removed from the client cleaning up users retrieved information.
 
 ## Reporting problems
 
