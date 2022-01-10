@@ -26,10 +26,10 @@ This sample demonstrates a .NET MAUI Multi-platform App that sign-in users by us
 
 ## Prerequisites
 
-1. An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
-1. [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/#download-preview)
-1. [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
-1. [.NET MAUI](https://docs.microsoft.com/en-us/dotnet/maui/get-started/installation)
+- An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
+- [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/#download-preview)
+- [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
+- [.NET MAUI](https://docs.microsoft.com/en-us/dotnet/maui/get-started/installation)
 
 ## Setup
 
