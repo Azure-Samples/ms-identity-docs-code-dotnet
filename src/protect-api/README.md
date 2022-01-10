@@ -12,7 +12,7 @@ products:
 - ms-graph
 urlFragment: ms-identity-docs-code-csharp
 ---
-# ASP.NET Core minimal web API | web api | access control (protected routes) | Microsoft identity platform
+# ASP.NET Core minimal web API | web API | access control (protected routes) | Microsoft identity platform
 
 <!-- Build badges here
 ![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
