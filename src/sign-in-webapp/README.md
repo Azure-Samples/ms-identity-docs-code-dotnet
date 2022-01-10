@@ -75,14 +75,6 @@ Use the following settings for your app registration:
 1. Once the web app is listening, navigate to https://localhost:5001
 1. Sign-in with your user credentials.
 
-### 3. Clean up
-
-1. Delete the Azure AD app
-
-   ```bash
-   az ad app delete --id $AZURE_AD_APP_CLIENT_ID_WEBAPP
-   ```
-
 ## About the code
 
 The ASP.NET Core 6.0 Web App will allow users to sign-in, so it can retrieve a Security Token scoped specifically for the Microsoft Graph API, and will use that token to access the user's information. For more information about the proposed scenario, please take a look at the following diagram:
