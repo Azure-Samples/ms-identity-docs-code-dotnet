@@ -47,50 +47,6 @@ Use the following settings for your app registration:
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
-<details>
-  <summary>:computer: Alternative: register the application using az-cli</summary>
-
-1. Register a new Azure AD app
-
-   ```bash
-   AZURE_AD_APP_CLIENT_ID_MINIMAL_API=$(az ad app create --display-name "active-directory-dotnet-minimal-api-aspnetcore" --query appId -o tsv)
-   ```
-
-1. Disable the default scope for `user_impersonation`
-
-   ```bash
-   AZURE_AD_APP_USER_IMPERSONATION_SCOPE=$(az ad app show --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API --query "oauth2Permissions[0]" -o json | sed 's#"isEnabled": true#"isEnabled": false#g') && \
-   az ad app update --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API --set oauth2Permissions="[$AZURE_AD_APP_USER_IMPERSONATION_SCOPE]"
-   ```
-
-1. Create a new manifest scope for `forescast.read`
-
-   ```bash
-   cat > forescast.read.json <<EOF
-   [
-     {
-       "adminConsentDescription": "Allows the app to access Minimal Api (active-directory-dotnet-minimal-api-aspnetcore) as the signed-in user.",
-       "adminConsentDisplayName": "Access Minimal Api (active-directory-dotnet-minimal-api-aspnetcore)",
-       "id": "1658e205-0e89-43a3-b107-b06a3e6dc60d",
-       "isEnabled": true,
-       "lang": null,
-       "origin": "Application",
-       "type": "User",
-       "userConsentDescription": "Allow the application to access Minimal (active-directory-dotnet-minimal-aspnetcore) on your behalf.",
-       "userConsentDisplayName": "Access Minimal Api (active-directory-dotnet-minimal-aspnetcore)",
-       "value": "forescast.read"
-     }
-   ]
-   EOF
-   ```
-
-1. Set a global unique URI that identify the web API and add the `forescast.read` scope
-
-   ```bash
-   az ad app update --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API --identifier-uris "api://${AZURE_AD_APP_CLIENT_ID_MINIMAL_API}" --set oauth2Permissions=@forescast.read.json
-   ```
-</details>
-
 ### 2. Configure the web API
 
 1. Open the _~/protected-api/appsettings.json_ file in your code editor and modify the following code:
@@ -99,32 +55,6 @@ Use the following settings for your app registration:
    "ClientId": "Enter_the_Application_Id_here",
    "TenantId": "Enter_the_Tenant_Info_Here"
    ```
-
-<details>
-  <summary>:computer: Alternative: modify the appsettings.json file from your terminal</summary>
-
-1. Create the `appsettings.json` file with the Azure AD app configuration
-
-   ```bash
-   cat > appsettings.json <<EOF
-   {
-     "AzureAd": {
-       "Instance": "https://login.microsoftonline.com/",
-       "ClientId": "${AZURE_AD_APP_CLIENT_ID_MINIMAL_API}",
-       "TenantId": "$(az account show --query tenantId --output tsv)",
-       "Scopes": "forescast.read"
-     },
-     "Logging": {
-       "LogLevel": {
-         "Default": "Information",
-         "Microsoft.AspNetCore": "Warning"
-       }
-     },
-     "AllowedHosts": "*"
-   }
-   EOF
-   ```
-</details>
 
 ## Run the application
 
@@ -151,7 +81,7 @@ Use the following settings for your app registration:
 1. Delete the Azure AD app
 
    ```bash
-   az ad app delete --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API
+   az ad app delete --id {clientId}
    ```
 
 ## About the code
