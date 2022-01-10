@@ -10,7 +10,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"))
                 .EnableTokenAcquisitionToCallDownstreamApi()
                 .AddInMemoryTokenCaches()
-                .AddDownstreamWebApi("DownstreamApi", builder.Configuration.GetSection("DownstreamApi"));
+                .AddDownstreamWebApi("GraphApi", builder.Configuration.GetSection("DownstreamApi"));
 builder.Services.AddAuthorization();
 // </ms_docref_add_msal>
 
@@ -21,7 +21,7 @@ app.UseAuthorization();
 // </ms_docref_enable_authz_capabilities>
 
 // <ms_docref_protect_endpoint>
-app.MapGet("/me", [Authorize()] async (IDownstreamWebApi downstreamWebApi) => await downstreamWebApi.CallWebApiForUserAsync("DownstreamApi"));
+app.MapGet("/me", [Authorize()] async (IDownstreamWebApi downstreamWebApi) => await downstreamWebApi.CallWebApiForUserAsync("GraphApi"));
 // </ms_docref_protect_endpoint>
 
 app.Run();
