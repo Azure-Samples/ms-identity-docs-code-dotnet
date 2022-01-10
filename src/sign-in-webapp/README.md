@@ -48,30 +48,6 @@ Use the following settings for your app registration:
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
-<details>
-   <summary>:computer: Alternative: Register the application using az-cli</summary>
-
-1. Set a shell environment variable containing a client secret for the app (for the `--password` argument in the next step):
-
-    ```bash
-    export AZURE_AD_APP_SECRET=<at-least-sixteen-characters-here>
-    ```
-
-1. Register a new Azure AD App with a reply url
-
-   ```bash
-   AZURE_AD_APP_CLIENT_ID_WEBAPP=$(az ad app create --display-name "active-directory-dotnet-webapp-aspnetcore" --password ${AZURE_AD_APP_SECRET} --reply-urls "https://localhost:5001/signin-oidc" --query appId -o tsv) && \
-   AZURE_AD_APP_DOMAIN=$(az ad app show --id $AZURE_AD_APP_CLIENT_ID_WEBAPP --query publisherDomain -o tsv)
-   ```
-
-1. Setup a Front-channel logout URL
-
-   ```bash
-   az ad app update --id $AZURE_AD_APP_CLIENT_ID_WEBAPP --set logoutUrl="https://localhost:5001/signout-oidc"
-   ```
-
-</details>
-
 ### 2. Configure the web app
 
 1. Open the _~/sign-in-webapp/WebApp.csrpoj_ in your code editor.
@@ -83,46 +59,6 @@ Use the following settings for your app registration:
     "ClientId": "[Enter the Client Id (Application ID obtained from the Azure portal), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]",
     "ClientSecret": "[Copy the client secret added to the app from the Azure portal]",
     ```
-
-<details>
-   <summary>:computer: Alternative: modify the `appsettings.json` file from your terminal</summary>
-
-1. Create the _appsettings.json_ file with the Azure AD app configuration
-
-   ```bash
-   cat > appsettings.json <<EOF
-   {
-     "AzureAd": {
-       "Instance": "https://login.microsoftonline.com/",
-       "Domain": "${AZURE_AD_APP_DOMAIN}",
-       "ClientId": "${AZURE_AD_APP_CLIENT_ID_WEBAPP}",
-       "TenantId": "$(az account show --query tenantId --output tsv)",
-       "ClientSecret": "[Copy the client secret added to the app from the Azure portal]",
-       "ClientCertificates": [
-       ],
-       "CallbackPath": "/signin-oidc"
-     },
-     "DownstreamApi": {
-       "BaseUrl": "https://graph.microsoft.com/v1.0/me",
-       "Scopes": "user.read"
-     },
-     "Logging": {
-       "LogLevel": {
-         "Default": "Information",
-         "Microsoft.AspNetCore": "Warning"
-       }
-     },
-     "AllowedHosts": "*"
-   }
-   EOF
-   ```
-
-1. Set the client secret app
-
-   ```bash
-   export AzureAd__ClientSecret=$AZURE_AD_APP_SECRET
-   ```
-</details>
 
 ## Run the application
 
