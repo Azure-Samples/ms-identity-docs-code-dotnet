@@ -22,7 +22,6 @@ This sample demonstrates an ASP.NET Core minimal web API  that is both protected
 
 ```console
 $ curl https://localhost:5001/me -H "Authorization: Bearer {valid-access-token}"
-Graph API call result:
 {
    "version": "1.1",
    "content": {
