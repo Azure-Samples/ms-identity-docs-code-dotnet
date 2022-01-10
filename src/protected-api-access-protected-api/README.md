@@ -78,14 +78,13 @@ Use the following settings for your app registration:
 | **Name**                       | `active-directory-protected-api-access-protected-api`               | Suggested value for this sample. <br/> You can change the app name at any time.                             |
 | **Supported account types**    | **Accounts in this organizational directory only (Single tenant)**  | Required for this sample. <br/> Support for the Single tenant.                                              |
 | **Identifier URI**             | `api://{clientId}`                                                  | Suggested value for this sample. <br/> You must change the client id using the Value shown in Azure portal. |
-| **Expose an API**              | `api://{clientId}/user_impersonation`                               | Create a new delegated permission called user_impersonation. Required value for this sample.                |
-| **API Permissions**            | `https://graph.microsoft.com/User.Read`                             | Create a new delegated permission called for `Microsoft Graph User.Read`. Required value for this sample.   |
+| **Expose an API**              | **Scope name**: `user_impersonation`<br/>**Who can consent?**: **Admins and users**<br/>**Admin consent display name**: `Act on behalf of the user`<br/>**Admin consent description**: `Allows the API to act on behalf of the user.`<br/>**User consent display name**: `Act on your behalf`<br/>**User consent description**: `Allows the API to act on your behalf.`<br/>**State**: **Enabled**  | Add a new scope that reads as follows `api://{clientId}/user_impersonation`. Required value for this sample. |
+| **API Permissions**            | `https://graph.microsoft.com/User.Read`                             | Add a new delegated permission for `Microsoft Graph User.Read`. Required value for this sample.   |
 | **Client secret**              | _Value shown in Azure portal_                                       | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).                 |
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
 ### 2. Register a client application in your Azure Active Directory (Azure AD)
-
 Second, complete the steps in [Register an application with the Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the client sample app.
 
 Use the following settings for your app registration:
@@ -95,7 +94,7 @@ Use the following settings for your app registration:
 | **Name**                       | `active-directory-curl-app`                                         | Suggested value for this sample. <br/> You can change the app name at any time.                             |
 | **Supported account types**    | **Accounts in this organizational directory only (Single tenant)**  | Required for this sample. <br/> Support for the Single tenant.                                              |
 | **Platform type**              | **Web**                                                             | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
-| **API Permissions**            | `api://{clientId}/user_impersonation`                               | Create a new delegated permission called user_impersonation. Required value for this sample.                |
+| **API Permissions**            | `api://{clientId}/user_impersonation`                               | Add a delegated type permission by searching within the APIs using the new Application (client) ID from the previous step. Then select the `user_impersonation`. Required value for this sample. |
 | **Client secret**              | _Value shown in Azure portal_                                       | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).                 |
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
