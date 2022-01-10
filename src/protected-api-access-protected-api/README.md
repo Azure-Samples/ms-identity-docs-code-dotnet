@@ -115,8 +115,8 @@ Third, modify the web API application to update the following settings to refere
 
    ```json
    "ClientId": "Enter_the_Application_Id_here",
-   "TenantId": "Enter_the_Tenant_Info_Here"
-   "ClientSecret": "Enter_the_Client_Secret_here",
+   "TenantId": "Enter_the_Tenant_Info_here",
+   "ClientSecret": "Enter_the_Client_Secret_here"
    ```
 
 ## Run the application
