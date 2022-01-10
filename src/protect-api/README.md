@@ -88,22 +88,6 @@ Use the following settings for your app registration:
 
 The ASP.NET Core minimal web API application protects its weather endpoint, so it will only authorize calls in the name of signed-in users.
 
-```output
-┌──────────────────────────────────┐                               ┌─────────────────────────────┐
-│                                  │                               │                             │
-│   ASP.NET Core 6                 │        Http Request           │  ASP.NET Core 6             │
-│                                  ├──────────────────────────────►│                             │
-│   Web app that signs in users    │  Authorization Bearer 1NS...  │  Protected Minimal web Api  │
-│                                  │  with forescast.read scope    │                             │
-└──────────────────────────────────┘                               └─────────────────────────────┘
-
-Scenario:
-
-An (ASP.NET Core) web app that allows users to sign in enables the possibility of acquiring and validating their tokens for specific audiences and scopes.
-
-Later the web app can make calls to protected Apis in the name of the signed-in users.
-```
-
 :link: For more information about how to protect your projects, please let's take a look at https://docs.microsoft.com/en-us/azure/active-directory/develop/sample-v2-code. To know more about how this sample has been generated, please visit https://docs.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio-code
 
 ## Reporting problems
