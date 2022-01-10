@@ -87,43 +87,6 @@ Use the following settings for your app registration:
 
 The ASP.NET Core 6.0 Web App will allow users to sign-in, so it can retrieve a Security Token scoped specifically for the Microsoft Graph API, and will use that token to access the user's information. For more information about the proposed scenario, please take a look at the following diagram:
 
-```output
-                                                  ┌────────────────────────────┐                                         ┌────────────────────────────┐
-        https://<fqdn>                            │                            │                                         │                            │
-  1──────────────────────────────────────────────►│                            │                                         │                            │
-  │            browser redirection                │  ASP.NET Core 6            │   https://graph.microsoft.com/beta/me   │   Microsoft 365            │
-  │   2───────────────────────────────────────────┤                            ├─6─────────────────────────────────────► │                            │
-  │   │             https://<fqdn>/signin-oidc    │  Web App                   │   Authorization Bearer 1NS...           │   Graph Api                │
-  │   │   5──────────────────────────────────────►│                            │                                         │                            │
-  │   │   │                                       │                            │                                         │                            │
-  │   ▼   │                                       └────────────────────────────┘                                         └────────────────────────────┘
-┌─┴───────┴─────────────────┐
-│                           │
-│                           │
-│                           │
-│   client (browser)        │
-│                           │
-│                           │
-│                           │
-└─────┬─────────────────────┘
-      │   ▲
-      │   │                                       ┌────────────────────────────┐
-      │   │                                       │                            │
-      │   │                                       │                            │
-      │   │                                       │   Azure AD                 │
-      │   │         Security Token (claims)       │                            │
-      │   4───────────────────────────────────────┤   STS                      │
-      │                                           │                            │
-      3──────────────────────────────────────────►│                            │
-            https://login.microsoftonline.com/    └────────────────────────────┘
-
-Scenario:
-
-A protected web app allows users to sign in, it enables the possiblity of acquiring and validating their tokens.
-
-Later the web app can make calls to the Microsoft 365 Graph API on behalf of signed-in user.
-```
-
 :link: For more information about how to proctect your projects, please let's take a look at https://docs.microsoft.com/en-us/azure/active-directory/develop/sample-v2-code. To know more about how this sample has been generated, please visit https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/?view=aspnetcore-6.0
 
 ## Reporting problems
