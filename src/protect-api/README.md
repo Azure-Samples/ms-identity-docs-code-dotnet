@@ -12,7 +12,7 @@ products:
 - ms-graph
 urlFragment: ms-identity-docs-code-csharp
 ---
-# ASP.NET Core minimal web API - Protects API | Microsoft identity platform
+# ASP.NET Core minimal web API | web API | access control (protected routes) | Microsoft identity platform
 
 <!-- Build badges here
 ![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
@@ -37,96 +37,24 @@ First, complete the steps in [Register an application with the Microsoft identit
 
 Use the following settings for your app registration:
 
-| App registration <br/> setting | Value for this sample app                          | Notes                                                                                                       |
-|:------------------------------:|:---------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
-| **Name**                       | `active-directory-dotnet-minimal-api-aspnetcore`   | Suggested value for this sample. <br/> You can change the app name at any time.                             |
-| **Supported account types**    | **My organization only**                           | Required for this sample. <br/> Support for the Single tenant.                                              |
-| **Platform type**              | `Web`                                              | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
-| **Identifier URI**             | `api://{clientId}`                                 | Suggested value for this sample. <br/> You must change the client id using the Value shown in Azure portal. |
-| **Scopes**                     | `Forecast.Read`                                    | Required value for this sample.                                                                             |
+| App registration <br/> setting | Value for this sample app                                           | Notes                                                                                                       |
+|:------------------------------:|:--------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
+| **Name**                       | `active-directory-dotnet-minimal-api-aspnetcore`                    | Suggested value for this sample. <br/> You can change the app name at any time.                             |
+| **Supported account types**    | **Accounts in this organizational directory only (Single tenant)**  | Required for this sample. <br/> Support for the Single tenant.                                              |
+| **Platform type**              | **Web**                                                             | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
+| **Identifier URI**             | `api://{clientId}`                                                  | Suggested value for this sample. <br/> You must change the client id using the Value shown in Azure portal. |
+| **Scopes**                     | `Forecast.Read`                                                     | Required value for this sample.                                                                             |
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
-<details>
-  <summary>:computer: Alternative: register the application using az-cli</summary>
-
-1. Register a new Azure AD app
-
-   ```bash
-   AZURE_AD_APP_DETAILS_MINIMAL_API=$(az ad app create --display-name "active-directory-dotnet-minimal-api-aspnetcore" -o json) && \
-   AZURE_AD_APP_CLIENT_ID_MINIMAL_API=$(echo $AZURE_AD_APP_DETAILS_MINIMAL_API | jq ".appId" -r)
-   ```
-
-1. Disable the default scope for `user_impersonation`
-
-   ```bash
-   AZURE_AD_APP_USER_IMPERSONATION_SCOPE=$(echo $AZURE_AD_APP_DETAILS_MINIMAL_API | jq '.oauth2Permissions[0].isEnabled = false' | jq -r '.oauth2Permissions') && \
-   az ad app update --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API --set oauth2Permissions="$AZURE_AD_APP_USER_IMPERSONATION_SCOPE"
-   ```
-
-1. Create a new manifest scope for `forescast.read`
-
-   ```bash
-   cat > forescast.read.json <<EOF
-   [
-     {
-       "adminConsentDescription": "Allows the app to access Minimal Api (active-directory-dotnet-minimal-api-aspnetcore) as the signed-in user.",
-       "adminConsentDisplayName": "Access Minimal Api (active-directory-dotnet-minimal-api-aspnetcore)",
-       "id": "1658e205-0e89-43a3-b107-b06a3e6dc60d",
-       "isEnabled": true,
-       "lang": null,
-       "origin": "Application",
-       "type": "User",
-       "userConsentDescription": "Allow the application to access Minimal (active-directory-dotnet-minimal-aspnetcore) on your behalf.",
-       "userConsentDisplayName": "Access Minimal Api (active-directory-dotnet-minimal-aspnetcore)",
-       "value": "forescast.read"
-     }
-   ]
-   EOF
-   ```
-
-1. Set a global unique URI that identify the web API and add the `forescast.read` scope
-
-   ```bash
-   az ad app update --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API --identifier-uris "api://${AZURE_AD_APP_CLIENT_ID_MINIMAL_API}" --set oauth2Permissions=@forescast.read.json
-   ```
-</details>
-
 ### 2. Configure the web API
 
-1. Open the `Api.csproj` under the the `protect-api` folder in your code editor.
-1. Open the `appsettings.json` file and modify the following code:
+1. Open the _~/protected-api/appsettings.json_ file in your code editor and modify the following code:
 
    ```json
    "ClientId": "Enter_the_Application_Id_here",
    "TenantId": "Enter_the_Tenant_Info_Here"
    ```
-
-<details>
-  <summary>:computer: Alternative: modify the appsettings.json file from your terminal</summary>
-
-1. Create the `appsettings.json` file with the Azure AD app configuration
-
-   ```bash
-   cat > appsettings.json <<EOF
-   {
-     "AzureAd": {
-       "Instance": "https://login.microsoftonline.com/",
-       "ClientId": "${AZURE_AD_APP_CLIENT_ID_MINIMAL_API}",
-       "TenantId": "$(az account show --query tenantId --output tsv)",
-       "Scopes": "forescast.read"
-     },
-     "Logging": {
-       "LogLevel": {
-         "Default": "Information",
-         "Microsoft.AspNetCore": "Warning"
-       }
-     },
-     "AllowedHosts": "*"
-   }
-   EOF
-   ```
-</details>
 
 ## Run the application
 
@@ -153,28 +81,12 @@ Use the following settings for your app registration:
 1. Delete the Azure AD app
 
    ```bash
-   az ad app delete --id $AZURE_AD_APP_CLIENT_ID_MINIMAL_API
+   az ad app delete --id {clientId}
    ```
 
 ## About the code
 
 The ASP.NET Core minimal web API application protects its weather endpoint, so it will only authorize calls in the name of signed-in users.
-
-```output
-┌──────────────────────────────────┐                               ┌─────────────────────────────┐
-│                                  │                               │                             │
-│   ASP.NET Core 6                 │        Http Request           │  ASP.NET Core 6             │
-│                                  ├──────────────────────────────►│                             │
-│   Web app that signs in users    │  Authorization Bearer 1NS...  │  Protected Minimal web Api  │
-│                                  │  with forescast.read scope    │                             │
-└──────────────────────────────────┘                               └─────────────────────────────┘
-
-Scenario:
-
-An (ASP.NET Core) web app that allows users to sign in enables the possibility of acquiring and validating their tokens for specific audiences and scopes.
-
-Later the web app can make calls to protected Apis in the name of the signed-in users.
-```
 
 :link: For more information about how to protect your projects, please let's take a look at https://docs.microsoft.com/en-us/azure/active-directory/develop/sample-v2-code. To know more about how this sample has been generated, please visit https://docs.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio-code
 
