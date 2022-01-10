@@ -77,7 +77,6 @@ Use the following settings for your app registration:
 |:------------------------------:|:--------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
 | **Name**                       | `active-directory-protected-api-access-protected-api`               | Suggested value for this sample. <br/> You can change the app name at any time.                             |
 | **Supported account types**    | **Accounts in this organizational directory only (Single tenant)**  | Required for this sample. <br/> Support for the Single tenant.                                              |
-| **Platform type**              | **Web**                                                             | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
 | **Identifier URI**             | `api://{clientId}`                                                  | Suggested value for this sample. <br/> You must change the client id using the Value shown in Azure portal. |
 | **Expose an API**              | `api://{clientId}/user_impersonation`                               | Create a new delegated permission called user_impersonation. Required value for this sample.                |
 | **API Permissions**            | `https://graph.microsoft.com/User.Read`                             | Create a new delegated permission called for `Microsoft Graph User.Read`. Required value for this sample.   |
