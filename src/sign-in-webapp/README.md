@@ -48,30 +48,6 @@ Use the following settings for your app registration:
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
-<details>
-   <summary>:computer: Alternative: Register the application using az-cli</summary>
-
-1. Set a shell environment variable containing a client secret for the app (for the `--password` argument in the next step):
-
-    ```bash
-    export AZURE_AD_APP_SECRET=<at-least-sixteen-characters-here>
-    ```
-
-1. Register a new Azure AD App with a reply url
-
-   ```bash
-   AZURE_AD_APP_CLIENT_ID_WEBAPP=$(az ad app create --display-name "active-directory-dotnet-webapp-aspnetcore" --password ${AZURE_AD_APP_SECRET} --reply-urls "https://localhost:5001/signin-oidc" --query appId -o tsv) && \
-   AZURE_AD_APP_DOMAIN=$(az ad app show --id $AZURE_AD_APP_CLIENT_ID_WEBAPP --query publisherDomain -o tsv)
-   ```
-
-1. Setup a Front-channel logout URL
-
-   ```bash
-   az ad app update --id $AZURE_AD_APP_CLIENT_ID_WEBAPP --set logoutUrl="https://localhost:5001/signout-oidc"
-   ```
-
-</details>
-
 ### 2. Configure the web app
 
 1. Open the _~/sign-in-webapp/WebApp.csrpoj_ in your code editor.
@@ -83,46 +59,6 @@ Use the following settings for your app registration:
     "ClientId": "[Enter the Client Id (Application ID obtained from the Azure portal), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]",
     "ClientSecret": "[Copy the client secret added to the app from the Azure portal]",
     ```
-
-<details>
-   <summary>:computer: Alternative: modify the `appsettings.json` file from your terminal</summary>
-
-1. Create the _appsettings.json_ file with the Azure AD app configuration
-
-   ```bash
-   cat > appsettings.json <<EOF
-   {
-     "AzureAd": {
-       "Instance": "https://login.microsoftonline.com/",
-       "Domain": "${AZURE_AD_APP_DOMAIN}",
-       "ClientId": "${AZURE_AD_APP_CLIENT_ID_WEBAPP}",
-       "TenantId": "$(az account show --query tenantId --output tsv)",
-       "ClientSecret": "[Copy the client secret added to the app from the Azure portal]",
-       "ClientCertificates": [
-       ],
-       "CallbackPath": "/signin-oidc"
-     },
-     "DownstreamApi": {
-       "BaseUrl": "https://graph.microsoft.com/v1.0/me",
-       "Scopes": "user.read"
-     },
-     "Logging": {
-       "LogLevel": {
-         "Default": "Information",
-         "Microsoft.AspNetCore": "Warning"
-       }
-     },
-     "AllowedHosts": "*"
-   }
-   EOF
-   ```
-
-1. Set the client secret app
-
-   ```bash
-   export AzureAd__ClientSecret=$AZURE_AD_APP_SECRET
-   ```
-</details>
 
 ## Run the application
 
@@ -139,54 +75,9 @@ Use the following settings for your app registration:
 1. Once the web app is listening, navigate to https://localhost:5001
 1. Sign-in with your user credentials.
 
-### 3. Clean up
-
-1. Delete the Azure AD app
-
-   ```bash
-   az ad app delete --id $AZURE_AD_APP_CLIENT_ID_WEBAPP
-   ```
-
 ## About the code
 
 The ASP.NET Core 6.0 Web App will allow users to sign-in, so it can retrieve a Security Token scoped specifically for the Microsoft Graph API, and will use that token to access the user's information. For more information about the proposed scenario, please take a look at the following diagram:
-
-```output
-                                                  ┌────────────────────────────┐                                         ┌────────────────────────────┐
-        https://<fqdn>                            │                            │                                         │                            │
-  1──────────────────────────────────────────────►│                            │                                         │                            │
-  │            browser redirection                │  ASP.NET Core 6            │   https://graph.microsoft.com/beta/me   │   Microsoft 365            │
-  │   2───────────────────────────────────────────┤                            ├─6─────────────────────────────────────► │                            │
-  │   │             https://<fqdn>/signin-oidc    │  Web App                   │   Authorization Bearer 1NS...           │   Graph Api                │
-  │   │   5──────────────────────────────────────►│                            │                                         │                            │
-  │   │   │                                       │                            │                                         │                            │
-  │   ▼   │                                       └────────────────────────────┘                                         └────────────────────────────┘
-┌─┴───────┴─────────────────┐
-│                           │
-│                           │
-│                           │
-│   client (browser)        │
-│                           │
-│                           │
-│                           │
-└─────┬─────────────────────┘
-      │   ▲
-      │   │                                       ┌────────────────────────────┐
-      │   │                                       │                            │
-      │   │                                       │                            │
-      │   │                                       │   Azure AD                 │
-      │   │         Security Token (claims)       │                            │
-      │   4───────────────────────────────────────┤   STS                      │
-      │                                           │                            │
-      3──────────────────────────────────────────►│                            │
-            https://login.microsoftonline.com/    └────────────────────────────┘
-
-Scenario:
-
-A protected web app allows users to sign in, it enables the possiblity of acquiring and validating their tokens.
-
-Later the web app can make calls to the Microsoft 365 Graph API on behalf of signed-in user.
-```
 
 :link: For more information about how to proctect your projects, please let's take a look at https://docs.microsoft.com/en-us/azure/active-directory/develop/sample-v2-code. To know more about how this sample has been generated, please visit https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/?view=aspnetcore-6.0
 
