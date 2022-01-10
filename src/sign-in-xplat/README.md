@@ -40,7 +40,7 @@ First, complete the steps in [Register an application with the Microsoft identit
 Use the following settings for your app registration:
 
 | App registration <br/> setting | Value for this sample app                                         | Notes                                                                                                       |
-|:------------------------------:|:------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
+|-------------------------------:|:------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
 | **Name**                       | `active-directory-dotnet-xplat-maui`                              | Suggested value for this sample. <br/> You can change the app name at any time.                             |
 | **Supported account types**    | **My organization only**                                          | Required for this sample. <br/> Support for the Single tenant.                                              |
 | **Platform type**              | `Mobile and desktop applications`                                 | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
