@@ -76,14 +76,6 @@ Use the following settings for your app registration:
 1. Press `F5` and ensure you have selected `Windows Machine`
 1. Once the app is running you can sign-in with your user credentials.
 
-### 3. Clean up
-
-1. Delete the Azure AD app
-
-   ```bash
-   az ad app delete --id $AZURE_AD_APP_CLIENT_ID_XPLAT
-   ```
-
 ## About the code
 
 This .NET MAUI Multi-platform App uses the Microsoft Identity Client library and presents a simple UI that will popup a separated window allowing the user to sign in into their Azure AD single tenant orgnizations.
