@@ -20,7 +20,7 @@ urlFragment: ms-identity-docs-code-csharp
 
 This sample demonstrates a .NET MAUI Multi-platform App that sign-in users by using the `Microsoft.Identity.Client`.
 
-<!-- IMAGE or CONSOLE OUTPUT of running/executed app -->
+![An screenshot on the Desktop UI displaying the welcome message and the signin button](./app-signin.png)
 
 > :page_with_curl: This sample application backs one or more technical articles on docs.microsoft.com. <!-- TODO: Link to first tutorial in series when published. -->
 
@@ -74,6 +74,8 @@ Use the following settings for your app registration:
 
 1. Press `F5` and ensure you have selected `Windows Machine`
 1. Once the app is running you can sign-in with your user credentials.
+
+![An screenshot on the Desktop UI displaying a response from Microsoft Graph](./app.png)
 
 ## About the code
 
