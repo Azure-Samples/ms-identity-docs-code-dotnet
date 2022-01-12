@@ -22,7 +22,7 @@ namespace XPlat
         private static IPublicClientApplication PublicClientApp;
 
         private static string MSGraphURL = "https://graph.microsoft.com/v1.0/";
-        private static AuthenticationResult authResult;
+        private static AuthenticationResult AuthResult;
 
         public MainPage()
         {
@@ -53,7 +53,7 @@ namespace XPlat
                         try
                         {
                             // Signs in the user and obtains an Access token for MS Graph
-                            authResult = await PublicClientApp.AcquireTokenSilent(scopes, firstAccount)
+                            AuthResult = await PublicClientApp.AcquireTokenSilent(scopes, firstAccount)
                                                               .ExecuteAsync();
                         }
                         catch (MsalUiRequiredException ex)
@@ -61,12 +61,12 @@ namespace XPlat
                             // A MsalUiRequiredException happened on AcquireTokenSilentAsync. This indicates you need to call AcquireTokenAsync to acquire a token
                             Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
 
-                            authResult = await PublicClientApp.AcquireTokenInteractive(scopes)
+                            AuthResult = await PublicClientApp.AcquireTokenInteractive(scopes)
                                                               .ExecuteAsync()
                                                               .ConfigureAwait(false);
                         }
 
-                        requestMessage.Headers.Authorization = new AuthenticationHeaderValue("bearer", authResult.AccessToken);
+                        requestMessage.Headers.Authorization = new AuthenticationHeaderValue("bearer", AuthResult.AccessToken);
                     }));
 
                 // Call the /me endpoint of Graph
