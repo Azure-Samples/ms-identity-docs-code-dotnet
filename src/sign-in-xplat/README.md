@@ -74,9 +74,6 @@ Use the following settings for your app registration:
 ### 1. Run the .NET MAUI App
 
 1. Press `F5` and ensure you have selected `Windows Machine`
-
-### 2. Signin into the app
-
 1. Once the app is running you can sign-in with your user credentials.
 
 ### 3. Clean up
