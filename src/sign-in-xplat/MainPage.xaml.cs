@@ -14,8 +14,8 @@ namespace XPlat
     {
         //Set the scope for API call to user.read
         private string[] scopes = new string[] { "user.read" };
-        private const string ClientId = "[Enter the Client Id (Application ID obtained from the Azure portal), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]";
-        private const string Tenant = "[Copy the Tenant Id from the Azure portal]";
+        private const string ClientId = "APPLICATION_(CLIENT)_ID";
+        private const string Tenant = "TENANT_ID";
         private const string Authority = "https://login.microsoftonline.com/" + Tenant;
 
         // The MSAL Public client app
