@@ -13,16 +13,16 @@ namespace XPlat
     public partial class MainPage : ContentPage
     {
         //Set the scope for API call to user.read
-        private string[] scopes = new string[] { "user.read" };
-        private const string ClientId = "[Enter the Client Id (Application ID obtained from the Azure portal), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]";
-        private const string Tenant = "[Copy the Tenant Id from the Azure portal]";
-        private const string Authority = "https://login.microsoftonline.com/" + Tenant;
+        private static readonly string[] s_scopes = new string[] { "user.read" };
+        private static readonly string s_clientId = "APPLICATION_(CLIENT)_ID";
+        private static readonly string s_tenant = "TENANT_ID";
+        private static readonly string s_authority = "https://login.microsoftonline.com/" + s_tenant;
 
         // The MSAL Public client app
-        private static IPublicClientApplication PublicClientApp;
+        private static IPublicClientApplication s_publicClientApp;
 
-        private static string MSGraphURL = "https://graph.microsoft.com/v1.0/";
-        private static AuthenticationResult authResult;
+        private static readonly string s_graphURL = "https://graph.microsoft.com/v1.0/";
+        private static AuthenticationResult s_authResult;
 
         public MainPage()
         {
@@ -34,8 +34,8 @@ namespace XPlat
             try
             {
                 // Initialize the MSAL library by building a public client application
-                PublicClientApp ??= PublicClientApplicationBuilder.Create(ClientId)
-                    .WithAuthority(Authority)
+                s_publicClientApp ??= PublicClientApplicationBuilder.Create(s_clientId)
+                    .WithAuthority(s_authority)
                     .WithRedirectUri($"https://login.microsoftonline.com/common/oauth2/nativeclient")
                     .WithLogging((level, message, containsPii) =>
                     {
@@ -44,16 +44,16 @@ namespace XPlat
                     .Build();
 
                 // Sign-in user using MSAL and obtain an access token for MS Graph
-                GraphServiceClient graphClient = new GraphServiceClient(MSGraphURL,
+                GraphServiceClient graphClient = new GraphServiceClient(s_graphURL,
                     new DelegateAuthenticationProvider(async (requestMessage) =>
                     {
-                        IEnumerable<IAccount> accounts = await PublicClientApp.GetAccountsAsync().ConfigureAwait(false);
+                        IEnumerable<IAccount> accounts = await s_publicClientApp.GetAccountsAsync().ConfigureAwait(false);
                         IAccount firstAccount = accounts.FirstOrDefault();
 
                         try
                         {
                             // Signs in the user and obtains an Access token for MS Graph
-                            authResult = await PublicClientApp.AcquireTokenSilent(scopes, firstAccount)
+                            s_authResult = await s_publicClientApp.AcquireTokenSilent(s_scopes, firstAccount)
                                                               .ExecuteAsync();
                         }
                         catch (MsalUiRequiredException ex)
@@ -61,12 +61,12 @@ namespace XPlat
                             // A MsalUiRequiredException happened on AcquireTokenSilentAsync. This indicates you need to call AcquireTokenAsync to acquire a token
                             Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
 
-                            authResult = await PublicClientApp.AcquireTokenInteractive(scopes)
+                            s_authResult = await s_publicClientApp.AcquireTokenInteractive(s_scopes)
                                                               .ExecuteAsync()
                                                               .ConfigureAwait(false);
                         }
 
-                        requestMessage.Headers.Authorization = new AuthenticationHeaderValue("bearer", authResult.AccessToken);
+                        requestMessage.Headers.Authorization = new AuthenticationHeaderValue("bearer", s_authResult.AccessToken);
                     }));
 
                 // Call the /me endpoint of Graph
@@ -89,12 +89,12 @@ namespace XPlat
 
         private async void OnSignOutClicked(object sender, EventArgs e)
         {
-            IEnumerable<IAccount> accounts = await PublicClientApp.GetAccountsAsync();
+            IEnumerable<IAccount> accounts = await s_publicClientApp.GetAccountsAsync();
             IAccount firstAccount = accounts.FirstOrDefault();
 
             try
             {
-                await PublicClientApp.RemoveAsync(firstAccount);
+                await s_publicClientApp.RemoveAsync(firstAccount);
 
                 TokenLabel.Text = "User has signed-out";
             }

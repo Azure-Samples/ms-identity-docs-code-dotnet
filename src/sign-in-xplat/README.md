@@ -20,16 +20,16 @@ urlFragment: ms-identity-docs-code-csharp
 
 This sample demonstrates a .NET MAUI Multi-platform App that sign-in users by using the `Microsoft.Identity.Client`.
 
-<!-- IMAGE or CONSOLE OUTPUT of running/executed app -->
+![An screenshot on the Desktop UI displaying the welcome message and the signin button](./app-signin.png)
 
 > :page_with_curl: This sample application backs one or more technical articles on docs.microsoft.com. <!-- TODO: Link to first tutorial in series when published. -->
 
 ## Prerequisites
 
-1. An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
-1. [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/#download-preview)
-1. [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
-1. [.NET MAUI](https://docs.microsoft.com/en-us/dotnet/maui/get-started/installation)
+- An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
+- [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/#download-preview)
+- [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
+- [.NET MAUI](https://docs.microsoft.com/dotnet/maui/get-started/installation)
 
 ## Setup
 
@@ -40,11 +40,11 @@ First, complete the steps in [Register an application with the Microsoft identit
 Use the following settings for your app registration:
 
 | App registration <br/> setting | Value for this sample app                                         | Notes                                                                                                       |
-|:------------------------------:|:------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
+|-------------------------------:|:------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
 | **Name**                       | `active-directory-dotnet-xplat-maui`                              | Suggested value for this sample. <br/> You can change the app name at any time.                             |
 | **Supported account types**    | **My organization only**                                          | Required for this sample. <br/> Support for the Single tenant.                                              |
 | **Platform type**              | `Mobile and desktop applications`                                 | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
-| **Redirect URIs**              | `https://login.microsoftonline.com/common/oauth2/nativeclient`    | Required value for this sample. <br/> You can change that later in your own implementation.                 |
+| **Redirect URI**              | `https://login.microsoftonline.com/common/oauth2/nativeclient`    | Required value for this sample. <br/> You can change that later in your own implementation.                 |
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
@@ -61,12 +61,11 @@ Use the following settings for your app registration:
 
 ### 2. Configure the web app
 
-1. Open the `XPlat.csrpoj` under the the `sign-in-xplat` folder in your code editor.
-1. Open the `MainPage.xaml.cs` file and modify the following code:
+1. Open the _sign-in-xplat/MainPage.xaml.cs_ in your code editor.
 
     ```csharp
-    private const string ClientId = "[Enter the Client Id (Application ID obtained from the Azure portal), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]";
-    private const string Tenant = "[Copy the Tenant Id from the Azure portal]";
+    private const string ClientId = "APPLICATION_(CLIENT)_ID";
+    private const string Tenant = "TENANT_ID";
     ```
 
 ## Run the application
@@ -74,22 +73,15 @@ Use the following settings for your app registration:
 ### 1. Run the .NET MAUI App
 
 1. Press `F5` and ensure you have selected `Windows Machine`
-
-### 2. Signin into the app
-
 1. Once the app is running you can sign-in with your user credentials.
 
-### 3. Clean up
-
-1. Delete the Azure AD app
-
-   ```bash
-   az ad app delete --id $AZURE_AD_APP_CLIENT_ID_XPLAT
-   ```
+![An screenshot on the Desktop UI displaying a response from Microsoft Graph](./app.png)
 
 ## About the code
 
-The .NET MAUI Multi-platform App will allow users to sign-in, so it can retrieve a Security Token scoped specifically for the Microsoft Graph API, and will use that token to access the user's information.
+This .NET MAUI Multi-platform App uses the Microsoft Identity Client library and presents a simple UI that will popup a separated window allowing the user to sign in into their Azure AD single tenant orgnizations.
+
+When users sign in, a new token is acquired and passed in an Authorization header as Bearer for a subsequent call to Microsoft Graph Api endpoint `/me` using the Microsoft Graph library. After signing in, and if they've not previously done so, the user is asked to consent to the app's request for permission to access their data. Such data is going to be displayed in the UI.  When a signed-out user the account is removed from the client cleaning up users retrieved information.
 
 ## Reporting problems
 
