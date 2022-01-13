@@ -61,7 +61,7 @@ Use the following settings for your app registration:
 
 ### 2. Configure the web app
 
-1. Open the _~/sign-in-xplat/MainPage.xaml.cs_ in your code editor.
+1. Open the _sign-in-xplat/MainPage.xaml.cs_ in your code editor.
 
     ```csharp
     private const string ClientId = "APPLICATION_(CLIENT)_ID";
