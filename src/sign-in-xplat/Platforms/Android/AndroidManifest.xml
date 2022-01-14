@@ -13,7 +13,7 @@
 	</application>
 	<queries>
 		<package android:name="com.azure.authenticator" />
-		<package android:name="OBJECT_ID" />
+		<package android:name="XPlat" />
 		<package android:name="com.microsoft.windowsintune.companyportal" />
 		<!-- Required for API Level 30 to make sure we can detect browsers
     (that don't support custom tabs) -->

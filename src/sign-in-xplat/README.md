@@ -68,22 +68,17 @@ Use the following settings for your app registration:
     private const string Tenant = "TENANT_ID";
     ```
 
-1. Open the _sign-in-xplat/Platforms/Android/AndroidManifest.xml_ in your code editor and replace the `APPLICATION_(CLIENT)_ID` and `OBJECT_ID` placeholders with your values.
+1. Open the _sign-in-xplat/Platforms/Android/AndroidManifest.xml_ in your code editor and replace the `APPLICATION_(CLIENT)_ID` placeholder with your Application (Client) Id.
 
     ```xml
-	<application android:allowBackup="true" android:icon="@mipmap/appicon" android:roundIcon="@mipmap/appicon_round">
-		<activity android:name="microsoft.identity.client.BrowserTabActivity"  android:exported="true">
-			<intent-filter>
-                ...
-				<data android:scheme="msalAPPLICATION_(CLIENT)_ID" android:host="auth" />
-			</intent-filter>
-		</activity>
-	</application>
-	<queries>
-		...
-		<package android:name="OBJECT_ID" />
-		...
-	</queries>
+    <application android:allowBackup="true" android:icon="@mipmap/appicon" android:roundIcon="@mipmap/appicon_round">
+      <activity android:name="microsoft.identity.client.BrowserTabActivity"  android:exported="true">
+        <intent-filter>
+          ...
+          <data android:scheme="msalAPPLICATION_(CLIENT)_ID" android:host="auth" />
+        </intent-filter>
+      </activity>
+    </application>
     ```
 
 ## Run the application
