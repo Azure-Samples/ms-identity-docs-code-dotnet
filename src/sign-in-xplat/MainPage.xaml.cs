@@ -36,7 +36,11 @@ namespace XPlat
                 // Initialize the MSAL library by building a public client application
                 s_publicClientApp ??= PublicClientApplicationBuilder.Create(s_clientId)
                     .WithAuthority(s_authority)
+#if ANDROID
+                    .WithRedirectUri($"msal{s_clientId}://auth")
+#else
                     .WithRedirectUri($"https://login.microsoftonline.com/common/oauth2/nativeclient")
+#endif
                     .WithLogging((level, message, containsPii) =>
                     {
                         Debug.WriteLine($"MSAL: {level} {message} ");
@@ -62,6 +66,10 @@ namespace XPlat
                             Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
 
                             s_authResult = await s_publicClientApp.AcquireTokenInteractive(s_scopes)
+#if ANDROID
+                                                              .WithPrompt(Microsoft.Identity.Client.Prompt.ForceLogin)
+                                                              .WithParentActivityOrWindow(Microsoft.Maui.Essentials.Platform.CurrentActivity)
+#endif
                                                               .ExecuteAsync()
                                                               .ConfigureAwait(false);
                         }
