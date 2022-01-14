@@ -67,7 +67,6 @@ namespace XPlat
 
                             s_authResult = await s_publicClientApp.AcquireTokenInteractive(s_scopes)
 #if ANDROID
-                                                              .WithPrompt(Microsoft.Identity.Client.Prompt.ForceLogin)
                                                               .WithParentActivityOrWindow(Microsoft.Maui.Essentials.Platform.CurrentActivity)
 #endif
                                                               .ExecuteAsync()
