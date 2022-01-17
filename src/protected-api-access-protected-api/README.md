@@ -18,7 +18,7 @@ urlFragment: ms-identity-docs-code-csharp
 ![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
 -->
 
-This sample demonstrates an ASP.NET Core minimal web API  that is both protected by Microsoft identity platform and accesses Microsoft Graph on behalf of the user by using [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0) that interacts with [Microsoft Authentication Library (MSAL)](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-overview).
+This ASP.NET Core minimal web API uses the Microsoft identity platform to protect an endpoint (require authorized access), and also accesses Microsoft Graph on behalf of the user. The API uses [ASP.NET Core Identity](https://docs.microsoft.com/aspnet/core/security/authentication/identity?view=aspnetcore-6.0) interacting with the [Microsoft Authentication Library (MSAL)](https://docs.microsoft.com/azure/active-directory/develop/msal-overview) to protect its endpoint.
 
 ```console
 $ curl https://localhost:5001/me -H "Authorization: Bearer {valid-access-token}"
@@ -67,14 +67,14 @@ $ curl https://localhost:5001/me -H "Authorization: Bearer {valid-access-token}"
 
 ## Setup
 
-### 1. Register the web API application in your Azure Active Directory (Azure AD)
+### 1. Register the web API application in Azure Active Directory (Azure AD)
 
-First, complete the steps in [Register an application with the Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the sample app.
+First, complete the steps in [Configure an application to expose a web API](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the sample API and expose a scope.
 
 Use the following settings for your app registration:
 
 | App registration <br/> setting | Value for this sample app                                           | Notes                                                                                                       |
-|:------------------------------:|:--------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
+|------------------------------:|:--------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
 | **Name**                       | `active-directory-protected-api-access-protected-api`               | Suggested value for this sample. <br/> You can change the app name at any time.                             |
 | **Supported account types**    | **Accounts in this organizational directory only (Single tenant)**  | Required for this sample. <br/> Support for the Single tenant.                                              |
 | **Identifier URI**             | `api://{clientId}`                                                  | Suggested value for this sample. <br/> You must change the client id using the Value shown in Azure portal. |
@@ -84,13 +84,14 @@ Use the following settings for your app registration:
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
-### 2. Register a client application in your Azure Active Directory (Azure AD)
+### 2. Register a client application in Azure AD
+
 Second, complete the steps in [Register an application with the Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the client sample app.
 
 Use the following settings for your app registration:
 
 | App registration <br/> setting | Value for this sample app                                           | Notes                                                                                                       |
-|:------------------------------:|:--------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
+|------------------------------:|:--------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
 | **Name**                       | `active-directory-curl-app`                                         | Suggested value for this sample. <br/> You can change the app name at any time.                             |
 | **Supported account types**    | **Accounts in this organizational directory only (Single tenant)**  | Required for this sample. <br/> Support for the Single tenant.                                              |
 | **Platform type**              | **Web**                                                             | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
@@ -104,12 +105,12 @@ Use the following settings for your app registration:
 Third, modify the web API application to update the following settings to reference the cUrl app
 
 | App registration <br/> setting    | Value for this sample app                                        | Notes                                                                                              |
-|:---------------------------------:|:-----------------------------------------------------------------|:---------------------------------------------------------------------------------------------------|
+|---------------------------------:|:-----------------------------------------------------------------|:---------------------------------------------------------------------------------------------------|
 | **knownClientApplications**       | Client ID (UUID) of the application created in step 2.           | Required value for this sample.                                                                    |
 
 ### 4. Configure the web API
 
-1. Open the _~/protected-api-access-protected-api/appsettings.json_ file in your code editor and modify the following code:
+1. Open the _protected-api-access-protected-api/appsettings.json_ file in your code editor and modify the following code:
 
    ```json
    "ClientId": "Enter_the_Application_Id_here",
@@ -121,23 +122,25 @@ Third, modify the web API application to update the following settings to refere
 
 ### 1. Run the web API
 
-1. Execute the following command to get the app up and running:
+Execute the following command to get the app up and running:
 
-   ```bash
-   dotnet run
-   ```
+```bash
+dotnet run
+```
 
 ### 2. Send request to the web API
 
-1. Once the app is listening, execute the following to send the a request.
+1. Once the web API is listening, execute the following to send a request to its protected endpoint.
 
    ```bash
    curl -X GET https://localhost:5001/me -ki
    ```
 
-   :information_source: Since the request is sent without a Bearer Token, it is expected to receive an Unauthorized response `401`. The web API is now protected
+   :information_source: The expected response is `401 Unauthorized` because you've sent a request to the protected endpoint without including an access token (as a bearer token).
 
-1. Open postman, curl, or similar and make an HTTP GET request to **https://localhost:5001/me** with an `Authorization` header of `Bearer {valid-access-token}`. If everything worked, the sample app should produce output similar to this:
+1. Use Postman, curl, or similar to send an HTTP GET request to *https:\/\/localhost:5001\/me*, this time including an `Authorization` header of `Bearer {valid-access-token}`.
+
+    If everything worked, your protected web API should return a response similar to this:
 
    ```console
    curl -X GET https://localhost:5001/me -ki -H "Authorization: Bearer {valid-access-token}"
@@ -177,11 +180,15 @@ Third, modify the web API application to update the following settings to refere
    }
    ```
 
-   :information_source: Since the request is sent with a Bearer Token, it is expected to receive an `OK` response `200`. The web API was already protected and now it demostrate it can access another protected API on behalf of the the user.
+   :information_source: The expected response code is `200 OK` if you included a valid access token as bearer token in the request.
 
 ## About the code
 
-This ASP.NET Core application uses minimal web API. The app has a single route requiring a valid Security Token that is going to be used to acquire another token on behalf of the user to access the `/me` protected Microsoft Graph endpoint.
+This ASP.NET Core minimal web API has a single protected route, `/me`, that requires callers (client applications making requests to the endpoint) present a valid access token issued by the Microsoft identity platform.
+
+Acting as a middle-tier API, this minimal web API then uses that access token to acquire a second access token from the Microsoft identity platform, this time for Microsoft Graph, on behalf of the user.
+
+Finally, the web API requests data from the Microsoft Graph `/me` endpoint and includes the response data in its response to the original caller.
 
 ## Reporting problems
 
