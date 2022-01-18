@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
 using Microsoft.Graph;
 using Microsoft.Identity.Client;
 using Microsoft.Maui.Controls;
@@ -23,6 +26,8 @@ namespace XPlat
 
         private static readonly string s_graphURL = "https://graph.microsoft.com/v1.0/";
         private static AuthenticationResult s_authResult;
+        
+        private static readonly HttpClient s_httpClient = new HttpClient();
 
         public MainPage()
         {
@@ -48,36 +53,41 @@ namespace XPlat
                     .Build();
 
                 // Sign-in user using MSAL and obtain an access token for MS Graph
-                GraphServiceClient graphClient = new GraphServiceClient(s_graphURL,
-                    new DelegateAuthenticationProvider(async (requestMessage) =>
+                async Task<AuthenticationHeaderValue> SignInUserAndGetTokenUsingMSAL()
+                {
+                    IEnumerable<IAccount> accounts = await s_publicClientApp.GetAccountsAsync().ConfigureAwait(false);
+                    IAccount firstAccount = accounts.FirstOrDefault();
+
+                    try
                     {
-                        IEnumerable<IAccount> accounts = await s_publicClientApp.GetAccountsAsync().ConfigureAwait(false);
-                        IAccount firstAccount = accounts.FirstOrDefault();
+                        // Signs in the user and obtains an Access token for MS Graph
+                        s_authResult = await s_publicClientApp.AcquireTokenSilent(s_scopes, firstAccount)
+                                                            .ExecuteAsync();
+                    }
+                    catch (MsalUiRequiredException ex)
+                    {
+                        // A MsalUiRequiredException happened on AcquireTokenSilentAsync. This indicates you need to call AcquireTokenAsync to acquire a token
+                        Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
 
-                        try
-                        {
-                            // Signs in the user and obtains an Access token for MS Graph
-                            s_authResult = await s_publicClientApp.AcquireTokenSilent(s_scopes, firstAccount)
-                                                              .ExecuteAsync();
-                        }
-                        catch (MsalUiRequiredException ex)
-                        {
-                            // A MsalUiRequiredException happened on AcquireTokenSilentAsync. This indicates you need to call AcquireTokenAsync to acquire a token
-                            Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
-
-                            s_authResult = await s_publicClientApp.AcquireTokenInteractive(s_scopes)
-#if ANDROID
-                                                              .WithParentActivityOrWindow(Microsoft.Maui.Essentials.Platform.CurrentActivity)
-#endif
-                                                              .ExecuteAsync()
-                                                              .ConfigureAwait(false);
-                        }
-
-                        requestMessage.Headers.Authorization = new AuthenticationHeaderValue("bearer", s_authResult.AccessToken);
-                    }));
+                        s_authResult = await s_publicClientApp.AcquireTokenInteractive(s_scopes)
+                                                            .ExecuteAsync()
+                                                            .ConfigureAwait(false);
+                    }
+                    
+                    return new AuthenticationHeaderValue("bearer", s_authResult.AccessToken);
+                }
 
                 // Call the /me endpoint of Graph
-                User graphUser = await graphClient.Me.Request().GetAsync();
+                User graphUser;
+#if ANDROID
+                s_httpClient.DefaultRequestHeaders.Authorization = await SignInUserAndGetTokenUsingMSAL();
+                graphUser = await s_httpClient.GetFromJsonAsync<User>($"{s_graphURL}/me");
+#else
+                GraphServiceClient graphClient = new GraphServiceClient(s_graphURL,
+                    new DelegateAuthenticationProvider(
+                        async (requestMessage) => requestMessage.Headers.Authorization = await SignInUserAndGetTokenUsingMSAL()));
+                graphUser = await graphClient.Me.Request().GetAsync();
+#endif
 
                 TokenLabel.Text = "Display Name: " + graphUser.DisplayName + "\nBusiness Phone: " + graphUser.BusinessPhones.FirstOrDefault()
                                     + "\nGiven Name: " + graphUser.GivenName + "\nid: " + graphUser.Id
