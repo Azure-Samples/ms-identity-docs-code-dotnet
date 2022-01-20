@@ -43,6 +43,7 @@ namespace XPlat
                     .WithAuthority(s_authority)
 #if ANDROID
                     .WithRedirectUri($"msal{s_clientId}://auth")
+                    .WithParentActivityOrWindow(() => Platform.CurrentActivity)
 #else
                     .WithRedirectUri($"https://login.microsoftonline.com/common/oauth2/nativeclient")
 #endif
