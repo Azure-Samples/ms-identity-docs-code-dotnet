@@ -22,7 +22,6 @@ namespace XPlat
         // The MSAL Public client app
         private static IPublicClientApplication s_publicClientApp;
 
-        private static readonly string s_graphURL = "https://graph.microsoft.com/v1.0/";
         private static AuthenticationResult s_authResult;
         
         private static readonly HttpClient s_httpClient = new HttpClient();
@@ -81,7 +80,7 @@ namespace XPlat
 
                 // Call the /me endpoint of Graph
                 s_httpClient.DefaultRequestHeaders.Authorization = await SignInUserAndGetTokenUsingMSAL();
-                User graphUser = await s_httpClient.GetFromJsonAsync<User>($"{s_graphURL}/me");
+                User graphUser = await s_httpClient.GetFromJsonAsync<User>("https://graph.microsoft.com/v1.0/me");
 
                 TokenLabel.Text = "Display Name: " + graphUser.DisplayName + "\nBusiness Phone: " + graphUser.BusinessPhones.FirstOrDefault()
                                     + "\nGiven Name: " + graphUser.GivenName + "\nid: " + graphUser.Id
