@@ -80,16 +80,8 @@ namespace XPlat
                 }
 
                 // Call the /me endpoint of Graph
-                User graphUser;
-#if ANDROID
                 s_httpClient.DefaultRequestHeaders.Authorization = await SignInUserAndGetTokenUsingMSAL();
-                graphUser = await s_httpClient.GetFromJsonAsync<User>($"{s_graphURL}/me");
-#else
-                GraphServiceClient graphClient = new GraphServiceClient(s_graphURL,
-                    new DelegateAuthenticationProvider(
-                        async (requestMessage) => requestMessage.Headers.Authorization = await SignInUserAndGetTokenUsingMSAL()));
-                graphUser = await graphClient.Me.Request().GetAsync();
-#endif
+                User graphUser = await s_httpClient.GetFromJsonAsync<User>($"{s_graphURL}/me");
 
                 TokenLabel.Text = "Display Name: " + graphUser.DisplayName + "\nBusiness Phone: " + graphUser.BusinessPhones.FirstOrDefault()
                                     + "\nGiven Name: " + graphUser.GivenName + "\nid: " + graphUser.Id
