@@ -49,35 +49,30 @@ namespace XPlat
                     .Build();
 
                 // Sign-in user using MSAL and obtain an access token for MS Graph
-                async Task<AuthenticationHeaderValue> SignInUserAndGetTokenUsingMSAL()
+                IEnumerable<IAccount> accounts = await s_publicClientApp.GetAccountsAsync().ConfigureAwait(false);
+                IAccount firstAccount = accounts.FirstOrDefault();
+
+                //Set the scope for API call to user.read
+                var graphScope = new string[] { "user.read" };
+                AuthenticationResult authResult;
+                try
                 {
-                    IEnumerable<IAccount> accounts = await s_publicClientApp.GetAccountsAsync().ConfigureAwait(false);
-                    IAccount firstAccount = accounts.FirstOrDefault();
+                    // Signs in the user and obtains an Access token for MS Graph
+                    authResult = await s_publicClientApp.AcquireTokenSilent(graphScope, firstAccount)
+                                                        .ExecuteAsync();
+                }
+                catch (MsalUiRequiredException ex)
+                {
+                    // A MsalUiRequiredException happened on AcquireTokenSilentAsync. This indicates you need to call AcquireTokenAsync to acquire a token
+                    Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
 
-                    //Set the scope for API call to user.read
-                    var graphScope = new string[] { "user.read" };
-                    AuthenticationResult authResult;
-                    try
-                    {
-                        // Signs in the user and obtains an Access token for MS Graph
-                        authResult = await s_publicClientApp.AcquireTokenSilent(graphScope, firstAccount)
-                                                            .ExecuteAsync();
-                    }
-                    catch (MsalUiRequiredException ex)
-                    {
-                        // A MsalUiRequiredException happened on AcquireTokenSilentAsync. This indicates you need to call AcquireTokenAsync to acquire a token
-                        Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
-
-                        authResult = await s_publicClientApp.AcquireTokenInteractive(graphScope)
-                                                            .ExecuteAsync()
-                                                            .ConfigureAwait(false);
-                    }
-                    
-                    return new AuthenticationHeaderValue("bearer", authResult.AccessToken);
+                    authResult = await s_publicClientApp.AcquireTokenInteractive(graphScope)
+                                                        .ExecuteAsync()
+                                                        .ConfigureAwait(false);
                 }
 
                 // Call the /me endpoint of Graph
-                s_httpClient.DefaultRequestHeaders.Authorization = await SignInUserAndGetTokenUsingMSAL();
+                s_httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", authResult.AccessToken);
                 User graphUser = await s_httpClient.GetFromJsonAsync<User>("https://graph.microsoft.com/v1.0/me");
 
                 TokenLabel.Text = "Display Name: " + graphUser.DisplayName + "\nBusiness Phone: " + graphUser.BusinessPhones.FirstOrDefault()
