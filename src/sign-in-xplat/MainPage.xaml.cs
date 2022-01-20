@@ -21,8 +21,6 @@ namespace XPlat
 
         // The MSAL Public client app
         private static IPublicClientApplication s_publicClientApp;
-
-        private static AuthenticationResult s_authResult;
         
         private static readonly HttpClient s_httpClient = new HttpClient();
 
@@ -58,11 +56,11 @@ namespace XPlat
 
                     //Set the scope for API call to user.read
                     var graphScope = new string[] { "user.read" };
-
+                    AuthenticationResult authResult;
                     try
                     {
                         // Signs in the user and obtains an Access token for MS Graph
-                        s_authResult = await s_publicClientApp.AcquireTokenSilent(graphScope, firstAccount)
+                        authResult = await s_publicClientApp.AcquireTokenSilent(graphScope, firstAccount)
                                                             .ExecuteAsync();
                     }
                     catch (MsalUiRequiredException ex)
@@ -70,12 +68,12 @@ namespace XPlat
                         // A MsalUiRequiredException happened on AcquireTokenSilentAsync. This indicates you need to call AcquireTokenAsync to acquire a token
                         Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
 
-                        s_authResult = await s_publicClientApp.AcquireTokenInteractive(graphScope)
+                        authResult = await s_publicClientApp.AcquireTokenInteractive(graphScope)
                                                             .ExecuteAsync()
                                                             .ConfigureAwait(false);
                     }
                     
-                    return new AuthenticationHeaderValue("bearer", s_authResult.AccessToken);
+                    return new AuthenticationHeaderValue("bearer", authResult.AccessToken);
                 }
 
                 // Call the /me endpoint of Graph
