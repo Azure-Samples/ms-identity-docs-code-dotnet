@@ -15,8 +15,6 @@ namespace XPlat
 {
     public partial class MainPage : ContentPage
     {
-        //Set the scope for API call to user.read
-        private static readonly string[] s_scopes = new string[] { "user.read" };
         private static readonly string s_clientId = "APPLICATION_(CLIENT)_ID";
         private static readonly string s_tenant = "TENANT_ID";
         private static readonly string s_authority = "https://login.microsoftonline.com/" + s_tenant;
@@ -58,6 +56,9 @@ namespace XPlat
                 {
                     IEnumerable<IAccount> accounts = await s_publicClientApp.GetAccountsAsync().ConfigureAwait(false);
                     IAccount firstAccount = accounts.FirstOrDefault();
+
+                    //Set the scope for API call to user.read
+                    var s_scopes = new string[] { "user.read" };
 
                     try
                     {
