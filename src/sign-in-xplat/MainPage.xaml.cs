@@ -57,12 +57,12 @@ namespace XPlat
                     IAccount firstAccount = accounts.FirstOrDefault();
 
                     //Set the scope for API call to user.read
-                    var s_scopes = new string[] { "user.read" };
+                    var graphScope = new string[] { "user.read" };
 
                     try
                     {
                         // Signs in the user and obtains an Access token for MS Graph
-                        s_authResult = await s_publicClientApp.AcquireTokenSilent(s_scopes, firstAccount)
+                        s_authResult = await s_publicClientApp.AcquireTokenSilent(graphScope, firstAccount)
                                                             .ExecuteAsync();
                     }
                     catch (MsalUiRequiredException ex)
@@ -70,7 +70,7 @@ namespace XPlat
                         // A MsalUiRequiredException happened on AcquireTokenSilentAsync. This indicates you need to call AcquireTokenAsync to acquire a token
                         Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
 
-                        s_authResult = await s_publicClientApp.AcquireTokenInteractive(s_scopes)
+                        s_authResult = await s_publicClientApp.AcquireTokenInteractive(graphScope)
                                                             .ExecuteAsync()
                                                             .ConfigureAwait(false);
                     }
