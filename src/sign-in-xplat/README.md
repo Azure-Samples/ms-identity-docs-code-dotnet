@@ -10,7 +10,8 @@ products:
 - azure
 - azure-active-directory
 - ms-graph
-urlFragment: ms-identity-docs-code-csharp
+- dotnet-mobile
+urlFragment: ms-identity-docs-code-csharp-maui
 ---
 # .NET MAUI Multi-platform App - Sign-in user | Microsoft identity platform
 
@@ -18,18 +19,19 @@ urlFragment: ms-identity-docs-code-csharp
 ![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
 -->
 
-This sample demonstrates a .NET MAUI Multi-platform App that sign-in users by using the `Microsoft.Identity.Client`.
+This sample demonstrates a Windows desktop and Android mobile .NET MAUI Multi-platform App that sign-in users by using the `Microsoft.Identity.Client`.
 
-![An screenshot on the Desktop UI displaying the welcome message and the signin button](./app-signin.png)
+![An screenshot on Android displaying a response from Microsoft Graph](./app.png)
 
 > :page_with_curl: This sample application backs one or more technical articles on docs.microsoft.com. <!-- TODO: Link to first tutorial in series when published. -->
 
 ## Prerequisites
 
 - An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
-- [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/#download-preview)
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
-- [.NET MAUI](https://docs.microsoft.com/dotnet/maui/get-started/installation)
+- [.NET MAUI](https://docs.microsoft.com/en-us/dotnet/maui/get-started/installation)
+- **Install apps from any source** enabled in Windows' developer settings
+- [Device Emulators are configured](https://docs.microsoft.com/en-us/dotnet/maui/get-started/first-app)
 
 ## Setup
 
@@ -39,25 +41,14 @@ First, complete the steps in [Register an application with the Microsoft identit
 
 Use the following settings for your app registration:
 
-| App registration <br/> setting | Value for this sample app                                         | Notes                                                                                                       |
-|-------------------------------:|:------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
-| **Name**                       | `active-directory-dotnet-xplat-maui`                              | Suggested value for this sample. <br/> You can change the app name at any time.                             |
-| **Supported account types**    | **My organization only**                                          | Required for this sample. <br/> Support for the Single tenant.                                              |
-| **Platform type**              | `Mobile and desktop applications`                                 | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
-| **Redirect URI**              | `https://login.microsoftonline.com/common/oauth2/nativeclient`    | Required value for this sample. <br/> You can change that later in your own implementation.                 |
+| App registration <br/> setting | Value for this sample app                                           | Notes                                                                                                       |
+|-------------------------------:|:--------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
+| **Name**                       | `active-directory-dotnet-xplat-maui`                                | Suggested value for this sample. <br/> You can change the app name at any time.                             |
+| **Supported account types**    | **Accounts in this organizational directory only (Single tenant)**  | Required for this sample. <br/> Support for the Single tenant.                                              |
+| **Platform type**              | `Mobile and desktop applications`                                   | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
+| **Redirect URI**               | `https://login.microsoftonline.com/common/oauth2/nativeclient`      | Required value for this sample. <br/> You can change that later in your own implementation.                 |
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
-
-<details>
-   <summary>:computer: Alternative: Register the application using az-cli</summary>
-
-1. Register a new Azure AD App with a reply url
-
-   ```bash
-   AZURE_AD_APP_CLIENT_ID_XPLAT=$(az ad app create --display-name "active-directory-dotnet-xplat-maui" --reply-urls "https://login.microsoftonline.com/common/oauth2/nativeclient" --native-app true --query appId -o tsv)
-   ```
-
-</details>
 
 ### 2. Configure the MAUI app
 
@@ -85,16 +76,30 @@ Use the following settings for your app registration:
 
 ### 1. Run the .NET MAUI App
 
-1. Press `F5` and ensure you have selected `Windows Machine`
+#### Android
+
+1. Select target Android emulator and then press `F5`.
+
+#### Windows
+
+1. Select **Windows Machine** and then press `F5`.
+
+### 2. Signin into the app
+
 1. Once the app is running you can sign-in with your user credentials.
 
-![An screenshot on the Desktop UI displaying a response from Microsoft Graph](./app.png)
+![An screenshot on Android displaying a response from Microsoft Graph](./app.png)
 
 ## About the code
 
-This .NET MAUI Multi-platform App uses the Microsoft Identity Client library and presents a simple UI that will popup a separated window allowing the user to sign in into their Azure AD single tenant orgnizations.
 
-When users sign in, a new token is acquired and passed in an Authorization header as Bearer for a subsequent call to Microsoft Graph Api endpoint `/me` using the Microsoft Graph library. After signing in, and if they've not previously done so, the user is asked to consent to the app's request for permission to access their data. Such data is going to be displayed in the UI.  When a signed-out user the account is removed from the client cleaning up users retrieved information.
+This app uses the .NET MAUI Multi-platform App UI to provide a cross-platform experience in which the Microsoft Identity Client library is used to sign the user in and out of the application.
+
+When a signed-out user clicks the sign in button, the app offers a native Azure AD sign in experience. After signing in, and if they've not previously done so, the user is asked to consent to the app's request for permission to access their data.
+
+While signing in, a new token is acquired and passed in an Authorization header as Bearer for a subsequent call to Microsoft Graph. When a signed-out user the account is removed from the client cleaning up the user's retrieved information.
+
+This cross-platform solution makes use of conditional compilation so that code is targeted to specific platforms when required.
 
 ## Reporting problems
 
