@@ -10,6 +10,7 @@ products:
 - azure
 - azure-active-directory
 - ms-graph
+- dotnet-mobile
 urlFragment: ms-identity-docs-code-csharp-maui
 ---
 # .NET MAUI Multi-platform App - Sign-in user | Microsoft identity platform
@@ -29,7 +30,7 @@ This sample demonstrates a Windows desktop and Android mobile .NET MAUI Multi-pl
 - An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 - [.NET MAUI](https://docs.microsoft.com/en-us/dotnet/maui/get-started/installation)
-- **Install apps from any source** enabled
+- **Install apps from any source** enabled in Windows' developer settings
 - [Device Emulators are configured](https://docs.microsoft.com/en-us/dotnet/maui/get-started/first-app)
 
 ## Setup
@@ -92,13 +93,13 @@ Use the following settings for your app registration:
 ## About the code
 
 
-This .NET MAUI Multi-platform App uses the Microsoft Identity Client library allowing the user to sign in and sign out into their Azure AD single tenant orgnizations.
+This app uses the .NET MAUI Multi-platform App UI to provide a cross-platform experience in which the Microsoft Identity Client library is used to sign the user in and out of the application.
 
-When a signed-out user click the sign in button, their app offers a native Azure AD signing in experience. After signing in, and if they've not previously done so, the user is asked to consent to the app's request for permission to access their data.
+When a signed-out user clicks the sign in button, the app offers a native Azure AD sign in experience. After signing in, and if they've not previously done so, the user is asked to consent to the app's request for permission to access their data.
 
-While signing in, a new token is acquired and passed in an Authorization header as Bearer for a subsequent call to Microsoft Graph Api endpoint `/me` using the Microsoft Graph library. When a signed-out user the account is removed from the client cleaning up users retrieved information.
+While signing in, a new token is acquired and passed in an Authorization header as Bearer for a subsequent call to Microsoft Graph. When a signed-out user the account is removed from the client cleaning up the user's retrieved information.
 
-It is important to remark that this multi-targeting app makes use of conditional compilation so that code is targeted to specific platforms when required.
+This cross-platform solution makes use of conditional compilation so that code is targeted to specific platforms when required.
 
 ## Reporting problems
 
