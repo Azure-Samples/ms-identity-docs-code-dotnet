@@ -7,11 +7,12 @@ namespace MsalExample
 {
     public partial class MainWindow : Form
     {
-        private readonly HttpClient httpClient = new();
+        private readonly HttpClient _httpClient = new();
 
-        // Generally, your MSAL client will have a lifecycle that matches the lifecycle
-        // of the user's session in the application. In this sample, the lifecycle of the
-        // MSAL client to the lifecycle of this form.
+        // In order to take advantage of token caching, your MSAL client singleton must
+        // have a lifecycle that at least matches the lifecycle of the user's session in
+        // the application. In this sample, the lifecycle of the MSAL client is tied to
+        // the lifecycle of this form instance, which is the whole of the application.
         private readonly IPublicClientApplication msalPublicClientApp;
 
         public MainWindow()
@@ -43,7 +44,7 @@ namespace MsalExample
             AuthenticationResult? msalAuthenticationResult = null;
 
             // Acquire a cached access token for Microsoft Graph if one is available from a prior
-            // execution of this process.
+            // execution of this authentication flow.
             var accounts = await msalPublicClientApp.GetAccountsAsync();
             if (accounts.Any())
             {
@@ -63,9 +64,10 @@ namespace MsalExample
 
             if (msalAuthenticationResult == null)
             {
-                // This is likely the first authentication request in the application, so calling
-                // this will launch the user's default browser and send them through a login flow.
-                // After the flow is complete, the rest of this method will continue to execute.
+                // This is likely the first authentication request since application start or after
+                // Sign Out was clicked, so calling this will launch the user's default browser and
+                // send them through a login flow. After the flow is complete, the rest of this method
+                // will continue to execute.
                 msalAuthenticationResult = await msalPublicClientApp.AcquireTokenInteractive(
                     new[] { "https://graph.microsoft.com/User.Read" })
                     .ExecuteAsync();
@@ -74,7 +76,7 @@ namespace MsalExample
             // Call Microsoft Graph using the access token acquired above.
             using var graphRequest = new HttpRequestMessage(HttpMethod.Get, "https://graph.microsoft.com/v1.0/me");
             graphRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", msalAuthenticationResult.AccessToken);
-            var graphResponseMessage = await httpClient.SendAsync(graphRequest);
+            var graphResponseMessage = await _httpClient.SendAsync(graphRequest);
             graphResponseMessage.EnsureSuccessStatusCode();
 
             // Present the results to the user (formatting the json for readability)
