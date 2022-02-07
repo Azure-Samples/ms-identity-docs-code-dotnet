@@ -21,7 +21,7 @@ urlFragment: ms-identity-docs-code-csharp-maui
 
 This sample demonstrates a Windows desktop and Android mobile .NET MAUI Multi-platform App that sign-in users by using the `Microsoft.Identity.Client`.
 
-![An screenshot on Android displaying a response from Microsoft Graph](./app.png)
+![A screenshot on Android displaying a response from Microsoft Graph](./app.png)
 
 > :page_with_curl: This sample application backs one or more technical articles on docs.microsoft.com. <!-- TODO: Link to first tutorial in series when published. -->
 
