@@ -30,7 +30,7 @@ namespace Api
         */
         [FunctionName("greeting")]
         public static IActionResult Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "/api/greeting" )] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req,
             ILogger log)
         {
             // This API endpoint requires the "Greeting.Read" scope to be present, if it is
