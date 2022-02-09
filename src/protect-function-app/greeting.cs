@@ -11,18 +11,22 @@ perform is any per-function authorization related to your application.
 
 using System;
 using System.IO;
+using System.Security.Claims;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Microsoft.Identity.Web;
 using Newtonsoft.Json;
 
 namespace Api
 {
     public static class Greeting
     {
+        private static readonly List<String> s_acceptedRoles = new() { "Greeting.Read" };
+
         /*
         Because Easy Auth has already validated the signature, the validation is not
         performed again, but instead the token is is being decoded only to get access
@@ -31,16 +35,18 @@ namespace Api
         [FunctionName("greeting")]
         public static IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req,
+            ClaimsPrincipal principal,
             ILogger log)
         {
             // This API endpoint requires the "Greeting.Read" scope to be present, if it is
             // not, then reject the request with a 403.
-            // TODO
-
-            string responseMessage = "Hello, world. You were able to access this because you provided a valid access token with the Greeting.Read scope as a claim.";
+            if (!principal.Claims.Select(c => c.Value).Intersect(s_acceptedRoles).Any())
+            {
+                return new ObjectResult("Forbidden") { StatusCode = 403};
+            }
 
             // Authentication is complete, process request.
-            return new OkObjectResult(responseMessage);
+            return new OkObjectResult("Hello, world. You were able to access this because you provided a valid access token with the Greeting.Read scope as a claim.");
         }
     }
 }
