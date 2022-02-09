@@ -25,8 +25,6 @@ namespace Api
 {
     public static class Greeting
     {
-        private static readonly List<String> s_acceptedRoles = new() { "Greeting.Read" };
-
         /*
         Because Easy Auth has already validated the signature, the validation is not
         performed again, but instead the token is is being decoded only to get access
@@ -40,7 +38,7 @@ namespace Api
         {
             // This API endpoint requires the "Greeting.Read" scope to be present, if it is
             // not, then reject the request with a 403.
-            if (!principal.Claims.Select(c => c.Value).Intersect(s_acceptedRoles).Any())
+            if (!principal.Claims.Any(c => c.Type == "http://schemas.microsoft.com/identity/claims/scope" && c.Value.Contains("Greeting.Read")))
             {
                 return new ObjectResult("Forbidden") { StatusCode = 403};
             }
