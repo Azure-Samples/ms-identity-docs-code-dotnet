@@ -95,7 +95,7 @@ Hello, world. You were able to access this because you provided a valid access t
 This Azure Function is an anonymous HTTP trigger written in csharp and uses the built-in [Authentication and authorization in Azure Functions](https://docs.microsoft.com/azure/app-service/overview-authentication-authorization) feature to offload fundamental JWT access token validation. Requests that make it through the built-in authentication feature of Azure Functions are then routed to the csharp code, which applies additional access token validation checking for a specific scope.
 
 - A missing or invalid (expired, wrong audience, etc) token will result in a `401` response. (Handled by Azure Functions authentication)
-- An otherwise valid token without the proper scope will result in a 403 response.
+- An otherwise valid token without the proper scope will result in a `403` response.
 - A valid token with the proper scope of `Greeting.Read` will result in the "Hello, world" message.
 
 ### Running locally
