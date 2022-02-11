@@ -38,7 +38,7 @@ namespace Api
         {
             // This API endpoint requires the "Greeting.Read" scope to be present, if it is
             // not, then reject the request with a 403.
-            if (!principal.Claims.Any(c => c.Type == "http://schemas.microsoft.com/identity/claims/scope" && c.Value.Contains("Greeting.Read")))
+            if (!principal.HasClaim("scp", "Greeting.Read"))
             {
                 return new ObjectResult("Forbidden") { StatusCode = 403};
             }
