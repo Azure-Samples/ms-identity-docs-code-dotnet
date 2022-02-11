@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.Graph
+@inject GraphServiceClient GraphClient
 
 @page "/"
 
@@ -13,5 +15,23 @@
   </NotAuthorized>
   <Authorized>
     You are now signed-in.
+
+    @if (user != null)
+    {
+   	    <p>Display Name: @user.DisplayName</p>
+   	    <p>Business Phone: @user.BusinessPhones.FirstOrDefault()</p>
+   	    <p>Given Name: @user.GivenName</p>
+   	    <p>id: @user.Id</p>
+    }
+
+    @code {
+        private User user;
+
+        protected override async Task OnInitializedAsync()
+        {
+            var request = GraphClient.Me.Request();
+            user = await request.GetAsync();
+        }
+    }
   </Authorized>
 </AuthorizeView>

@@ -13,4 +13,6 @@ builder.Services.AddMsalAuthentication(options =>
     builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
 });
 
+builder.Services.AddGraphClient("User.Read");
+
 await builder.Build().RunAsync();
