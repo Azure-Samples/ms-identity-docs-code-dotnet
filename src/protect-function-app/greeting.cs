@@ -37,7 +37,7 @@ namespace Api
             // not, then reject the request with a 403.
             if (!principal.Claims.Any(
                   c => c.Type == "http://schemas.microsoft.com/identity/claims/scope"
-                  && c.Value.Split(' ').Any(s => s.Equals("Greeting.Read"))))
+                  && c.Value.Split(' ').Contains("Greeting.Read")))
             {
                 return new ObjectResult("Forbidden") { StatusCode = 403};
             }
