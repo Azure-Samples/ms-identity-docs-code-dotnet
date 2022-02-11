@@ -26,9 +26,9 @@ namespace Api
     public static class Greeting
     {
         /*
-        Because Easy Auth has already validated the signature, the validation is not
-        performed again, but instead the token is is being decoded only to get access
-        to its contained scopes claim.
+        Azure Functions HTTP Triggers perform automatic input binding of the
+        Easy Auth-validated JWT token data into the ClaimsPincipal.
+        Using the claims principal allows additional access token validation specific to this function.
         */
         [FunctionName("greeting")]
         public static IActionResult Run(
