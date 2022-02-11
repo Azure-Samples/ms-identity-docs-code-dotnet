@@ -81,7 +81,7 @@ func azure functionapp publish <your-Function-App-name>
 
 ## Access the API
 
-Using Postman, curl, or a similar application, issue an HTTP GET request to https://<your-function-app-name>.azurewebsites.net/api/greeting with an `Authorization` header of `Bearer {VALID-ACCESS-TOKEN}`.
+Using Postman, curl, or a similar application, issue an HTTP GET request to https://\<your-function-app-name>.azurewebsites.net/api/greeting with an `Authorization` header of `Bearer {VALID-ACCESS-TOKEN}`.
 
 For example, if you use curl and everything worked, you should receive a response from the Azure Function similar to this.
 
