@@ -14,13 +14,14 @@ products:
 urlFragment: ms-identity-docs-code-csharp
 ---
 -->
-# C# | Azure Function | protect an API | Microsoft identity platform
+<!-- SAMPLE ID: DOCS-CODE-004 -->
+# .NET (C#) | Azure function app | Protected web API | Microsoft identity platform
 
 <!-- Build badges here
 ![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
 -->
 
-This C# Azure Function protects its own API (HTTP trigger) with the combination of the built-in authentication & authorization feature of Azure Functions (commonly known as "Easy Auth") and JWT access token scope validation.
+This Azure Function written in C# protects its own API (HTTP trigger) with the combination of the built-in authentication and authorization feature of Azure Functions and Azure App Service (sometimes called _Easy Auth_) and JWT access token scope validation.
 
 ```console
 $ curl https://<your-function>.azurewebsites.net/api/greeting -H "Authorization: Bearer <valid-access-token>"
@@ -32,9 +33,9 @@ Hello, world. You were able to access this because you provided a valid access t
 ## Prerequisites
 
 - Azure Active Directory (Azure AD) tenant and the permissions or role required for managing app registrations in the tenant.
-- [Download .NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
+- [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
+- An empty [C# Azure function (v4)](https://docs.microsoft.com/azure/azure-functions/create-first-function-cli-csharp) deployed to Azure, and the permissions or role required to modify its settings.
 - [Azure Functions Core Tools](https://docs.microsoft.com/azure/azure-functions/functions-run-local)
-- An empty, [C# Function app (v4) deployed to Azure](https://docs.microsoft.com/azure/azure-functions/create-first-function-cli-csharp) and the permissions or role required to modify its settings
 
 ## Setup
 
@@ -73,10 +74,12 @@ Use these settings in your identity provider configuration.
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
 
-### 3. Deploy the Function app
+### 3. Deploy the Functions app
+
+Use the Azure Functions Core Tools CLI to deploy the function app to Azure:
 
 ```console
-func azure functionapp publish <your-Function-App-name>
+func azure functionapp publish <your-function-app-name>
 ```
 
 ## Access the API
