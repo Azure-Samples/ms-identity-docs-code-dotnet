@@ -48,19 +48,6 @@ Use the following settings for your app registration:
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
-<details>
-   <summary>:computer: Alternative: Register the application using az-cli</summary>
-
-1. Register a new Azure AD App with a reply url
-
-   ```bash
-   AZURE_AD_APP_CLIENT_ID_BLAZORWASM=$(az ad app create --display-name "active-directory-dotnet-blazorwasm-aspnetcore" --query appId -o tsv) && \
-   AZURE_AD_APP_OBJECT_ID_BLAZORWASM=$(az ad app show --id $AZURE_AD_APP_CLIENT_ID_BLAZORWASM --query objectId -o tsv) && \
-   az rest --method PATCH --uri https://graph.microsoft.com/v1.0/applications/${AZURE_AD_APP_OBJECT_ID_BLAZORWASM} --headers 'Content-Type=application/json' --body '{"spa":{"redirectUris":["https://localhost:5001/authentication/login-callback"]}}'
-   ```
-
-</details>
-
 ### 2. Configure the web app
 
 1. Open the `BlazorWasm.csproj` under the the `sign-in-blazorwasm` folder in your code editor.
@@ -70,24 +57,6 @@ Use the following settings for your app registration:
     "Authority": "https://login.microsoftonline.com/[Enter the Tenant Id Value From Azure Portal]",
     "ClientId": "[Enter the Client Id (Application ID obtained from the Azure portal), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]",
     ```
-
-<details>
-   <summary>:computer: Alternative: modify the `appsettings.json` file from your terminal</summary>
-
-1. Create the `appsettings.json` file with the Azure AD app configuration
-
-   ```bash
-   cat > ./wwwroot/appsettings.json <<EOF
-   {
-     "AzureAd": {
-       "Authority": "https://login.microsoftonline.com/$(az account show --query tenantId --output tsv)",
-       "ClientId": "${AZURE_AD_APP_CLIENT_ID_BLAZORWASM}"
-     }
-   }
-   EOF
-   ```
-
-</details>
 
 ### 3. Install the tooling for ASP.NET Core Blazor
 
@@ -120,12 +89,6 @@ Use the following settings for your app registration:
 ![A screenshot of an ASP.NET Core 6.0 Blazor WebAssembly application indicating the user signed-out and allowing click "Login" to signin again.](./app-signedout.png)
 
 ### 3. Clean up
-
-1. Delete the Azure AD app
-
-   ```bash
-   az ad app delete --id $AZURE_AD_APP_CLIENT_ID_BLAZORWASM
-   ```
 
 ## About the code
 
