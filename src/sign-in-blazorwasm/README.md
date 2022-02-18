@@ -20,7 +20,9 @@ urlFragment: ms-identity-docs-code-csharp
 
 The standalone app in this scenario has been created using the ASP.NET Core 6.0 Blazor WebAssembly template, and slightly modified to be secured with Azure Active Directory. To lite up Authentication to use Work or School Accounts (SingleOrg), the app uses the [Microsoft Authentication Library (Microsoft.Authentication.WebAssembly.Msal)](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal). The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.  In other words, a simple standalone app is secured by adding an authentication layer allowing users to sign-in with their Work and school accounts, and as a result it can make web API calls to protected resources on behalf of the signed-in user.
 
-<!-- IMAGE or CONSOLE OUTPUT of running/executed app -->
+The response to the request is presented to the user.
+
+![A screenshot of an ASP.NET Core 6.0 Blazor WebAssembly application displaying a response from Microsoft Graph.](./app-signedin.png)
 
 > :page_with_curl: This sample application backs one or more technical articles on docs.microsoft.com. <!-- TODO: Link to first tutorial in series when published. -->
 
@@ -109,8 +111,13 @@ Use the following settings for your app registration:
 
 ### 2. Signin into the web app
 
-1. Once the web app is listening, navigate to https://localhost:5001
-1. Sign-in with your user credentials.
+1. Once the web app is listening, navigate to https://localhost:5001 and enter tour crendentials
+
+![A screenshot of an ASP.NET Core 6.0 Blazor WebAssembly application displaying a response from Microsoft Graph.](./app-signedin.png)
+
+1. Click Logout
+
+![A screenshot of an ASP.NET Core 6.0 Blazor WebAssembly application indicating the user signed-out and allowing click "Login" to signin again.](./app-signedout.png)
 
 ### 3. Clean up
 
