@@ -1,4 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.Graph;
+@inject HttpClient Http
 
 @page "/"
 
@@ -13,5 +16,29 @@
   </NotAuthorized>
   <Authorized>
     You are now signed-in.
+
+    @if (user != null)
+    {
+         <p>Display Name: @user.DisplayName</p>
+         <p>Business Phone: @user.BusinessPhones.FirstOrDefault()</p>
+         <p>Given Name: @user.GivenName</p>
+         <p>id: @user.Id</p>
+    }
+
+    @code {
+      private User user;
+
+      protected override async Task OnInitializedAsync()
+      {
+        try
+        {
+          user = await Http.GetFromJsonAsync<User>("https://graph.microsoft.com/v1.0/me");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+          exception.Redirect();
+        }
+      }
+    }
   </Authorized>
 </AuthorizeView>
