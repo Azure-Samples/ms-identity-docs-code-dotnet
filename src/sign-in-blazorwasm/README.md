@@ -20,7 +20,9 @@ urlFragment: ms-identity-docs-code-csharp
 
 The standalone app in this scenario has been created using the ASP.NET Core 6.0 Blazor WebAssembly template, and slightly modified to be secured with Azure Active Directory. To lite up Authentication to use Work or School Accounts (SingleOrg), the app uses the [Microsoft Authentication Library (Microsoft.Authentication.WebAssembly.Msal)](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal). The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.  In other words, a simple standalone app is secured by adding an authentication layer allowing users to sign-in with their Work and school accounts, and as a result it can make web API calls to protected resources on behalf of the signed-in user.
 
-<!-- IMAGE or CONSOLE OUTPUT of running/executed app -->
+The response to the request is presented to the user.
+
+![A screenshot of an ASP.NET Core 6.0 Blazor WebAssembly application displaying a response from Microsoft Graph.](./app-signedin.png)
 
 > :page_with_curl: This sample application backs one or more technical articles on docs.microsoft.com. <!-- TODO: Link to first tutorial in series when published. -->
 
@@ -46,19 +48,6 @@ Use the following settings for your app registration:
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
-<details>
-   <summary>:computer: Alternative: Register the application using az-cli</summary>
-
-1. Register a new Azure AD App with a reply url
-
-   ```bash
-   AZURE_AD_APP_CLIENT_ID_BLAZORWASM=$(az ad app create --display-name "active-directory-dotnet-blazorwasm-aspnetcore" --query appId -o tsv) && \
-   AZURE_AD_APP_OBJECT_ID_BLAZORWASM=$(az ad app show --id $AZURE_AD_APP_CLIENT_ID_BLAZORWASM --query objectId -o tsv) && \
-   az rest --method PATCH --uri https://graph.microsoft.com/v1.0/applications/${AZURE_AD_APP_OBJECT_ID_BLAZORWASM} --headers 'Content-Type=application/json' --body '{"spa":{"redirectUris":["https://localhost:5001/authentication/login-callback"]}}'
-   ```
-
-</details>
-
 ### 2. Configure the web app
 
 1. Open the `BlazorWasm.csproj` under the the `sign-in-blazorwasm` folder in your code editor.
@@ -68,24 +57,6 @@ Use the following settings for your app registration:
     "Authority": "https://login.microsoftonline.com/[Enter the Tenant Id Value From Azure Portal]",
     "ClientId": "[Enter the Client Id (Application ID obtained from the Azure portal), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]",
     ```
-
-<details>
-   <summary>:computer: Alternative: modify the `appsettings.json` file from your terminal</summary>
-
-1. Create the `appsettings.json` file with the Azure AD app configuration
-
-   ```bash
-   cat > ./wwwroot/appsettings.json <<EOF
-   {
-     "AzureAd": {
-       "Authority": "https://login.microsoftonline.com/$(az account show --query tenantId --output tsv)",
-       "ClientId": "${AZURE_AD_APP_CLIENT_ID_BLAZORWASM}"
-     }
-   }
-   EOF
-   ```
-
-</details>
 
 ### 3. Install the tooling for ASP.NET Core Blazor
 
@@ -109,16 +80,13 @@ Use the following settings for your app registration:
 
 ### 2. Signin into the web app
 
-1. Once the web app is listening, navigate to https://localhost:5001
-1. Sign-in with your user credentials.
+1. Once the web app is listening, navigate to https://localhost:5001 and enter tour crendentials
 
-### 3. Clean up
+![A screenshot of an ASP.NET Core 6.0 Blazor WebAssembly application displaying a response from Microsoft Graph.](./app-signedin.png)
 
-1. Delete the Azure AD app
+1. Click Logout
 
-   ```bash
-   az ad app delete --id $AZURE_AD_APP_CLIENT_ID_BLAZORWASM
-   ```
+![A screenshot of an ASP.NET Core 6.0 Blazor WebAssembly application indicating the user signed-out and allowing click "Login" to signin again.](./app-signedout.png)
 
 ## About the code
 
