@@ -88,8 +88,6 @@ Use the following settings for your app registration:
 
 ![A screenshot of an ASP.NET Core 6.0 Blazor WebAssembly application indicating the user signed-out and allowing click "Login" to signin again.](./app-signedout.png)
 
-### 3. Clean up
-
 ## About the code
 
 This ASP.NET Core Web App is created using .NET Blazor WebAssembly. The app has two main routes, one is public while the another one is requiring the user to be authenticated in Azure Active Directory.
