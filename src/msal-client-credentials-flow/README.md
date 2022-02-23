@@ -105,8 +105,6 @@ Use these settings in your app registration.
    curl -X GET https://localhost:5001/application -ki
    ```
 
-   :information_source: Since the request is sent without a Bearer Token, it is expected to receive an Unauthorized response `401`. The web API is now protected
-
    If everything worked, you should receive a response from the downstream web API (Microsoft Graph, in this case) similar to this:
 
    ```console
