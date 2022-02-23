@@ -175,7 +175,7 @@ The Microsoft Graph response data is included in its response back to the origin
 
 This web API uses the following:
 
-_ [Microsoft Authentication Library (MSAL)](https://docs.microsoft.com/azure/active-directory/develop/msal-overview)
+_ [Microsoft Authentication Library (MSAL)](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet)
 
 ## Reporting problems
 
