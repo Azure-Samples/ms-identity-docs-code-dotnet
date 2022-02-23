@@ -10,7 +10,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"))
                 .EnableTokenAcquisitionToCallDownstreamApi()
                 .AddInMemoryTokenCaches()
-                .AddDownstreamWebApi("GraphApi", builder.Configuration.GetSection("DownstreamApi"));
+                .AddDownstreamWebApi("GraphApi", builder.Configuration.GetSection("GraphApi"));
 builder.Services.AddAuthorization();
 // </ms_docref_add_msal>
 
