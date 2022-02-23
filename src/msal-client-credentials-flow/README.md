@@ -27,29 +27,45 @@ This ASP.NET Core minimal web API issues a call to a protected web API (Microsof
 ```console
 $ curl https://localhost:5001/api/application
 {
-  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
-  "id": "003c4673-d4a0-4eb6-8979-d6269e08b87e",
-  "deletedDateTime": null,
-  "appId": "c085fc22-2484-41c0-b795-2e940f51df64",
-  "applicationTemplateId": null,
-  "disabledByMicrosoftStatus": null,
-  "createdDateTime": "2021-12-17T16:45:43Z",
-  "displayName": "active-directory-dotnet-minimal-api-aspnetcore-client-credentail-flow",
-  "description": null,
-  "groupMembershipClaims": null,
-  "identifierUris": ["api://c085fc22-2484-41c0-b795-2e940f51df64"],
-  "isDeviceOnlyAuthSupported": null,
-  "isFallbackPublicClient": true,
-  "notes": null,
-  "publisherDomain": "contoso.onmicrosoft.com",
-  "serviceManagementReference": null,
-  "signInAudience": "AzureADMyOrg",
-  "tags": [],
-  "tokenEncryptionKeyId": null,
-  "defaultRedirectUri": null,
-  "certification": null,
-  "optionalClaims": null
+  "version": "1.1",
+  "content": {
+     "headers": [
+        {
+           "key": "Content-Type",
+           "value": [
+              "application/json; odata.metadata=minimal; odata.streaming=true; IEEE754Compatible=false; charset=utf-8"
+           ]
+        }
+     ]
+  },
+  "statusCode": 200,
   ...
+  "requestMessage": {
+     "version": "1.1",
+     "versionPolicy": 0,
+     "content": null,
+     "method": {
+        "method": "GET"
+     },
+     "requestUri": "https://graph.microsoft.com/v1.0/applications/{Azure_ActiveDirectory_Application_Object_Id}}/",
+     "headers": [
+        {
+           "key": "Authorization",
+           "value": [
+              "Bearer {SecurityToken} }"
+           ]
+        },
+        {
+           "key": "traceparent",
+           "value": [
+              "00-b645d40fb60241223de42781aa315adb-9cdfe11ad752be83-00"
+           ]
+        }
+     ],
+     "properties": {},
+     "options": {}
+  },
+  "isSuccessStatusCode": true
 }
 ```
 ## Prerequisites
@@ -110,29 +126,45 @@ Use these settings in your app registration.
    ```console
    $ curl https://localhost:5001/api/application -ki
    {
-     "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
-     "id": "003c4673-d4a0-4eb6-8979-d6269e08b87e",
-     "deletedDateTime": null,
-     "appId": "c085fc22-2484-41c0-b795-2e940f51df64",
-     "applicationTemplateId": null,
-     "disabledByMicrosoftStatus": null,
-     "createdDateTime": "2021-12-17T16:45:43Z",
-     "displayName": "active-directory-dotnet-minimal-api-aspnetcore-client-credentail-flow",
-     "description": null,
-     "groupMembershipClaims": null,
-     "identifierUris": ["api://c085fc22-2484-41c0-b795-2e940f51df64"],
-     "isDeviceOnlyAuthSupported": null,
-     "isFallbackPublicClient": true,
-     "notes": null,
-     "publisherDomain": "contoso.onmicrosoft.com",
-     "serviceManagementReference": null,
-     "signInAudience": "AzureADMyOrg",
-     "tags": [],
-     "tokenEncryptionKeyId": null,
-     "defaultRedirectUri": null,
-     "certification": null,
-     "optionalClaims": null
+     "version": "1.1",
+     "content": {
+        "headers": [
+           {
+              "key": "Content-Type",
+              "value": [
+                 "application/json; odata.metadata=minimal; odata.streaming=true; IEEE754Compatible=false; charset=utf-8"
+              ]
+           }
+        ]
+     },
+     "statusCode": 200,
      ...
+     "requestMessage": {
+        "version": "1.1",
+        "versionPolicy": 0,
+        "content": null,
+        "method": {
+           "method": "GET"
+        },
+        "requestUri": "https://graph.microsoft.com/v1.0/applications/{Azure_ActiveDirectory_Application_Object_Id}}/",
+        "headers": [
+           {
+              "key": "Authorization",
+              "value": [
+                 "Bearer {SecurityToken} }"
+              ]
+           },
+           {
+              "key": "traceparent",
+              "value": [
+                 "00-b645d40fb60241223de42781aa315adb-9cdfe11ad752be83-00"
+              ]
+           }
+        ],
+        "properties": {},
+        "options": {}
+     },
+     "isSuccessStatusCode": true
    }
    ```
 
