@@ -13,10 +13,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddDownstreamWebApi("GraphApi", builder.Configuration.GetSection("GraphApi"));
 // </ms_docref_add_msal>
 
-// <ms_docref_enable_authz_capabilities>
 WebApplication app = builder.Build();
-app.UseAuthentication();
-// </ms_docref_enable_authz_capabilities>
 
 // <ms_docref_protect_endpoint>
 app.MapGet("/application", async (IDownstreamWebApi downstreamWebApi) => await downstreamWebApi.CallWebApiForAppAsync("GraphApi"));
