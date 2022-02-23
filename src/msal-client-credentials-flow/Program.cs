@@ -11,13 +11,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .EnableTokenAcquisitionToCallDownstreamApi()
                 .AddInMemoryTokenCaches()
                 .AddDownstreamWebApi("GraphApi", builder.Configuration.GetSection("GraphApi"));
-builder.Services.AddAuthorization();
 // </ms_docref_add_msal>
 
 // <ms_docref_enable_authz_capabilities>
 WebApplication app = builder.Build();
 app.UseAuthentication();
-app.UseAuthorization();
 // </ms_docref_enable_authz_capabilities>
 
 // <ms_docref_protect_endpoint>
