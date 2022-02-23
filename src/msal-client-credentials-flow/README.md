@@ -98,6 +98,7 @@ Use these settings in your app registration.
    "ClientId": "Enter_the_Application_Id_here",
    "TenantId": "Enter_the_Tenant_Info_Here",
    "ClientSecret": "Enter_the_Application_CLient_Secret_Here"
+   ...
    "RelativePath": "Enter_the_Application_Object_Id_Here",
    ```
 
