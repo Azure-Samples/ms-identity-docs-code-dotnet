@@ -103,6 +103,8 @@ Follow the device code flow instructions that are presented. If everything worke
 
 This .NET 6 (C#) console application prompts the user to sign in via their device using a code provided by Microsoft Authentication Library (MSAL). The user completes this flow in their chosen web browser. Upon successful authentication, an HTTP GET request to the Microsoft Graph /me endpoint is issued with the user's access token in the HTTP header. The response from the GET request is then displayed in the console.
 
+This sample does not demonstrate access token caching. Access token caching should be used in situations where the console application will need to access the same protected API using the same access token multiple times across the life of the user's session in the application. This sample, as written, does not perform multiple calls and wouldn't benefit from a cache check. For additional information, see [Get a token from the token cache using MSAL.NET](https://docs.microsoft.com/azure/active-directory/develop/msal-net-acquire-token-silently).
+
 ## Reporting problems
 
 ### Sample app not working?
