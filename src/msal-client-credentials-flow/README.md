@@ -49,69 +49,7 @@ $ curl https://localhost:5001/api/application
    "defaultRedirectUri": null,
    "certification": null,
    "optionalClaims": null,
-   "addIns": [],
-   "api": {
-      "acceptMappedClaims": null,
-      "knownClientApplications": [],
-      "requestedAccessTokenVersion": null,
-      "oauth2PermissionScopes": [],
-      "preAuthorizedApplications": []
-   },
-   "appRoles": [],
-   "info": {
-      "logoUrl": null,
-      "marketingUrl": null,
-      "privacyStatementUrl": null,
-      "supportUrl": null,
-      "termsOfServiceUrl": null
-   },
-   "keyCredentials": [],
-   "parentalControlSettings": {
-      "countriesBlockedForMinors": [],
-      "legalAgeGroupRule": "Allow"
-   },
-   "passwordCredentials": [
-      {
-         "customKeyIdentifier": null,
-         "displayName": "test",
-         "endDateTime": "2022-08-23T21:40:52.947Z",
-         "hint": "1Oa",
-         "keyId": "3ab516d9-4a06-4c84-a73e-e258b7fd89f8",
-         "secretText": null,
-         "startDateTime": "2022-02-23T21:40:52.947Z"
-      }
-   ],
-   "publicClient": {
-      "redirectUris": []
-   },
-   "requiredResourceAccess": [
-      {
-         "resourceAppId": "00000003-0000-0000-c000-000000000000",
-         "resourceAccess": [
-            {
-               "id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
-               "type": "Scope"
-            }
-         ]
-      }
-   ],
-   "verifiedPublisher": {
-      "displayName": null,
-      "verifiedPublisherId": null,
-      "addedDateTime": null
-   },
-   "web": {
-      "homePageUrl": null,
-      "logoutUrl": null,
-      "redirectUris": [],
-      "implicitGrantSettings": {
-         "enableAccessTokenIssuance": false,
-         "enableIdTokenIssuance": false
-      }
-   },
-   "spa": {
-      "redirectUris": []
-   }
+   ...
 }
 ```
 ## Prerequisites
@@ -193,69 +131,7 @@ Use these settings in your app registration.
       "defaultRedirectUri": null,
       "certification": null,
       "optionalClaims": null,
-      "addIns": [],
-      "api": {
-         "acceptMappedClaims": null,
-         "knownClientApplications": [],
-         "requestedAccessTokenVersion": null,
-         "oauth2PermissionScopes": [],
-         "preAuthorizedApplications": []
-      },
-      "appRoles": [],
-      "info": {
-         "logoUrl": null,
-         "marketingUrl": null,
-         "privacyStatementUrl": null,
-         "supportUrl": null,
-         "termsOfServiceUrl": null
-      },
-      "keyCredentials": [],
-      "parentalControlSettings": {
-         "countriesBlockedForMinors": [],
-         "legalAgeGroupRule": "Allow"
-      },
-      "passwordCredentials": [
-         {
-            "customKeyIdentifier": null,
-            "displayName": "test",
-            "endDateTime": "2022-08-23T21:40:52.947Z",
-            "hint": "1Oa",
-            "keyId": "3ab516d9-4a06-4c84-a73e-e258b7fd89f8",
-            "secretText": null,
-            "startDateTime": "2022-02-23T21:40:52.947Z"
-         }
-      ],
-      "publicClient": {
-         "redirectUris": []
-      },
-      "requiredResourceAccess": [
-         {
-            "resourceAppId": "00000003-0000-0000-c000-000000000000",
-            "resourceAccess": [
-               {
-                  "id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
-                  "type": "Scope"
-               }
-            ]
-         }
-      ],
-      "verifiedPublisher": {
-         "displayName": null,
-         "verifiedPublisherId": null,
-         "addedDateTime": null
-      },
-      "web": {
-         "homePageUrl": null,
-         "logoutUrl": null,
-         "redirectUris": [],
-         "implicitGrantSettings": {
-            "enableAccessTokenIssuance": false,
-            "enableIdTokenIssuance": false
-         }
-      },
-      "spa": {
-         "redirectUris": []
-      }
+      ...
    }
    ```
 
