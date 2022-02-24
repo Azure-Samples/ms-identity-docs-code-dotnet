@@ -16,7 +16,21 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 WebApplication app = builder.Build();
 
 // <ms_docref_protect_endpoint>
-app.MapGet("/application", async (IDownstreamWebApi downstreamWebApi) => await downstreamWebApi.CallWebApiForAppAsync("GraphApi"));
+app.MapGet("/application", async (IDownstreamWebApi _downstreamWebApi) =>
+    {
+      using var response = await _downstreamWebApi.CallWebApiForAppAsync("GraphApi").ConfigureAwait(false);
+
+      if (response.StatusCode == System.Net.HttpStatusCode.OK)
+      {
+        var apiResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+        return apiResult;
+      }
+      else
+      {
+        var error = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+        throw new HttpRequestException($"Invalid status code in the HttpResponseMessage: {response.StatusCode}: {error}");
+      }
+    });
 // </ms_docref_protect_endpoint>
 
 app.Run();

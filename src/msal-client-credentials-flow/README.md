@@ -27,45 +27,91 @@ This ASP.NET Core minimal web API issues a call to a protected web API (Microsof
 ```console
 $ curl https://localhost:5001/api/application
 {
-  "version": "1.1",
-  "content": {
-     "headers": [
-        {
-           "key": "Content-Type",
-           "value": [
-              "application/json; odata.metadata=minimal; odata.streaming=true; IEEE754Compatible=false; charset=utf-8"
-           ]
-        }
-     ]
-  },
-  "statusCode": 200,
-  ...
-  "requestMessage": {
-     "version": "1.1",
-     "versionPolicy": 0,
-     "content": null,
-     "method": {
-        "method": "GET"
-     },
-     "requestUri": "https://graph.microsoft.com/v1.0/applications/{Azure_ActiveDirectory_Application_Object_Id}}/",
-     "headers": [
-        {
-           "key": "Authorization",
-           "value": [
-              "Bearer {SecurityToken} }"
-           ]
-        },
-        {
-           "key": "traceparent",
-           "value": [
-              "00-b645d40fb60241223de42781aa315adb-9cdfe11ad752be83-00"
-           ]
-        }
-     ],
-     "properties": {},
-     "options": {}
-  },
-  "isSuccessStatusCode": true
+   "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
+   "id": "537a552c-58b7-4468-abdf-a7cbfa000dde",
+   "deletedDateTime": null,
+   "appId": "5b2c581d-e3ac-415e-a770-7f16254fdbf7",
+   "applicationTemplateId": null,
+   "disabledByMicrosoftStatus": null,
+   "createdDateTime": "2022-02-23T21:35:20Z",
+   "displayName": "active-directory-dotnet-minimal-api-aspnetcore-client-credentail-flow",
+   "description": null,
+   "groupMembershipClaims": null,
+   "identifierUris": [],
+   "isDeviceOnlyAuthSupported": null,
+   "isFallbackPublicClient": null,
+   "notes": null,
+   "publisherDomain": "contoso.onmicrosoft.com",
+   "serviceManagementReference": null,
+   "signInAudience": "AzureADMyOrg",
+   "tags": [],
+   "tokenEncryptionKeyId": null,
+   "defaultRedirectUri": null,
+   "certification": null,
+   "optionalClaims": null,
+   "addIns": [],
+   "api": {
+      "acceptMappedClaims": null,
+      "knownClientApplications": [],
+      "requestedAccessTokenVersion": null,
+      "oauth2PermissionScopes": [],
+      "preAuthorizedApplications": []
+   },
+   "appRoles": [],
+   "info": {
+      "logoUrl": null,
+      "marketingUrl": null,
+      "privacyStatementUrl": null,
+      "supportUrl": null,
+      "termsOfServiceUrl": null
+   },
+   "keyCredentials": [],
+   "parentalControlSettings": {
+      "countriesBlockedForMinors": [],
+      "legalAgeGroupRule": "Allow"
+   },
+   "passwordCredentials": [
+      {
+         "customKeyIdentifier": null,
+         "displayName": "test",
+         "endDateTime": "2022-08-23T21:40:52.947Z",
+         "hint": "1Oa",
+         "keyId": "3ab516d9-4a06-4c84-a73e-e258b7fd89f8",
+         "secretText": null,
+         "startDateTime": "2022-02-23T21:40:52.947Z"
+      }
+   ],
+   "publicClient": {
+      "redirectUris": []
+   },
+   "requiredResourceAccess": [
+      {
+         "resourceAppId": "00000003-0000-0000-c000-000000000000",
+         "resourceAccess": [
+            {
+               "id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+               "type": "Scope"
+            }
+         ]
+      }
+   ],
+   "verifiedPublisher": {
+      "displayName": null,
+      "verifiedPublisherId": null,
+      "addedDateTime": null
+   },
+   "web": {
+      "homePageUrl": null,
+      "logoutUrl": null,
+      "redirectUris": [],
+      "implicitGrantSettings": {
+         "enableAccessTokenIssuance": false,
+         "enableIdTokenIssuance": false
+      }
+   },
+   "spa": {
+      "redirectUris": []
+   }
 }
 ```
 ## Prerequisites
@@ -125,45 +171,91 @@ Use these settings in your app registration.
    ```console
    $ curl https://localhost:5001/api/application -ki
    {
-     "version": "1.1",
-     "content": {
-        "headers": [
-           {
-              "key": "Content-Type",
-              "value": [
-                 "application/json; odata.metadata=minimal; odata.streaming=true; IEEE754Compatible=false; charset=utf-8"
-              ]
-           }
-        ]
-     },
-     "statusCode": 200,
-     ...
-     "requestMessage": {
-        "version": "1.1",
-        "versionPolicy": 0,
-        "content": null,
-        "method": {
-           "method": "GET"
-        },
-        "requestUri": "https://graph.microsoft.com/v1.0/applications/{Azure_ActiveDirectory_Application_Object_Id}}/",
-        "headers": [
-           {
-              "key": "Authorization",
-              "value": [
-                 "Bearer {SecurityToken} }"
-              ]
-           },
-           {
-              "key": "traceparent",
-              "value": [
-                 "00-b645d40fb60241223de42781aa315adb-9cdfe11ad752be83-00"
-              ]
-           }
-        ],
-        "properties": {},
-        "options": {}
-     },
-     "isSuccessStatusCode": true
+      "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
+      "id": "537a552c-58b7-4468-abdf-a7cbfa000dde",
+      "deletedDateTime": null,
+      "appId": "5b2c581d-e3ac-415e-a770-7f16254fdbf7",
+      "applicationTemplateId": null,
+      "disabledByMicrosoftStatus": null,
+      "createdDateTime": "2022-02-23T21:35:20Z",
+      "displayName": "active-directory-dotnet-minimal-api-aspnetcore-client-credentail-flow",
+      "description": null,
+      "groupMembershipClaims": null,
+      "identifierUris": [],
+      "isDeviceOnlyAuthSupported": null,
+      "isFallbackPublicClient": null,
+      "notes": null,
+      "publisherDomain": "contoso.onmicrosoft.com",
+      "serviceManagementReference": null,
+      "signInAudience": "AzureADMyOrg",
+      "tags": [],
+      "tokenEncryptionKeyId": null,
+      "defaultRedirectUri": null,
+      "certification": null,
+      "optionalClaims": null,
+      "addIns": [],
+      "api": {
+         "acceptMappedClaims": null,
+         "knownClientApplications": [],
+         "requestedAccessTokenVersion": null,
+         "oauth2PermissionScopes": [],
+         "preAuthorizedApplications": []
+      },
+      "appRoles": [],
+      "info": {
+         "logoUrl": null,
+         "marketingUrl": null,
+         "privacyStatementUrl": null,
+         "supportUrl": null,
+         "termsOfServiceUrl": null
+      },
+      "keyCredentials": [],
+      "parentalControlSettings": {
+         "countriesBlockedForMinors": [],
+         "legalAgeGroupRule": "Allow"
+      },
+      "passwordCredentials": [
+         {
+            "customKeyIdentifier": null,
+            "displayName": "test",
+            "endDateTime": "2022-08-23T21:40:52.947Z",
+            "hint": "1Oa",
+            "keyId": "3ab516d9-4a06-4c84-a73e-e258b7fd89f8",
+            "secretText": null,
+            "startDateTime": "2022-02-23T21:40:52.947Z"
+         }
+      ],
+      "publicClient": {
+         "redirectUris": []
+      },
+      "requiredResourceAccess": [
+         {
+            "resourceAppId": "00000003-0000-0000-c000-000000000000",
+            "resourceAccess": [
+               {
+                  "id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+                  "type": "Scope"
+               }
+            ]
+         }
+      ],
+      "verifiedPublisher": {
+         "displayName": null,
+         "verifiedPublisherId": null,
+         "addedDateTime": null
+      },
+      "web": {
+         "homePageUrl": null,
+         "logoutUrl": null,
+         "redirectUris": [],
+         "implicitGrantSettings": {
+            "enableAccessTokenIssuance": false,
+            "enableIdTokenIssuance": false
+         }
+      },
+      "spa": {
+         "redirectUris": []
+      }
    }
    ```
 
