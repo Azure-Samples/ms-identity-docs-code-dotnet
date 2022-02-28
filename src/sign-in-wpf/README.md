@@ -5,8 +5,8 @@
 languages:
 - csharp
 page_type: sample
-name: "Windows Forms app that makes a request to the Graph API after signing in the user"
-description: "This .NET 6 Windows Forms app signs in the user and then makes a request to Microsoft Graph for the user's profile data."
+name: "Windows Presentation Foundation (WPF) app that makes a request to the Graph API after signing in the user"
+description: "This .NET 6 (C#) Windows Presentation Foundation (WPF) app signs in the user and then makes a request to Microsoft Graph for the user's profile data."
 products:
 - azure
 - azure-active-directory
@@ -73,7 +73,7 @@ The appliction will open allowing you to click the **Sign In (if needed) & Call 
 
 ## About the code
 
-This .NET 6 Windows Forms application presents a button that initiates an authentication flow using the Microsoft Authentication Library (MSAL). The user completes this flow in their default web browser.  Upon successful authentication, an HTTP GET request to the Microsoft Graph /me endpoint is issued with the user's access token in the HTTP header. The response from the GET request is then displayed to the user. The MSAL client first looks to its token cache, refreshing if necessary, before acquiring a new access token.
+This .NET 6 Windows Presentation Foundation (WPF) application presents a button that initiates an authentication flow using the Microsoft Authentication Library (MSAL). The user completes this flow in their default web browser. Upon successful authentication, an HTTP GET request to the Microsoft Graph /me endpoint is issued with the user's access token in the HTTP header. The response from the GET request is then displayed to the user. The MSAL client first looks to its token cache, refreshing if necessary, before acquiring a new access token.
 
 ## Reporting problems
 
