@@ -128,7 +128,7 @@
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(226, 25);
             label1.TabIndex = 0;
-            label1.Text = "Micrsooft Graph Response:";
+            label1.Text = "Microsoft Graph Response:";
             // 
             // SignInCallToActionLabel
             // 
