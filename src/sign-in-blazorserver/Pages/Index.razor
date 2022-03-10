@@ -1,4 +1,7 @@
-﻿@page "/"
+﻿@using Microsoft.Identity.Web;
+@inject IDownstreamWebApi downstreamWebApi
+
+@page "/"
 
 <PageTitle>ASP.NET Core 6.0 Blazor Server | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform</PageTitle>
 
@@ -6,6 +9,30 @@
 
 <AuthorizeView>
   <Authorized>
-    You are now signed-in.
+    <p>You are now signed-in.</p>
+
+    @if (!string.IsNullOrEmpty(graphApiResponse))
+    {
+         <p>Microsoft Graph Response:</p>
+         <p>@graphApiResponse</p>
+    }
+
+    @code {
+      private string graphApiResponse = string.Empty;
+
+      protected override async Task OnInitializedAsync()
+      {
+        using var response = await downstreamWebApi.CallWebApiForUserAsync("GraphApi").ConfigureAwait(false);
+        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+        {
+          graphApiResponse = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+        }
+        else
+        {
+          var error = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+          throw new HttpRequestException($"Invalid status code in the HttpResponseMessage: {response.StatusCode}: {error}");
+        }
+      }
+    }
   </Authorized>
 </AuthorizeView>

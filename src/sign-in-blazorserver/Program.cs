@@ -12,7 +12,7 @@ IEnumerable<string>? initialScopes = builder.Configuration["DownstreamApi:Scopes
 
 builder.Services.AddMicrosoftIdentityWebAppAuthentication(builder.Configuration, "AzureAd")
     .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-        .AddDownstreamWebApi("DownstreamApi", builder.Configuration.GetSection("DownstreamApi"))
+        .AddDownstreamWebApi("GraphApi", builder.Configuration.GetSection("GraphApi"))
         .AddInMemoryTokenCaches();
 
 builder.Services.AddControllersWithViews()
