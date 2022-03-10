@@ -73,7 +73,7 @@ Finally, set the following values in _appsettings.json_.
 
 ### 2. Signin into the Blazor Server application
 
-1. Once the web app is listening, navigate to https://localhost:5001 and enter tour credentials
+1. Once the web app is listening, navigate to https://localhost:5001. Click the Sign In button and complete the login process.
 
    ![A screenshot of a Blazor Server application application guiding the user to click the "Sign In" button.](./app-signed-in.png)
 
