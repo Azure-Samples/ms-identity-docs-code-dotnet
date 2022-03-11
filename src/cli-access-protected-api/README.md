@@ -14,7 +14,7 @@ products:
 urlFragment: ms-identity-docs-code-dotnet-console
 ---
 -->
-<!-- SAMPLE ID: DOCS-CODE-012 -->
+<!-- SAMPLE ID: DOCS-CODE-010 -->
 # .NET | console | .NET (C#) console app that accesses a protected web API access (Microsoft Graph) | Microsoft identity platform
 
 <!-- Build badges here
