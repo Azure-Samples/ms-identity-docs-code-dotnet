@@ -88,7 +88,7 @@ dotnet run
 
 If everything worked, you should receive a response similar to this (output truncated for brevity):
 
-```console
+```json
 {
   "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
   "id": "6ed9c555-6dfd-4f35-b832-f1f634c0b876",
