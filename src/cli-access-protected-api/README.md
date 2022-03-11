@@ -108,7 +108,7 @@ If everything worked, you should receive a response similar to this (output trun
 
 This .NET (C#) console application uses a client secret as its credentials to retrieve an access token that's scoped for the Microsoft Graph API, and then uses that token to access its own application registration information.
 
-The Microsoft Graph response data is included in its response back to the original caller. This .NET (C#) console app uses [Microsoft Authentication Library (MSAL)](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet).
+The Microsoft Graph response data is then written to the console. This .NET (C#) console app uses [Microsoft Authentication Library (MSAL)](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet).
 
 ## Reporting problems
 
