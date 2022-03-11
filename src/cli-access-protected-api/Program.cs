@@ -17,14 +17,14 @@ var config = new {
 
 // This app instance should be a long-lived instance because
 // it maintains the in-memory token cache.
-IConfidentialClientApplication app = ConfidentialClientApplicationBuilder.Create(config.ClientId)
+IConfidentialClientApplication msalClient = ConfidentialClientApplicationBuilder.Create(config.ClientId)
                     .WithClientSecret(config.ClientSecret)
                     .WithAuthority(new Uri(config.Authority))
                     .Build();
 
-app.AddInMemoryTokenCache();
+msalClient.AddInMemoryTokenCache();
 
-AuthenticationResult msalAuthenticationResult = await app.AcquireTokenForClient(new string[] { "https://graph.microsoft.com/.default" }).ExecuteAsync();
+AuthenticationResult msalAuthenticationResult = await msalClient.AcquireTokenForClient(new string[] { "https://graph.microsoft.com/.default" }).ExecuteAsync();
 
 // Get *this* application's application object from Microsoft Graph
 var httpClient = new HttpClient();
