@@ -98,7 +98,7 @@ Use these settings in your app registration.
 
 ### 2. Send request to the web API
 
-1. Once the app is listening, execute the following to send the a request.
+1. Once the app is running and listening for requests, execute the following command to send it a request.
 
    ```bash
    curl -X GET https://localhost:5001/api/application -ki
