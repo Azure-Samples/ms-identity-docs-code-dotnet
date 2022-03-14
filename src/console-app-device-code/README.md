@@ -64,7 +64,7 @@ Use these settings in your app registration.
 
 > :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
 
-### 2. Update code sample in _Program.cs_ with app registration values
+### 2. Update the _Program.cs_ file with app registration values
 
 ```csharp
 // 'Directory (tenant) ID' of app registration in the Azure portal - this value is a GUID
