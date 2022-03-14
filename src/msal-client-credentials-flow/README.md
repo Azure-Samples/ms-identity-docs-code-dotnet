@@ -25,7 +25,7 @@ urlFragment: ms-identity-docs-code-app-csharp-webapi
 This ASP.NET Core minimal web API issues a call to a protected web API (Microsoft Graph) by using the OAuth 2.0 client credentials flow. The request to the Microsoft Graph endpoint is issued using the ASP.NET Core minimal web API's own identity.
 
 ```console
-$ curl https://localhost:5001/api/application
+$ curl https://localhost:5001/application
 {
    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
    "id": "537a552c-58b7-4468-abdf-a7cbfa000dde",
@@ -107,7 +107,7 @@ Use these settings in your app registration.
    If everything worked, you should receive a response from the downstream web API (Microsoft Graph, in this case) similar to this:
 
    ```console
-   $ curl https://localhost:5001/api/application -ki
+   $ curl https://localhost:5001/application -ki
    {
       "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
       "id": "537a552c-58b7-4468-abdf-a7cbfa000dde",
