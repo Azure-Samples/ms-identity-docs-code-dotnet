@@ -76,7 +76,7 @@ Use these settings in your app registration.
 
 ### 2. Configure the web API
 
-1. Open the _~/msal-client-credentials-flow/appsettings.json_ file in your code editor and modify the following values values with those from your [app's registration in the Azure portal](https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis):
+1. Open the _~/msal-client-credentials-flow/appsettings.json_ file in your code editor and modify the following values values with those from your [app's registration in the Azure portal](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#register-an-application):
 
    ```json
    "ClientId": "Enter_the_Application_Id_here",
