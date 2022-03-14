@@ -25,7 +25,7 @@ urlFragment: ms-identity-docs-code-app-csharp-webapi
 This ASP.NET Core minimal web API issues a call to a protected web API (Microsoft Graph) by using the OAuth 2.0 client credentials flow. The request to the Microsoft Graph endpoint is issued using the ASP.NET Core minimal web API's own identity.
 
 ```console
-$ curl https://localhost:5001/application
+$ curl https://localhost:5001/api/application
 {
    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
    "id": "537a552c-58b7-4468-abdf-a7cbfa000dde",
@@ -101,13 +101,13 @@ Use these settings in your app registration.
 1. Once the app is listening, execute the following to send the a request.
 
    ```bash
-   curl -X GET https://localhost:5001/application -ki
+   curl -X GET https://localhost:5001/api/application -ki
    ```
 
    If everything worked, you should receive a response from the downstream web API (Microsoft Graph, in this case) similar to this:
 
    ```console
-   $ curl https://localhost:5001/application -ki
+   $ curl https://localhost:5001/api/application -ki
    {
       "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
       "id": "537a552c-58b7-4468-abdf-a7cbfa000dde",
@@ -137,7 +137,7 @@ Use these settings in your app registration.
 
 ## About the code
 
-This ASP.NET Core minimal web API has a single route (_/application_) that supports anonymous access.  When the anonymous route is called, the API requests its own application object from Microsoft Graph.
+This ASP.NET Core minimal web API has a single route (_/api/application_) that supports anonymous access.  When the anonymous route is called, the API requests its own application object from Microsoft Graph.
 
 The Microsoft Graph response data is included in its response back to the original caller. This web API uses [Microsoft Authentication Library (MSAL)](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet).
 
