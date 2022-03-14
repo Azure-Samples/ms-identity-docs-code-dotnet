@@ -16,9 +16,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 WebApplication app = builder.Build();
 
 // <ms_docref_protect_endpoint>
-app.MapGet("/application", async (IDownstreamWebApi _downstreamWebApi) =>
+app.MapGet("/application", async (IDownstreamWebApi downstreamWebApi) =>
     {
-      using var response = await _downstreamWebApi.CallWebApiForAppAsync("GraphApi").ConfigureAwait(false);
+      using var response = await downstreamWebApi.CallWebApiForAppAsync("GraphApi").ConfigureAwait(false);
 
       if (response.StatusCode == System.Net.HttpStatusCode.OK)
       {
