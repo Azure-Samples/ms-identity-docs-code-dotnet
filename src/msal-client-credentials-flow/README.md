@@ -137,9 +137,9 @@ Use these settings in your app registration.
 
 ## About the code
 
-This ASP.NET Core minimal web API has a single route (_/api/application_) that supports anonymous access.  When the anonymous route is called, the API requests its own application object from Microsoft Graph.
+This ASP.NET Core minimal web API has a single route (_/api/application_) that supports anonymous access.  When a client app calls the anonymous route on this API, the API requests its own application object from Microsoft Graph and then returns that data to the client.
 
-The result from Microsoft Graph is returned as the response of this web API. This web API uses [Microsoft Authentication Library (MSAL)](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet).
+This web API uses [Microsoft Authentication Library (MSAL)](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet).
 
 ## Reporting problems
 
