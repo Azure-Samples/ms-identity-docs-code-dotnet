@@ -76,7 +76,7 @@ Use these settings in your app registration.
 
 ### 2. Configure the web API
 
-1. Open the _~/msal-client-credentials-flow/appsettings.json_ file in your code editor and modify the following values values with those from your [app's registration in the Azure portal](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#register-an-application):
+Open the _~/msal-client-credentials-flow/appsettings.json_ file in your code editor and modify the following values values with those from your [app's registration in the Azure portal](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#register-an-application):
 
    ```json
    "ClientId": "Enter_the_Application_Id_here",
@@ -90,7 +90,7 @@ Use these settings in your app registration.
 
 ### 1. Run the web API
 
-1. Execute the following command to get the app up and running:
+Execute the following command to get the app up and running:
 
    ```bash
    dotnet run
@@ -98,42 +98,43 @@ Use these settings in your app registration.
 
 ### 2. Send request to the web API
 
-1. Once the app is running and listening for requests, execute the following command to send it a request.
+Once the app is running and listening for requests, execute the following command to send it a request.
 
-   ```bash
-   curl -X GET https://localhost:5001/api/application -ki
-   ```
 
-   If everything worked, you should receive a response from the downstream web API (Microsoft Graph, in this case) similar to this:
+```bash
+curl -X GET https://localhost:5001/api/application -ki
+```
 
-   ```console
-   $ curl https://localhost:5001/api/application -ki
-   {
-      "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
-      "id": "537a552c-58b7-4468-abdf-a7cbfa000dde",
-      "deletedDateTime": null,
-      "appId": "5b2c581d-e3ac-415e-a770-7f16254fdbf7",
-      "applicationTemplateId": null,
-      "disabledByMicrosoftStatus": null,
-      "createdDateTime": "2022-02-23T21:35:20Z",
-      "displayName": "active-directory-dotnet-minimal-api-aspnetcore-client-credentail-flow",
-      "description": null,
-      "groupMembershipClaims": null,
-      "identifierUris": [],
-      "isDeviceOnlyAuthSupported": null,
-      "isFallbackPublicClient": null,
-      "notes": null,
-      "publisherDomain": "contoso.onmicrosoft.com",
-      "serviceManagementReference": null,
-      "signInAudience": "AzureADMyOrg",
-      "tags": [],
-      "tokenEncryptionKeyId": null,
-      "defaultRedirectUri": null,
-      "certification": null,
-      "optionalClaims": null,
-      ...
-   }
-   ```
+If everything worked, you should receive a response from the downstream web API (Microsoft Graph, in this case) similar to this:
+
+```console
+$ curl https://localhost:5001/api/application -ki
+{
+   "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
+   "id": "537a552c-58b7-4468-abdf-a7cbfa000dde",
+   "deletedDateTime": null,
+   "appId": "5b2c581d-e3ac-415e-a770-7f16254fdbf7",
+   "applicationTemplateId": null,
+   "disabledByMicrosoftStatus": null,
+   "createdDateTime": "2022-02-23T21:35:20Z",
+   "displayName": "active-directory-dotnet-minimal-api-aspnetcore-client-credentail-flow",
+   "description": null,
+   "groupMembershipClaims": null,
+   "identifierUris": [],
+   "isDeviceOnlyAuthSupported": null,
+   "isFallbackPublicClient": null,
+   "notes": null,
+   "publisherDomain": "contoso.onmicrosoft.com",
+   "serviceManagementReference": null,
+   "signInAudience": "AzureADMyOrg",
+   "tags": [],
+   "tokenEncryptionKeyId": null,
+   "defaultRedirectUri": null,
+   "certification": null,
+   "optionalClaims": null,
+   ...
+}
+```
 
 ## About the code
 
