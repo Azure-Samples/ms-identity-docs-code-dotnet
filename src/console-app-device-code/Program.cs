@@ -17,19 +17,43 @@ var config = new PublicClientApplicationOptions
 IPublicClientApplication publicMsalClient = PublicClientApplicationBuilder.CreateWithApplicationOptions(config)
                                                                           .Build();
 
-// Initiate the device code flow. If access token acquisition needs to happen multiple
-// times in the console application, only call this after checking for a cached token via
-// a call to publicMsalClient.AcquireTokenSilent(...).
-AuthenticationResult msalAuthenticationResult = await publicMsalClient.AcquireTokenWithDeviceCode(
-    new[] { "https://graph.microsoft.com/User.Read" }, deviceCodeResultCallback =>
+AuthenticationResult? msalAuthenticationResult = null;
+
+// Attempt to use a cached access token if one is available. This will renew existing, but
+// expired access tokens if possible. In this specific sample, this will always result in
+// a cache miss, but this pattern would be what you'd use on subsequent calls that require
+// the usage of the same access token.
+IEnumerable<IAccount> accounts = (await publicMsalClient.GetAccountsAsync()).ToList();
+
+if (accounts.Any())
 {
-    // This will print the message on the console which tells the user where to go sign-in using
-    // a separate browser and the code to enter once they sign in.
-    // The AcquireTokenWithDeviceCode() method will poll the server after firing this
-    // device code callback to look for the successful login of the user via that browser.
-    Console.WriteLine(deviceCodeResultCallback.Message);
-    return Task.CompletedTask;
-}).ExecuteAsync();
+    try
+    {
+        msalAuthenticationResult = await publicMsalClient.AcquireTokenSilent(
+            new[] { "https://graph.microsoft.com/User.Read" },
+            accounts.First()).ExecuteAsync();
+    }
+    catch (MsalUiRequiredException)
+    {
+        // No usable cached token was found for this scope + account or Azure AD insists in
+        // an interactive user flow.
+    }
+}
+
+if (msalAuthenticationResult == null)
+{
+    // Initiate the device code flow.
+    msalAuthenticationResult = await publicMsalClient.AcquireTokenWithDeviceCode(
+        new[] { "https://graph.microsoft.com/User.Read" }, deviceCodeResultCallback =>
+    {
+        // This will print the message on the console which tells the user where to go sign-in using
+        // a separate browser and the code to enter once they sign in.
+        // The AcquireTokenWithDeviceCode() method will poll the server after firing this
+        // device code callback to look for the successful login of the user via that browser.
+        Console.WriteLine(deviceCodeResultCallback.Message);
+        return Task.CompletedTask;
+    }).ExecuteAsync();
+}
 
 // At this point we now have a valid access token for Microsoft Graph, with only the specific scopes
 // necessary to complete the following call. Build the Microsoft Graph HTTP request, using the obtained
