@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MSAL WPF Sample" Height="700" Width="1000" MinWidth="800" MinHeight="500" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" WindowStartupLocation="CenterScreen" Icon="/AzureAD.png">
+        Title="MSAL WPF Sample" Height="700" Width="1000" MinWidth="800" MinHeight="500" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" WindowStartupLocation="CenterScreen">
     <DockPanel Margin="10">
         <Button x:Name="SignInButton" DockPanel.Dock="Top" Content="_Sign In (if needed) &amp; Call Graph" HorizontalAlignment="Center" Padding="10,1" Click="SignInButton_Click" />
         <Button x:Name="ExitButton" DockPanel.Dock="Bottom" Content="E_xit" HorizontalAlignment="Center" Padding="10,1" Click="ExitButton_Click" />
