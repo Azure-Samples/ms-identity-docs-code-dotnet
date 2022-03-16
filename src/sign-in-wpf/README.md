@@ -67,7 +67,7 @@ ClientId = ""
 
 Run the application by pressing <kbd>F5</kbd> in Visual Studio.
 
-The appliction will open allowing you to click the **Sign In (if needed) & Call Graph** button to use the authentication flow.
+The application will open allowing you to click the **Sign In (if needed) & Call Graph** button to use the authentication flow.
 
 ![A screenshot of a WPF application guiding the user to click the "Sign In" button.](./app-launch.png)
 
