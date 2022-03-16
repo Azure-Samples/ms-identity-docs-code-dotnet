@@ -17,7 +17,7 @@ namespace MsalExample
 
         // Generally, your MSAL client will have a lifecycle that matches the lifecycle
         // of the user's session in the application. In this sample, the lifecycle of the
-        // MSAL client to the lifecycle of this form.
+        // MSAL client is tied to the lifecycle of this form.
         private readonly IPublicClientApplication msalPublicClientApp;
 
         public MainWindow()
