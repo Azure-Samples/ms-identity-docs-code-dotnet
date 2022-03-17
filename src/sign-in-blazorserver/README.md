@@ -86,7 +86,7 @@ In _appsettings.json_, update each variable with values from the app registratio
 
 This ASP.NET Core 6 Blazor Server application is created using .NET Blazor Server. The app is requiring the user to be authenticated in Azure Active Directory.
 
-When users navigates the home page, the application initiates an authentication flow using the Microsoft Identity Web which is a set of ASP.NET Core libraries that simplifies the integration with the Microsoft identity platform. The user completes this flow in their default web browser. Upon successful authentication, an HTTP GET request to the Microsoft Graph /me endpoint is issued with the user's access token in the HTTP header. The response from the GET request is then displayed to the user.
+When users navigates the home page, the application initiates an authentication flow using the Microsoft Identity Web which is a set of ASP.NET Core libraries that simplifies the integration with the Microsoft identity platform. The user completes this flow in their default web browser. Upon successful authentication, this web app is making a call to the Microsoft Graph /me endpoint from the **Index** page by using an injected **IDownstreamWebApi** service. This so convenint helper under the covers is making an HTTP GET request to any protected web API attaching the user's access token in the HTTP Authorization header. The response from the GET request is then displayed to the user.
 
 When a user logs out, their browser is redirected to a public route confirming the user signed-out.
 
