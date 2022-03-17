@@ -14,7 +14,7 @@ products:
 urlFragment: ms-identity-docs-code-app-csharp-blazorserver
 ---
 -->
-
+<!-- SAMPLE ID: DOCS-CODE-017 -->
 # ASP.NET Core | Blazor Server application | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
 <!-- Build badges here
@@ -51,9 +51,9 @@ Use these settings in your app registration.
 
 Next, open the _Api.csproj_ project under the the sign-in-blazorserver folder in your code editor.
 
-### 3. Update code sample in _appsettings.json_ with app registration values
+### 3. Update application code with app registration values
 
-Finally, set the following values in _appsettings.json_.
+In _appsettings.json_, update each variable with values from the app registration you created earlier.
 
 ```json
 "TenantId": "[Enter 'common', or 'organizations' or the Tenant ID (Obtained from the Azure portal. Select 'Endpoints' from the 'App registrations' blade and use the GUID in any of the URLs), e.g. da41245a5-11b3-996c-00a8-4d99re19f292]",
