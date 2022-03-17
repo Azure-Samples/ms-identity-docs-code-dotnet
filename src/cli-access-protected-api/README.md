@@ -23,7 +23,7 @@ urlFragment: ms-identity-docs-code-dotnet-console
 
 > This sample application backs one or more technical articles on docs.microsoft.com.
 
-This sample shows how a .NET console application can access a protected API, as its own identity, using the [Microsoft Authentication Library (MSAL) for .NET](https://github.com/AzureAD/microsoft-authentication-library-for-csharp). This scenario supports usages such as cron jobs and also direct command line invocation.
+This .NET console application accesses protected web API (Microsoft Graph) as its own identity by using the [Microsoft Authentication Library (MSAL) for .NET](https://github.com/AzureAD/microsoft-authentication-library-for-csharp). The application is written in C# and supports scenarios like cron jobs and direct command-line invocation.
 
 ```console
 $ dotnet run
