@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Api": {
+    "BlazorServerWebApp": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
