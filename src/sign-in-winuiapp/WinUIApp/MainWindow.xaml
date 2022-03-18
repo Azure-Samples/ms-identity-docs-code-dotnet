@@ -8,11 +8,16 @@
     mc:Ignorable="d">
 
     <StackPanel MaxWidth="800" MaxHeight="600" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock MaxWidth="800" x:Name="titleText">Microsoft Graph Response:</TextBlock>
-        <ScrollViewer Margin="20" MaxWidth="800" MaxHeight="200" VerticalScrollMode="Enabled" IsVerticalRailEnabled="True">
-            <TextBlock MaxWidth="750" TextWrapping="WrapWholeWords" x:Name="graphCallResultTextBlock" Text="1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.2"/>
-        </ScrollViewer>
-        <TextBlock HorizontalAlignment="Left" x:Name="tokenAcquisitionTextBlock">Access Token:</TextBlock>
-        <Button x:Name="signInOutButton" Click="Sign_Click" HorizontalAlignment="Right">Sign In</Button>
+        <Button x:Name="signInButton" Click="SignIn_Click" HorizontalAlignment="Center">Sign In (if needed) &amp; Call Graph</Button>
+        <TextBlock MaxWidth="800" Visibility="Visible" x:Name="signInCallToActionTextBlock"><Run Text="This application will access Microsoft Graph, if you authorize it to do so."/><LineBreak/><Run/><LineBreak/><Run Text="Click the Sign In button above to get started."/></TextBlock>
+
+        <StackPanel x:Name="authorizedPanel" Visibility="Collapsed" Orientation="Vertical">
+            <TextBlock Text="Microsoft Graph Response:" />
+            <ScrollViewer Margin="20" MaxWidth="800" MaxHeight="200" VerticalScrollMode="Enabled" IsVerticalRailEnabled="True">
+                <TextBlock MaxWidth="750" TextWrapping="WrapWholeWords" x:Name="graphCallResultTextBlock"></TextBlock>
+            </ScrollViewer>
+            <TextBlock HorizontalAlignment="Left" x:Name="tokenAcquisitionTextBlock"></TextBlock>
+            <Button x:Name="signOutButton" Click="SignOut_Click" HorizontalAlignment="Right">Sign Out</Button>
+        </StackPanel>
     </StackPanel>
 </Window>
