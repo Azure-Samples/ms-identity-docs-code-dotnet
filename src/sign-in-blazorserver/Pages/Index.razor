@@ -1,5 +1,6 @@
 ﻿@using Microsoft.Identity.Web;
 @inject IDownstreamWebApi downstreamWebApi
+@inject MicrosoftIdentityConsentAndConditionalAccessHandler ConsentHandler
 
 @page "/"
 
@@ -22,15 +23,15 @@
 
       protected override async Task OnInitializedAsync()
       {
-        using var response = await downstreamWebApi.CallWebApiForUserAsync("GraphApi").ConfigureAwait(false);
-        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+        try
         {
+          using var response = await downstreamWebApi.CallWebApiForUserAsync("GraphApi").ConfigureAwait(false);
+          response.EnsureSuccessStatusCode();
           graphApiResponse = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
         }
-        else
+        catch (Exception ex)
         {
-          var error = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-          throw new HttpRequestException($"Invalid status code in the HttpResponseMessage: {response.StatusCode}: {error}");
+          ConsentHandler.HandleException(ex);
         }
       }
     }
