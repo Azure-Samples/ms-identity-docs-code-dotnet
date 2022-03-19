@@ -1,0 +1,39 @@
+﻿@using Microsoft.Identity.Web;
+@inject IDownstreamWebApi downstreamWebApi
+@inject MicrosoftIdentityConsentAndConditionalAccessHandler ConsentHandler
+
+@page "/"
+
+<PageTitle>ASP.NET Core 6.0 Blazor Server | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform</PageTitle>
+
+<h1>Welcome to User Sign In ASP.NET Core Blazor Server</h1>
+
+<AuthorizeView>
+  <Authorized>
+    <p>You are now signed-in.</p>
+
+    @if (!string.IsNullOrEmpty(graphApiResponse))
+    {
+         <p>Microsoft Graph Response:</p>
+         <p>@graphApiResponse</p>
+    }
+
+    @code {
+      private string graphApiResponse = string.Empty;
+
+      protected override async Task OnInitializedAsync()
+      {
+        try
+        {
+          using var response = await downstreamWebApi.CallWebApiForUserAsync("GraphApi").ConfigureAwait(false);
+          response.EnsureSuccessStatusCode();
+          graphApiResponse = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+        }
+        catch (Exception ex)
+        {
+          ConsentHandler.HandleException(ex);
+        }
+      }
+    }
+  </Authorized>
+</AuthorizeView>
