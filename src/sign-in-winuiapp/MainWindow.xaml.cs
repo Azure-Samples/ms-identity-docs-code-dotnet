@@ -38,7 +38,7 @@ namespace WinUIApp
                      // 'Application (client) ID' of app registration in Azure portal - this value is a GUID
                      ClientId = ""
                 })
-                .WithDefaultRedirectUri() // http://localhost
+                .WithDefaultRedirectUri()
                 .Build();
         }
 
