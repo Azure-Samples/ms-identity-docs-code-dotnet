@@ -11,7 +11,7 @@ products:
 - azure
 - azure-active-directory
 - ms-graph
-urlFragment: ms-identity-docs-code-app-csharp-winforms
+urlFragment: ms-identity-docs-code-app-csharp-winui
 ---
 -->
 <!-- SAMPLE ID: DOCS-CODE-027-->
@@ -51,9 +51,10 @@ Use these settings in your app registration.
 
 Next, open the _MsalExamples.csproj_ project in Visual Studio.
 
-### 3. Update code sample in _MainWindow.cs_ with app registration values
+### 3. Update code sample in _MainWindow.xaml.cs_ with app registration values
 
 Finally, set the following values in _MainWindow.xaml.cs_.
+
 
 ```csharp
 // 'Tenant ID' of your Azure AD instance - this value is a GUID
@@ -79,10 +80,10 @@ This .NET 6 WinUI 3 Packaged Desktop App presents a button that initiates an aut
 
 ### Sample app not working?
 
-If you can't get the sample working, you've checked [Stack Overflow](http://stackoverflow.com/questions/tagged/msal), and you've already searched the issues in this sample's repository, open an issue report the problem.
+If you can't get the sample working, you've checked [Stack Overflow](https://stackoverflow.com/questions/tagged/msal), and you've already searched the issues in this sample's repository, open an issue report the problem.
 
-1. Search the [GitHub issues](/issues) in the repository - your problem might already have been reported or have an answer.
-1. Nothing similar? [Open an issue](/issues/new) that clearly explains the problem you're having running the sample app.
+1. Search the [GitHub issues](../../../issues) in the repository - your problem might already have been reported or have an answer.
+1. Nothing similar? [Open an issue](../../../issues/new) that clearly explains the problem you're having running the sample app.
 
 ### All other issues
 
