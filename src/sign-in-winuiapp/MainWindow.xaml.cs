@@ -93,8 +93,8 @@ namespace WinUIApp
 
         private async void SignOut_Click(object sender, RoutedEventArgs e)
         {
-            // Signing out is removing all cached tokens, meaning the next token request will
-            // require the user to sign in.
+            // All cached tokens will be removed.
+            // The next token request will require the user to sign in.
             foreach (var account in (await msalPublicClientApp.GetAccountsAsync()).ToList())
             {
                 await msalPublicClientApp.RemoveAsync(account);
