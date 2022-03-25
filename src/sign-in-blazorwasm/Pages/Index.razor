@@ -1,6 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@using Microsoft.Graph;
 @inject HttpClient Http
 
 @page "/"
@@ -15,24 +14,27 @@
     <p>Click <a href="authentication/login">Log in</a> to sign into the application. Navigating to it while not logged in will automatically initiate the login process. Please note that it doesn't require that your user has any specific application roles assigned, and will access Microsoft Graph on your behalf.</p>
   </NotAuthorized>
   <Authorized>
-    You are now signed-in.
-
-    @if (user != null)
+    @if (!string.IsNullOrEmpty(graphApiResponse))
     {
-         <p>Display Name: @user.DisplayName</p>
-         <p>Business Phone: @user.BusinessPhones.FirstOrDefault()</p>
-         <p>Given Name: @user.GivenName</p>
-         <p>id: @user.Id</p>
+         <p>Before rendering the page, the controller was able to make a call to
+         Microsoft Graph's <code>/me</code> API for your user and received the
+         following:</p>
+
+         <p><pre><code class="language-js">@graphApiResponse</code></pre></p>
+
+         <p>Refreshing this page will continue to use the cached access token acquired for Microsoft Graph, which is valid for future page views will attempt to refresh this token as it nears its expiration.</p>
     }
 
     @code {
-      private User user;
+      private string graphApiResponse = string.Empty;
 
       protected override async Task OnInitializedAsync()
       {
         try
         {
-          user = await Http.GetFromJsonAsync<User>("https://graph.microsoft.com/v1.0/me");
+          using var response = await Http.GetAsync("https://graph.microsoft.com/v1.0/me");
+          response.EnsureSuccessStatusCode();
+          graphApiResponse = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
         }
         catch (AccessTokenNotAvailableException exception)
         {
