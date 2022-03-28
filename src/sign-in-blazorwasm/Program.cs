@@ -10,6 +10,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddMsalAuthentication(options =>
 {
     builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
+    options.ProviderOptions.DefaultAccessTokenScopes
+            .Add("User.Read");
 });
 
 builder.Services.AddScoped(sp =>
