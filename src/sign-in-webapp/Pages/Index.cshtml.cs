@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Web;
@@ -15,7 +16,7 @@ public class IndexModel : PageModel
     public IndexModel(ILogger<IndexModel> logger,
                         IDownstreamWebApi downstreamWebApi)
     {
-            _logger = logger;
+        _logger = logger;
         _downstreamWebApi = downstreamWebApi;
     }
 
@@ -24,8 +25,8 @@ public class IndexModel : PageModel
         using var response = await _downstreamWebApi.CallWebApiForUserAsync("DownstreamApi").ConfigureAwait(false);
         if (response.StatusCode == System.Net.HttpStatusCode.OK)
         {
-            var apiResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            ViewData["ApiResult"] = apiResult;
+            var apiResult = await response.Content.ReadFromJsonAsync<JsonDocument>().ConfigureAwait(false);
+            ViewData["ApiResult"] = JsonSerializer.Serialize(apiResult, new JsonSerializerOptions { WriteIndented = true });
         }
         else
         {

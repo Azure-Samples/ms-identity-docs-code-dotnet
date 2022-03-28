@@ -20,7 +20,7 @@ urlFragment: ms-identity-docs-code-csharp
 
 The web app in this scenario has been created using the ASP.NET Core 6.0 Razor template, and slightly modified to add authentication enabling the users sign-in that follows the [Open Id Connect](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc) standard protocol. To lite up Open Id, it is using [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0) middlewares.  In other words, a simple web app is secured by adding an authentication layer allowing users to sign-in with their Work and school (Azure AD) accounts, and as a result it can make web API calls to protected resources on behalf of the signed-in user.
 
-<!-- IMAGE or CONSOLE OUTPUT of running/executed app -->
+![A screenshot of an ASP.NET Core 6.0 Web App displaying a response from Microsoft Graph.](./app-signedin.png)
 
 > :page_with_curl: This sample application backs one or more technical articles on docs.microsoft.com. <!-- TODO: Link to first tutorial in series when published. -->
 
@@ -54,7 +54,6 @@ Use the following settings for your app registration:
 1. Open the _appsettings.json_ file and modify the following code:
 
     ```json
-    "Domain": "[Enter the domain of your tenant, e.g. contoso.onmicrosoft.com]",
     "TenantId": "[Enter 'common', or 'organizations' or the Tenant ID (Obtained from the Azure portal. Select 'Endpoints' from the 'App registrations' blade and use the GUID in any of the URLs), e.g. da41245a5-11b3-996c-00a8-4d99re19f292]",
     "ClientId": "[Enter the Client Id (Application ID obtained from the Azure portal), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]",
     "ClientSecret": "[Copy the client secret added to the app from the Azure portal]",
@@ -74,6 +73,12 @@ Use the following settings for your app registration:
 
 1. Once the web app is listening, navigate to https://localhost:5001
 1. Sign-in with your user credentials.
+
+### 3. Signout
+
+1. Click Sign out
+
+![A screenshot of an ASP.NET Core 6.0 Web App indicating the user signed-out and allowing click "Sign in" to signin again.](./app-signedout.png)
 
 ## About the code
 
