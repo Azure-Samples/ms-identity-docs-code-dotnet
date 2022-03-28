@@ -54,7 +54,6 @@ Use the following settings for your app registration:
 1. Open the _appsettings.json_ file and modify the following code:
 
     ```json
-    "Domain": "[Enter the domain of your tenant, e.g. contoso.onmicrosoft.com]",
     "TenantId": "[Enter 'common', or 'organizations' or the Tenant ID (Obtained from the Azure portal. Select 'Endpoints' from the 'App registrations' blade and use the GUID in any of the URLs), e.g. da41245a5-11b3-996c-00a8-4d99re19f292]",
     "ClientId": "[Enter the Client Id (Application ID obtained from the Azure portal), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]",
     "ClientSecret": "[Copy the client secret added to the app from the Azure portal]",
