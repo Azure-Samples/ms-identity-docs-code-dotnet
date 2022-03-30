@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Graph;
 using Microsoft.Identity.Client;
@@ -31,62 +33,56 @@ namespace XPlat
 
         private async void OnSignInClicked(object sender, EventArgs e)
         {
+            // Initialize the MSAL library by building a public client application
+            s_publicClientApp ??= PublicClientApplicationBuilder.Create(s_clientId)
+                .WithAuthority(s_authority)
+#if ANDROID
+                .WithRedirectUri($"msal{s_clientId}://auth")
+                .WithParentActivityOrWindow(() => Platform.CurrentActivity)
+#else
+                .WithRedirectUri($"https://login.microsoftonline.com/common/oauth2/nativeclient")
+#endif
+                .WithLogging((level, message, containsPii) =>
+                {
+                    Debug.WriteLine($"MSAL: {level} {message} ");
+                }, LogLevel.Warning, enablePiiLogging: false, enableDefaultPlatformLogging: true)
+                .Build();
+
+            // Sign-in user using MSAL and obtain an access token for MS Graph
+            IEnumerable<IAccount> accounts = await s_publicClientApp.GetAccountsAsync();
+            IAccount firstAccount = accounts.FirstOrDefault();
+
+            //Set the scope for API call to user.read
+            var graphScope = new string[] { "user.read" };
+            AuthenticationResult authResult;
             try
             {
-                // Initialize the MSAL library by building a public client application
-                s_publicClientApp ??= PublicClientApplicationBuilder.Create(s_clientId)
-                    .WithAuthority(s_authority)
-#if ANDROID
-                    .WithRedirectUri($"msal{s_clientId}://auth")
-                    .WithParentActivityOrWindow(() => Platform.CurrentActivity)
-#else
-                    .WithRedirectUri($"https://login.microsoftonline.com/common/oauth2/nativeclient")
-#endif
-                    .WithLogging((level, message, containsPii) =>
-                    {
-                        Debug.WriteLine($"MSAL: {level} {message} ");
-                    }, LogLevel.Warning, enablePiiLogging: false, enableDefaultPlatformLogging: true)
-                    .Build();
-
-                // Sign-in user using MSAL and obtain an access token for MS Graph
-                IEnumerable<IAccount> accounts = await s_publicClientApp.GetAccountsAsync();
-                IAccount firstAccount = accounts.FirstOrDefault();
-
-                //Set the scope for API call to user.read
-                var graphScope = new string[] { "user.read" };
-                AuthenticationResult authResult;
-                try
-                {
-                    // Signs in the user and obtains an Access token for MS Graph
-                    authResult = await s_publicClientApp.AcquireTokenSilent(graphScope, firstAccount)
-                                                        .ExecuteAsync();
-                }
-                catch (MsalUiRequiredException ex)
-                {
-                    // A MsalUiRequiredException happened on AcquireTokenSilentAsync. This indicates you need to call AcquireTokenAsync to acquire a token
-                    Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
-
-                    authResult = await s_publicClientApp.AcquireTokenInteractive(graphScope)
-                                                        .ExecuteAsync();
-                }
-
-                // Call the /me endpoint of Graph
-                s_httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", authResult.AccessToken);
-                User graphUser = await s_httpClient.GetFromJsonAsync<User>("https://graph.microsoft.com/v1.0/me");
-
-                TokenLabel.Text = "Display Name: " + graphUser.DisplayName + "\nBusiness Phone: " + graphUser.BusinessPhones.FirstOrDefault()
-                                    + "\nGiven Name: " + graphUser.GivenName + "\nid: " + graphUser.Id
-                                    + "\nUser Principal Name: " + graphUser.UserPrincipalName;
+                // Signs in the user and obtains an Access token for MS Graph
+                authResult = await s_publicClientApp.AcquireTokenSilent(graphScope, firstAccount)
+                                                    .ExecuteAsync();
             }
-            catch (MsalException msalEx)
+            catch (MsalUiRequiredException ex)
             {
-                TokenLabel.Text = $"Error Acquiring Token:{System.Environment.NewLine}{msalEx}";
+                // A MsalUiRequiredException happened on AcquireTokenSilentAsync. This indicates you need to call AcquireTokenAsync to acquire a token
+                Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
+
+                authResult = await s_publicClientApp.AcquireTokenInteractive(graphScope)
+                                                    .ExecuteAsync();
             }
 
-            SignInButton.IsVisible = false;
-            SignOutButton.IsVisible = true;
+            // Call the /me endpoint of Graph
+            s_httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", authResult.AccessToken);
+            var graphResponseMessage = await s_httpClient.GetAsync("https://graph.microsoft.com/v1.0/me");
+            graphResponseMessage.EnsureSuccessStatusCode();
 
-            SemanticScreenReader.Announce(TokenLabel.Text);
+            using var graphResponseJson = JsonDocument.Parse(await graphResponseMessage.Content.ReadAsStreamAsync());
+
+            GraphResultsLabel.Text = JsonSerializer.Serialize(graphResponseJson, new JsonSerializerOptions { WriteIndented = true, Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
+            var tokenWasFromCache = TokenSource.Cache == authResult.AuthenticationResultMetadata.TokenSource;
+            AccessTokenSourceLabel.Text = $"Access Token: {(tokenWasFromCache ? "Cached" : "Newly Acquired")} (Expires: {authResult.ExpiresOn:R})";
+            AuthenticatedGrid.IsVisible = true;
+
+            SemanticScreenReader.Announce(AccessTokenSourceLabel.Text);
         }
 
         private async void OnSignOutClicked(object sender, EventArgs e)
@@ -94,19 +90,10 @@ namespace XPlat
             IEnumerable<IAccount> accounts = await s_publicClientApp.GetAccountsAsync();
             IAccount firstAccount = accounts.FirstOrDefault();
 
-            try
-            {
-                await s_publicClientApp.RemoveAsync(firstAccount);
+            await s_publicClientApp.RemoveAsync(firstAccount);
 
-                TokenLabel.Text = "User has signed-out";
-            }
-            catch (MsalException ex)
-            {
-                TokenLabel.Text = $"Error signing-out user: {ex.Message}";
-            }
-
-            SignInButton.IsVisible = true;
-            SignOutButton.IsVisible = false;
+            GraphResultsLabel.Text = "";
+            AuthenticatedGrid.IsVisible = false;
         }
     }
 }
