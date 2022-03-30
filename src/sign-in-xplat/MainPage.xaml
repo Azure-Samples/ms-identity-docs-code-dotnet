@@ -4,7 +4,7 @@
              BackgroundColor="{DynamicResource SecondaryColor}">
 
     <ScrollView>
-        <Grid RowSpacing="25" RowDefinitions="Auto,Auto,Auto,Auto,*"
+        <Grid RowSpacing="25" RowDefinitions="Auto,Auto,Auto,*"
               Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
 
             <Label 
@@ -15,32 +15,49 @@
                 FontSize="32"
                 HorizontalOptions="Center" />
 
-            <Label 
-                Grid.Row="1"
-                FontSize="18"
-                FontAttributes="Bold"
-                x:Name="TokenLabel"
-                HorizontalOptions="Center" />
-
             <Button 
-                Text="Sign In"
+                Text="Sign In (If needed) &amp; Call Graph"
                 IsVisible="True"
                 FontAttributes="Bold"
-                Grid.Row="2"
+                Grid.Row="1"
                 SemanticProperties.Hint="Click to Sign In with your work or school account"
                 Clicked="OnSignInClicked"
                 x:Name="SignInButton"
                 HorizontalOptions="Center" />
+            <Grid RowSpacing="25" RowDefinitions="Auto,Auto,Auto,Auto,*"
+                Row="2"
+                x:Name="AuthenticatedGrid"
+                IsVisible="false">
+                <Label 
+                    Grid.Row="0"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    Text="Microsoft Graph Response:"
+                    HorizontalOptions="Center" />
 
-            <Button 
-                Text="Sign Out"
-                IsVisible="false"
-                FontAttributes="Bold"
-                Grid.Row="2"
-                SemanticProperties.Hint="Click to Sign Out with your work or school account"
-                Clicked="OnSignOutClicked"
-                x:Name="SignOutButton"
-                HorizontalOptions="Center" />
+                <Label 
+                    Grid.Row="1"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    x:Name="GraphResultsLabel"
+                    HorizontalOptions="Center" />
+
+                <Label 
+                    Grid.Row="2"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    x:Name="AccessTokenSourceLabel"
+                    HorizontalOptions="Center" />
+
+                <Button 
+                    Text="Sign Out"
+                    FontAttributes="Bold"
+                    Grid.Row="3"
+                    SemanticProperties.Hint="Click to Sign Out with your work or school account"
+                    Clicked="OnSignOutClicked"
+                    x:Name="SignOutButton"
+                    HorizontalOptions="Center" />
+            </Grid>
         </Grid>
     </ScrollView>
 </ContentPage>
