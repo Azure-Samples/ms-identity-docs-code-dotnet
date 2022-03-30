@@ -49,7 +49,7 @@ namespace XPlat
                     .Build();
 
                 // Sign-in user using MSAL and obtain an access token for MS Graph
-                IEnumerable<IAccount> accounts = await s_publicClientApp.GetAccountsAsync().ConfigureAwait(false);
+                IEnumerable<IAccount> accounts = await s_publicClientApp.GetAccountsAsync();
                 IAccount firstAccount = accounts.FirstOrDefault();
 
                 //Set the scope for API call to user.read
@@ -67,8 +67,7 @@ namespace XPlat
                     Debug.WriteLine($"MsalUiRequiredException: {ex.Message}");
 
                     authResult = await s_publicClientApp.AcquireTokenInteractive(graphScope)
-                                                        .ExecuteAsync()
-                                                        .ConfigureAwait(false);
+                                                        .ExecuteAsync();
                 }
 
                 // Call the /me endpoint of Graph
