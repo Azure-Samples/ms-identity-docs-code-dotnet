@@ -1,3 +1,4 @@
+using System.Text.Json;
 // <ms_docref_import_types>
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -6,6 +7,10 @@ using Microsoft.Identity.Web;
 
 // <ms_docref_add_msal>
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+// Acquire an access token from Azure AD for this client to access Microsoft Graph based
+// on the permissions granted this application in its Azure AD App registration.
+// The client credential flow will automatically attempt to use or renew any cached
+// tokens, without the need to call acquireTokenSilently first.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"))
                 .EnableTokenAcquisitionToCallDownstreamApi()
@@ -22,8 +27,8 @@ app.MapGet("api/application", async (IDownstreamWebApi downstreamWebApi) =>
 
       if (response.StatusCode == System.Net.HttpStatusCode.OK)
       {
-        var apiResult = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-        return apiResult;
+        var graphApiResponse = await response.Content.ReadFromJsonAsync<JsonDocument>().ConfigureAwait(false);
+        return JsonSerializer.Serialize(graphApiResponse, new JsonSerializerOptions { WriteIndented = true });
       }
       else
       {

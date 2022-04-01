@@ -52,6 +52,7 @@ $ curl https://localhost:5001/api/application
    ...
 }
 ```
+
 ## Prerequisites
 
 - An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
@@ -141,6 +142,8 @@ $ curl https://localhost:5001/api/application -ki
 This ASP.NET Core minimal web API has a single route (_/api/application_) that supports anonymous access.  When a client app calls the anonymous route on this API, the API requests its own application object from Microsoft Graph and then returns that data to the client.
 
 This web API uses [Microsoft Authentication Library (MSAL)](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet).
+
+This project is configured to acquire an access token using the client credential flow, caching the resulting token in memory. Provided an access token was previously cached, the subsequent calls against _/api/application_ will attempt to reuse the cached access token, refreshing it if nearing expiration. The MSAL is logging informational entries that state when a new access token is being acquired, cached, and re-used.
 
 ## Reporting problems
 
