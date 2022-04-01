@@ -7,11 +7,10 @@ using Microsoft.Identity.Web;
 
 // <ms_docref_add_msal>
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-// Acquire a token from Azure AD for this client to access Microsoft Graph based
+// Acquire an access token from Azure AD for this client to access Microsoft Graph based
 // on the permissions granted this application in its Azure AD App registration.
 // The client credential flow will automatically attempt to use or renew any cached
 // tokens, without the need to call acquireTokenSilently first.
-// It is possible to read from the stdout log entries that the requested access token (AT) is being cached.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"))
                 .EnableTokenAcquisitionToCallDownstreamApi()

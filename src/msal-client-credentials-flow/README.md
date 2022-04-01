@@ -143,7 +143,7 @@ This ASP.NET Core minimal web API has a single route (_/api/application_) that s
 
 This web API uses [Microsoft Authentication Library (MSAL)](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet).
 
-This project is configured to acquire a token using the client credential flow, and cache the result in memory upon a successful response.  Provided a token was previously cached, the subsequent calls against _/api/application_ will attempt to reuse the cached access token as long as it is not yet expired. The MSAL is logging informational entries that are clearly stating when a new token is being acquired, cached, and re-used.
+This project is configured to acquire an access token using the client credential flow, caching the resulting token in memory. Provided an access token was previously cached, the subsequent calls against _/api/application_ will attempt to reuse the cached access token, refreshing it if nearing expiration. The MSAL is logging informational entries that state when a new access token is being acquired, cached, and re-used.
 
 ## Reporting problems
 
