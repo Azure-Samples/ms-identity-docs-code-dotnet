@@ -1,4 +1,5 @@
 ﻿@using Microsoft.Identity.Web;
+@using System.Text.Json
 @inject IDownstreamWebApi downstreamWebApi
 @inject MicrosoftIdentityConsentAndConditionalAccessHandler ConsentHandler
 
@@ -10,16 +11,19 @@
 
 <AuthorizeView>
   <Authorized>
-    <p>You are now signed-in.</p>
-
-    @if (!string.IsNullOrEmpty(graphApiResponse))
+    @if (graphApiResponse != null)
     {
-         <p>Microsoft Graph Response:</p>
-         <p>@graphApiResponse</p>
+         <p>Before rendering the page, the controller was able to make a call to
+           Microsoft Graph's <code>/me</code> API for your user and received the
+           following:</p>
+
+         <p><pre><code class="language-js">@JsonSerializer.Serialize(graphApiResponse, new JsonSerializerOptions { WriteIndented = true })</code></pre></p>
+
+         <p>Refreshing this page will continue to use the cached access token acquired for Microsoft Graph, which is valid for future page views will attempt to refresh this token as it nears its expiration.</p>
     }
 
     @code {
-      private string graphApiResponse = string.Empty;
+      private JsonDocument graphApiResponse = null;
 
       protected override async Task OnInitializedAsync()
       {
@@ -27,7 +31,7 @@
         {
           using var response = await downstreamWebApi.CallWebApiForUserAsync("GraphApi").ConfigureAwait(false);
           response.EnsureSuccessStatusCode();
-          graphApiResponse = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+          graphApiResponse = await response.Content.ReadFromJsonAsync<JsonDocument>().ConfigureAwait(false);
         }
         catch (Exception ex)
         {
