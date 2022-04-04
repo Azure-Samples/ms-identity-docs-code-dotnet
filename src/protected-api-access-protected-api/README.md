@@ -12,6 +12,9 @@ products:
 - ms-graph
 urlFragment: ms-identity-docs-code-csharp
 ---
+
+<!-- SAMPLE ID: DOCS-CODE-013 -->
+
 # ASP.NET Core minimal web API | web api | access control (protected routes), protected web API access (Microsoft Graph) | Microsoft identity platform
 
 <!-- Build badges here
@@ -21,40 +24,19 @@ urlFragment: ms-identity-docs-code-csharp
 This ASP.NET Core minimal web API uses the Microsoft identity platform to protect an endpoint (require authorized access), and also accesses Microsoft Graph on behalf of the user. The API uses [ASP.NET Core Identity](https://docs.microsoft.com/aspnet/core/security/authentication/identity?view=aspnetcore-6.0) interacting with the [Microsoft Authentication Library (MSAL)](https://docs.microsoft.com/azure/active-directory/develop/msal-overview) to protect its endpoint.
 
 ```console
-$ curl https://localhost:5001/me -H "Authorization: Bearer {valid-access-token}"
+$ curl https://localhost:5001/api/me -H "Authorization: Bearer {valid-access-token}"
 {
-   "version": "1.1",
-   "content": {
-      "headers": [
-         {
-            "key": "Content-Type",
-            "value": [
-               "application/json; odata.metadata=minimal; odata.streaming=true; IEEE754Compatible=false; charset=utf-8"
-            ]
-         }
-      ]
-   },
-   "statusCode": 200,
-   "reasonPhrase": "OK",
-   "headers": [
-     ...
-   ],
-   "trailingHeaders": [],
-   "requestMessage": {
-      "version": "1.1",
-      "versionPolicy": 0,
-      "content": null,
-      "method": {
-         "method": "GET"
-      },
-      "requestUri": "https://graph.microsoft.com/v1.0/me/",
-      "headers": [
-        ...
-      ],
-      "properties": {},
-      "options": {}
-   },
-   "isSuccessStatusCode": true
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users/$entity",
+  "businessPhones": [],
+  "displayName": "Maui",
+  "givenName": null,
+  "jobTitle": "dev",
+  "mail": null,
+  "mobilePhone": null,
+  "officeLocation": null,
+  "preferredLanguage": null,
+  "surname": null,
+  "id": "cff40dac-17ea-4183-9caf-65f2ee90c562"
 }
 ```
 
@@ -133,7 +115,7 @@ dotnet run
 1. Once the web API is listening, execute the following to send a request to its protected endpoint.
 
    ```bash
-   curl -X GET https://localhost:5001/me -ki
+   curl -X GET https://localhost:5001/api/me -ki
    ```
 
    :information_source: The expected response is `401 Unauthorized` because you've sent a request to the protected endpoint without including an access token (as a bearer token).
@@ -143,40 +125,19 @@ dotnet run
     If everything worked, your protected web API should return a response similar to this:
 
    ```console
-   curl -X GET https://localhost:5001/me -ki -H "Authorization: Bearer {valid-access-token}"
+   curl -X GET https://localhost:5001/api/me -ki -H "Authorization: Bearer {valid-access-token}"
    {
-      "version": "1.1",
-      "content": {
-         "headers": [
-            {
-               "key": "Content-Type",
-               "value": [
-                  "application/json; odata.metadata=minimal; odata.streaming=true; IEEE754Compatible=false; charset=utf-8"
-               ]
-            }
-         ]
-      },
-      "statusCode": 200,
-      "reasonPhrase": "OK",
-      "headers": [
-        ...
-      ],
-      "trailingHeaders": [],
-      "requestMessage": {
-         "version": "1.1",
-         "versionPolicy": 0,
-         "content": null,
-         "method": {
-            "method": "GET"
-         },
-         "requestUri": "https://graph.microsoft.com/v1.0/me/",
-         "headers": [
-           ...
-         ],
-         "properties": {},
-         "options": {}
-      },
-      "isSuccessStatusCode": true
+    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users/$entity",
+    "businessPhones": [],
+    "displayName": "Maui",
+    "givenName": null,
+    "jobTitle": "dev",
+    "mail": null,
+    "mobilePhone": null,
+    "officeLocation": null,
+    "preferredLanguage": null,
+    "surname": null,
+    "id": "cff40dac-17ea-4183-9caf-65f2ee90c562"
    }
    ```
 
@@ -184,11 +145,13 @@ dotnet run
 
 ## About the code
 
-This ASP.NET Core minimal web API has a single protected route, `/me`, that requires callers (client applications making requests to the endpoint) present a valid access token issued by the Microsoft identity platform.
+This ASP.NET Core minimal web API has a single protected route, (_/api/me_), that requires callers (client applications making requests to the endpoint) present a valid access token issued by the Microsoft identity platform.
 
 Acting as a middle-tier API, this minimal web API then uses that access token to acquire a second access token from the Microsoft identity platform, this time for Microsoft Graph, on behalf of the user.
 
 Finally, the web API requests data from the Microsoft Graph `/me` endpoint and includes the response data in its response to the original caller.
+
+This project uses the **Microsoft.Identity.Web** apis to interface with [Microsoft Authentication Library (MSAL) for .NET](https://github.com/azuread/microsoft-authentication-library-for-dotnet). It acquires access tokens on behalf of the user, caching the resulting token in memory. Provided an access token was previously cached, the subsequent calls against _/api/me_ will attempt to reuse the cached access token, refreshing it if nearing expiration. The MSAL is logging informational entries that state when a new access token is being acquired, cached, and re-used.
 
 ## Reporting problems
 
