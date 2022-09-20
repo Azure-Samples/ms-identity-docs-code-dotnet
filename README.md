@@ -1,4 +1,4 @@
-# Microsoft identity platform product documentation backing code
+# Code samples for Microsoft identity platform documentation - .NET, C\#
 
 The sample applications in this repository contain code that backs tutorials and other articles on https://learn.microsoft.com.
 
