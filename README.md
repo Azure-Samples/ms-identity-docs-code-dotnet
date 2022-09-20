@@ -22,7 +22,7 @@ Each project demonstrates one or more aspects of using the Microsoft identity pl
 | `DOCS-CODE-017`                          | [web-app-blazor-server](./web-app-blazor-server/)   |                  |                         |                               |
 | `DOCS-CODE-029` and<br/> `DOCS-CODE-035` | [xplat-maui](./xplat-maui/)                         |                  |                         |                               |
 
-| ## Resources
+## Resources
 
 - Documentation on learn.microsoft.com
   - [Microsoft identity platform product documentation](https://learn.microsoft.com/azure/active-directory/develop/)
