@@ -1,3 +1,4 @@
+<!-- UNCOMMENT YAML FRONT MATTER TO LIST IN SAMPLES BROWSER
 ---
 # Metadata required by https://docs.microsoft.com/samples/browse/
 # Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
@@ -13,6 +14,8 @@ products:
 - dotnet-mobile
 urlFragment: ms-identity-docs-code-csharp-maui
 ---
+-->
+<!-- SAMPLE ID: DOCS-CODE-029 (desktop) and DOCS-CODE-035 (mobile) -->
 # .NET MAUI Multi-platform App - Sign-in user | Microsoft identity platform
 
 <!-- Build badges here

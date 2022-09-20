@@ -14,7 +14,7 @@ products:
 urlFragment: ms-identity-docs-code-app-csharp-winforms
 ---
 -->
-<!-- SAMPLE ID: DOCS-CODE-030-->
+<!-- SAMPLE ID: DOCS-CODE-030 -->
 # .NET (C#) | console | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
 <!-- Build badges here

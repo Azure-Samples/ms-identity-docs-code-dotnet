@@ -14,8 +14,7 @@ products:
 urlFragment: ms-identity-docs-code-app-csharp-webapi
 ---
 -->
-
-<!-- SAMPLE ID: DOCS-CODE-009-->
+<!-- SAMPLE ID: DOCS-CODE-007 -->
 # ASP.NET Core minimal web API | Web API | Web API that accesses a protected web API (Microsoft Graph) | Microsoft identity platform
 
 <!-- Build badges here
