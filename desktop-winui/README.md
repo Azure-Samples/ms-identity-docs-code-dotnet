@@ -14,7 +14,7 @@ products:
 urlFragment: ms-identity-docs-code-app-csharp-winui
 ---
 -->
-<!-- SAMPLE ID: DOCS-CODE-027-->
+<!-- SAMPLE ID: DOCS-CODE-027 -->
 # .NET (C#) | WinUI 3 Packaged Desktop App | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
 <!-- Build badges here

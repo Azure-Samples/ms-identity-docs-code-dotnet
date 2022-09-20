@@ -1,3 +1,4 @@
+<!-- UNCOMMENT YAML FRONT MATTER TO DISPLAY IN SAMPLES BROWSER
 ---
 # Metadata required by https://docs.microsoft.com/samples/browse/
 # Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
@@ -12,6 +13,8 @@ products:
 - ms-graph
 urlFragment: ms-identity-docs-code-csharp
 ---
+-->
+<!-- SAMPLE ID: DOCS-CODE-021 -->
 # ASP.NET Core 6.0 Blazor WebAssembly | standalone  app | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
 <!-- Build badges here
