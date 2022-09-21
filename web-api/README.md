@@ -46,7 +46,7 @@ Use the following settings for your web API's app registration:
 | **Supported account types** | **Accounts in this organizational directory only (Single tenant)** | Required for this sample. <br/><br/> Tells the identity platform which identities this application supports; affects how security tokens like ID and access tokens are requested, formatted, and issued. |
 | **Application ID URI** | `api://{APPLICATION_CLIENT_ID}` | Suggested value for this sample. <br/><br/>  Replace `{APPLICATION_CLIENT_ID}` with the web API's **Application (client) ID**. |
 
-> :information_source: **Bold text** refers to a specific UI element in the Azure portal and `code formatting` indicates a value to enter or select.
+> :information_source: **Bold text** refers to a UI element in the Azure portal and `code formatting` indicates a value to enter or accept.
 
 ### 2. Add scopes
 
@@ -84,14 +84,14 @@ dotnet run
 
 ### 2. Send a request to the web API
 
-To verify the endpoint is protected, use this cURL command to send an unauthenticated HTTP GET request to it:
+To verify the endpoint is protected, use cURL to send an unauthenticated HTTP GET request to the endpoint:
 
 ```bash
-# Execute unauthenticated request to protected API endpoint
+# Execute unauthenticated request to protected API endpoint - 401 response is expected
 curl -X GET https://localhost:5001/weatherforecast -ki
 ```
 
-The expected response  is `401 Unauthenticated` because no access token was included in the request.
+The expected response is `401 Unauthenticated` because no access token was included in the request.
 
 ### 3. Clean up resources
 
