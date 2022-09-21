@@ -36,27 +36,33 @@ The sample code provided here has been created using minimal web API in ASP.NET 
 
 ### 1. Register the web API application in your Azure Active Directory (Azure AD)
 
-First, complete the steps in [Register an application with the Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the sample app.
+First, complete the steps in [Quickstart: Configure an application to expose a web API](https://learn.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis) to register the web API with the identity platform and configure its scopes.
 
-Use the following settings for your app registration:
+Use the following settings for your web API's app registration:
 
 | App registration <br/> setting | Value for this sample app                                           | Notes                                                                                                       |
 |:------------------------------:|:--------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
 | **Name**                       | `active-directory-dotnet-minimal-api-aspnetcore`                    | Suggested value for this sample. <br/> You can change the app name at any time.                             |
 | **Supported account types**    | **Accounts in this organizational directory only (Single tenant)**  | Required for this sample. <br/> Support for the Single tenant.                                              |
-| **Platform type**              | **Web**                                                             | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
-| **Identifier URI**             | `api://{clientId}`                                                  | Suggested value for this sample. <br/> You must change the client id using the Value shown in Azure portal. |
-| **Scopes**                     | `Forecast.Read`                                                     | Required value for this sample.                                                                             |
+| **Identifier URI**             | `api://{clientID}`                                                  | Suggested value for this sample. <br/> Replace `{clientID}` with the web API's **Application (client) ID**. |
+
+### 2. Add scopes
+
+Add the following scopes by using **Expose an API** in the web API's app registration:
+
+| Scope name | Who can consent? | Admin consent display name | Admin consent description | User consent display name | User consent description | State |
+|--|--|--|--|--|--|--|
+| `Forecast.Read` | **Admins and users** | `Read forecast data` | `Allows the application to read weather forecast data.` | `Read forecast data` | `Allows the application to read weather forecast data.` | **Enabled** (default) |
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
-### 2. Configure the web API
+### 3. Configure the code
 
-1. Open the _~/protected-api/appsettings.json_ file in your code editor and modify the following code:
+1. In the _./appsettings.json_ file in the root of the project directory, replace the `*_GOES_HERE` values with the corresponding values from your web API's app registration:
 
    ```json
-   "ClientId": "Enter_the_Application_Id_here",
-   "TenantId": "Enter_the_Tenant_Info_Here"
+   "ClientId": "APPLICATION_CLIENT_ID_GOES_HERE",
+   "TenantId": "TENANT_ID_GOES_HERE",
    ```
 
 ## Run the application
