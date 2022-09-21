@@ -34,7 +34,7 @@ The sample code provided here has been created using minimal web API in ASP.NET 
 
 ## Setup
 
-### 1. Register the web API application in your Azure Active Directory (Azure AD)
+### 1. Register the web API
 
 First, complete the steps in [Quickstart: Configure an application to expose a web API](https://learn.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis) to register the web API with the identity platform and configure its scopes.
 
@@ -44,7 +44,7 @@ Use the following settings for your web API's app registration:
 |:------------------------------:|:--------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
 | **Name**                       | `active-directory-dotnet-minimal-api-aspnetcore`                    | Suggested value for this sample. <br/> You can change the app name at any time.                             |
 | **Supported account types**    | **Accounts in this organizational directory only (Single tenant)**  | Required for this sample. <br/> Support for the Single tenant.                                              |
-| **Identifier URI**             | `api://{clientID}`                                                  | Suggested value for this sample. <br/> Replace `{clientID}` with the web API's **Application (client) ID**. |
+| **Application ID URI**             | `api://{clientID}`                                                  | Suggested value for this sample. <br/> Replace `{clientID}` with the web API's **Application (client) ID**. |
 
 ### 2. Add scopes
 
@@ -58,40 +58,50 @@ Add the following scopes by using **Expose an API** in the web API's app registr
 
 ### 3. Configure the code
 
-1. In the _./appsettings.json_ file in the root of the project directory, replace the `*_GOES_HERE` values with the corresponding values from your web API's app registration:
+In the _./appsettings.json_ file, replace these `{PLACEHOLDER}` values with the corresponding values from your web API's app registration:
 
-   ```json
-   "ClientId": "APPLICATION_CLIENT_ID_GOES_HERE",
-   "TenantId": "TENANT_ID_GOES_HERE",
-   ```
+```json
+"ClientId": "{APPLICATION_CLIENT_ID}",
+"TenantId": "{DIRECTORY_TENANT_ID}",
+```
+
+For example:
+
+```json
+"ClientId": "01234567-89ab-cdef-0123-4567890abcde",
+"TenantId": "4567890a-bcde-f012-3456-789abcdef012",
+```
 
 ## Run the application
 
 ### 1. Run the web API
 
-1. Execute the following command to get the app up and running:
+Execute the following command to get the app up and running:
 
-   ```bash
-   dotnet run
-   ```
+```bash
+dotnet run
+```
 
 ### 2. Send request to the web API
 
-1. Once the app is listening, execute the following to send the a request.
+To verify the endpoint is protected, use this cURL command to send an unauthenticated HTTP GET request to it:
 
-   ```bash
-   curl -X GET https://localhost:5001/weatherforecast -ki
-   ```
+```bash
+# Execute unauthenticated request to protected API endpoint
+curl -X GET https://localhost:5001/weatherforecast -ki
+```
 
-   :information_source: Since the request is sent without a Bearer Token, it is expected to receive an Unauthorized response `401`. The web API is now protected
+The expected response  is `401 Unauthenticated` because no access token was included in the request.
 
-### 3. Clean up
+### 3. Clean up resources
 
-1. Delete the Azure AD app
+If you no longer need the app registration, you can delete it by using the Azure portal or by running this Azure CLI command:
 
-   ```bash
-   az ad app delete --id {clientId}
-   ```
+```bash
+# Delete the app registration
+# Replace '{clientID}' with its Application (client) ID value
+az ad app delete --id {clientId}
+```
 
 ## About the code
 
