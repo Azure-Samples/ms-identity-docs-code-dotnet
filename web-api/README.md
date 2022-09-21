@@ -40,19 +40,19 @@ First, complete the steps in [Quickstart: Configure an application to expose a w
 
 Use the following settings for your web API's app registration:
 
-| App registration <br/> setting | Value for this sample app                                           | Notes                                                                                                       |
-|:------------------------------:|:--------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
-| **Name**                       | `active-directory-dotnet-minimal-api-aspnetcore`                    | Suggested value for this sample. <br/> You can change the app name at any time.                             |
-| **Supported account types**    | **Accounts in this organizational directory only (Single tenant)**  | Required for this sample. <br/> Support for the Single tenant.                                              |
-| **Application ID URI**             | `api://{clientID}`                                                  | Suggested value for this sample. <br/> Replace `{clientID}` with the web API's **Application (client) ID**. |
+| App registration <br/> setting | Value for this sample app | Notes |
+|:-:|:-|:-|
+| **Name** | `aspnet-core-web-api-minimal` | Suggested value for this sample. <br/><br/> You can change this value later without impacting application functionality. |
+| **Supported account types** | **Accounts in this organizational directory only (Single tenant)** | Required for this sample. <br/><br/> Tells the identity platform which identities this application supports; affects how security tokens like ID and access tokens are requested, formatted (claims and their contents), and issued. |
+| **Application ID URI** | `api://{APPLICATION_CLIENT_ID}` | Suggested value for this sample. <br/><br/>  Replace `{APPLICATION_CLIENT_ID}` with the web API's **Application (client) ID**. |
 
 ### 2. Add scopes
 
 Add the following scopes by using **Expose an API** in the web API's app registration:
 
-| Scope name | Who can consent? | Admin consent display name | Admin consent description | User consent display name | User consent description | State |
-|--|--|--|--|--|--|--|
-| `Forecast.Read` | **Admins and users** | `Read forecast data` | `Allows the application to read weather forecast data.` | `Read forecast data` | `Allows the application to read weather forecast data.` | **Enabled** (default) |
+| Scope name      | Who can consent?     | Admin consent display name | Admin consent description                               | User consent display name | User consent description                                | State                 |
+|-----------------|----------------------|----------------------------|---------------------------------------------------------|---------------------------|---------------------------------------------------------|-----------------------|
+| `Forecast.Read` | **Admins and users** | `Read forecast data`       | `Allows the application to read weather forecast data.` | `Read forecast data`      | `Allows the application to read weather forecast data.` | **Enabled** (default) |
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
@@ -82,7 +82,7 @@ Execute the following command to get the app up and running:
 dotnet run
 ```
 
-### 2. Send request to the web API
+### 2. Send a request to the web API
 
 To verify the endpoint is protected, use this cURL command to send an unauthenticated HTTP GET request to it:
 
@@ -95,19 +95,26 @@ The expected response  is `401 Unauthenticated` because no access token was incl
 
 ### 3. Clean up resources
 
-If you no longer need the app registration, you can delete it by using the Azure portal or by running this Azure CLI command:
+If you no longer need the app registration, you can delete it by using the Azure portal or by running this Azure CLI command. # Replace `{APPLICATION_CLIENT_ID}` with the **Application (client) ID** of the app registration.
 
 ```bash
-# Delete the app registration
-# Replace '{clientID}' with its Application (client) ID value
-az ad app delete --id {clientId}
+# Delete the web API's app registration
+az ad app delete --id {APPLICATION_CLIENT_ID}
 ```
 
 ## About the code
 
-The ASP.NET Core minimal web API application protects its weather endpoint, so it will only authorize calls in the name of signed-in users.
+The base project for this code sample was generated from the ASP.NET Core minimal web API project template and installing the Microsoft.Identity.Web package from NuGet:
 
-:link: For more information about how to protect your projects, please let's take a look at https://docs.microsoft.com/en-us/azure/active-directory/develop/sample-v2-code. To know more about how this sample has been generated, please visit https://docs.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio-code
+```bash
+# Create ASP.NET minimal web API project
+dotnet new webapi -minimal -o Api
+
+# Add the Microsoft.Identity.Web assembly reference
+dotnet add package Microsoft.Identity.Web
+```
+
+For more information about minimal web APIs in ASP.NET Core, see [Tutorial: Create a minimal web API with ASP.NET Core](https://learn.microsoft.com/aspnet/core/tutorials/min-web-api).
 
 ## Reporting problems
 
