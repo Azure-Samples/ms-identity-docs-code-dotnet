@@ -91,7 +91,7 @@ To verify the endpoint is protected, use cURL to send an unauthenticated HTTP GE
 curl -X GET https://localhost:5001/weatherforecast -ki
 ```
 
-The expected response is `401 Unauthenticated` because no access token was included in the request.
+The expected response is `401 Unauthorized` because no access token was included in the request.
 
 ### 3. Clean up resources
 
