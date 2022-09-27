@@ -21,7 +21,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 // </ms_docref_enable_authz_capabilities>
 
-var summaries = new[]
+var weatherSummaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
@@ -34,7 +34,7 @@ app.MapGet("/weatherforecast", [Authorize(Policy = "AuthZPolicy")] () =>
        (
            DateTime.Now.AddDays(index),
            Random.Shared.Next(-20, 55),
-           summaries[Random.Shared.Next(summaries.Length)]
+           weatherSummaries[Random.Shared.Next(weatherSummaries.Length)]
        ))
         .ToArray();
     return forecast;
