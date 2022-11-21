@@ -61,8 +61,8 @@ Add the following scopes by using **Expose an API** in the web API's app registr
 In the _./appsettings.json_ file, replace these `{PLACEHOLDER}` values with the corresponding values from your web API's app registration:
 
 ```json
-"ClientId": "{APPLICATION_CLIENT_ID}",
-"TenantId": "{DIRECTORY_TENANT_ID}",
+"ClientId": "{ Enter_the_Application_(client)_ID_here }",
+"TenantId": "{ Enter_the_Directory_(tenant)_ID_here }",
 ```
 
 For example:

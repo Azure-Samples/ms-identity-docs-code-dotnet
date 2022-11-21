@@ -95,9 +95,17 @@ Third, modify the web API application to update the following settings to refere
 1. Open the _protected-api-access-protected-api/appsettings.json_ file in your code editor and modify the following code:
 
    ```json
-   "ClientId": "Enter_the_Application_Id_here",
-   "TenantId": "Enter_the_Tenant_Info_here",
-   "ClientSecret": "Enter_the_Client_Secret_here"
+   "ClientId": "{ Enter_the_Application_(client)_ID_here }",
+   "TenantId": "{ Enter_the_Directory_(tenant)_ID_here }",
+   "ClientSecret": "{ Enter_the_Application_Client_Secret_Value_here }",
+   ```
+
+   For example:
+    
+   ```json
+   "ClientId": "01234567-89ab-cdef-0123-4567890abcde",
+   "TenantId": "4567890a-bcde-f012-3456-789abcdef012",
+   "ClientSecret": "4Ef01bcDdeF~0aBCDef6789.a2cDeF0_12cD56A-",
    ```
 
 ## Run the application

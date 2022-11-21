@@ -79,12 +79,22 @@ Use these settings in your app registration.
 Open the _~/msal-client-credentials-flow/appsettings.json_ file in your code editor and modify the following values values with those from your [app's registration in the Azure portal](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#register-an-application):
 
    ```json
-   "ClientId": "Enter_the_Application_Id_here",
-   "TenantId": "Enter_the_Tenant_Info_Here",
-   "ClientSecret": "Enter_the_Application_CLient_Secret_Here"
+    "ClientId": "{ Enter_the_Application_(client)_ID_here }",
+    "TenantId": "{ Enter_the_Directory_(tenant)_ID_here }",
+    "ClientSecret": "{ Enter_the_Application_Client_Secret_Value_here }",
    ...
-   "RelativePath": "Enter_the_Application_Object_Id_Here",
+    "RelativePath": "{ Enter_the_Application_Object_Id_here }",
    ```
+
+For example:
+    
+   ```json
+   "ClientId": "01234567-89ab-cdef-0123-4567890abcde",
+   "TenantId": "4567890a-bcde-f012-3456-789abcdef012",
+   "ClientSecret": "4Ef01bcDdeF~0aBCDef6789.a2cDeF0_12cD56A-",
+   ...                                                                       
+   "RelativePath": "abcdef01-2345-7890-abcd-ef0123456789",
+    ```
 
 ## Run the application
 

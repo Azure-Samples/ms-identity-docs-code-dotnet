@@ -57,9 +57,17 @@ Use the following settings for your app registration:
 1. Open the `./wwwroot/appsettings.json` file and modify the following code:
 
     ```json
-    "Authority": "https://login.microsoftonline.com/[Enter the Tenant Id Value From Azure Portal]",
-    "ClientId": "[Enter the Client Id (Application ID obtained from the Azure portal), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]",
+    "ClientId": "{ Enter_the_Application_(client)_ID_here }",
+    "TenantId": "{ Enter_the_Directory_(tenant)_ID_here }",
     ```
+
+   For example:
+    
+   ```json
+   "ClientId": "01234567-89ab-cdef-0123-4567890abcde",
+   "TenantId": "4567890a-bcde-f012-3456-789abcdef012",
+    ```
+
 
 ### 3. Install the tooling for ASP.NET Core Blazor
 
