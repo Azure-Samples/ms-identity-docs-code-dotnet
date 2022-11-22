@@ -1,18 +1,21 @@
-﻿using Microsoft.Identity.Client;
+﻿// <ms_docref_import_types>
+using Microsoft.Identity.Client;
 using Microsoft.Identity.Web;
 using System.Net.Http.Headers;
 using System.Text.Encodings.Web;
 using System.Text.Json;
+// </ms_docref_import_types>
+
 
 var config = new {
     // Full directory URL, in the form of https://login.microsoftonline.com/<tenant_id>
-    Authority = "",
+    Authority = "https://login.microsoftonline.com/{ Enter_the_Directory_(tenant)_ID_here }",
     // 'Application (client) ID' of app registration in Azure portal - this value is a GUID
-    ClientId = "",
+    ClientId = "{ Enter_the_Application_(client)_ID_here }",
     // Client secret 'Value' (not its ID) from 'Client secrets' in app registration in Azure portal
-    ClientSecret = "",
+    ClientSecret = "{ Enter_the_Application_Client_Secret_Value_here }",
     // Client 'Object ID' of app registration in Azure portal - this value is a GUID
-    ClientObjectId = ""
+    ClientObjectId = "{ Enter_the_Application_Object_Id_here }"
 };
 
 // This app instance should be a long-lived instance because

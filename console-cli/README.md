@@ -68,10 +68,10 @@ Use these settings in your app registration.
 
 ```csharp
 // 'Directory (tenant) ID' of app registration in the Azure portal - this value is a GUID
-TenantId = "",
+TenantId = "{ Enter_the_Directory_(tenant)_ID_here }",
 
 // 'Application (client) ID' of app registration in Azure portal - this value is a GUID
-ClientId = ""
+ClientId = "{ Enter_the_Application_(client)_ID_here }"
 ```
 
 ## Run the application

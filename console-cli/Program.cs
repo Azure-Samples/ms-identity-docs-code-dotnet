@@ -5,10 +5,10 @@ using System.Text.Json;
 var config = new PublicClientApplicationOptions
 {
     // 'Directory (tenant) ID' of app registration in the Azure portal - this value is a GUID
-    TenantId = "",
+    TenantId = "{ Enter_the_Directory_(tenant)_ID_here }",
 
     // 'Application (client) ID' of app registration in Azure portal - this value is a GUID
-    ClientId = ""
+    ClientId = "{ Enter_the_Application_(client)_ID_here }"
 };
 
 // In order to take advantage of token caching, your MSAL client singleton must

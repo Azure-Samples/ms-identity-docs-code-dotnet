@@ -58,8 +58,10 @@ Use the following settings for your app registration:
 1. Open the _sign-in-xplat/MainPage.xaml.cs_ in your code editor.
 
     ```csharp
-    private const string ClientId = "APPLICATION_(CLIENT)_ID";
-    private const string Tenant = "TENANT_ID";
+    // 'Application (client) ID' of app registration in Azure portal - this value is a GUID
+    private const string ClientId = "{ Enter_the_Application_(client)_ID_here }";
+    // 'Tenant ID' of your Azure AD instance - this value is a GUID
+    private const string TenantId = "{ Enter_the_Directory_(tenant)_ID_here }";
     ```
 
 1. Open the _sign-in-xplat/Platforms/Android/AndroidManifest.xml_ in your code editor and replace the `APPLICATION_(CLIENT)_ID` placeholder with your Application (Client) Id.
@@ -69,7 +71,7 @@ Use the following settings for your app registration:
       <activity android:name="microsoft.identity.client.BrowserTabActivity"  android:exported="true">
         <intent-filter>
           ...
-          <data android:scheme="msalAPPLICATION_(CLIENT)_ID" android:host="auth" />
+          <data android:scheme="msal{ Enter_the_Application_(client)_ID_here }" android:host="auth" />
         </intent-filter>
       </activity>
     </application>

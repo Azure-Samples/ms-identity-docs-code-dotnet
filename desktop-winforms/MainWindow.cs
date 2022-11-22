@@ -24,10 +24,10 @@ namespace MsalExample
                 .CreateWithApplicationOptions(new PublicClientApplicationOptions
                 {
                     // 'Tenant ID' of your Azure AD instance - this value is a GUID
-                    TenantId = "",
+                    TenantId = "{ Enter_the_Directory_(tenant)_ID_here }",
 
                     // 'Application (client) ID' of app registration in Azure portal - this value is a GUID
-                    ClientId = ""
+                    ClientId = "{ Enter_the_Application_(client)_ID_here }"
                 })
                 .WithDefaultRedirectUri() // http://localhost
                 .Build();

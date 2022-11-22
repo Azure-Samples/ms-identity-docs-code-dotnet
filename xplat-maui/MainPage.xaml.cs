@@ -14,9 +14,14 @@ namespace XPlat
 {
     public partial class MainPage : ContentPage
     {
-        private static readonly string s_clientId = "APPLICATION_(CLIENT)_ID";
-        private static readonly string s_tenant = "TENANT_ID";
-        private static readonly string s_authority = "https://login.microsoftonline.com/" + s_tenant;
+        // 'Application (client) ID' of app registration in Azure portal - this value is a GUID
+        private static readonly string ClientId = "{ Enter_the_Application_(client)_ID_here }";
+
+        // 'Tenant ID' of your Azure AD instance - this value is a GUID
+        private static readonly string TenantId = "{ Enter_the_Directory_(tenant)_ID_here }";
+
+        // Full directory URL, in the form of https://login.microsoftonline.com/<tenant_id>
+        private static readonly string Authority = "https://login.microsoftonline.com/" + TenantId;
 
         // The MSAL Public client app
         private static IPublicClientApplication s_publicClientApp;
@@ -31,10 +36,10 @@ namespace XPlat
         private async void OnSignInClicked(object sender, EventArgs e)
         {
             // Initialize the MSAL library by building a public client application
-            s_publicClientApp ??= PublicClientApplicationBuilder.Create(s_clientId)
-                .WithAuthority(s_authority)
+            s_publicClientApp ??= PublicClientApplicationBuilder.Create(ClientId)
+                .WithAuthority(Authority)
 #if ANDROID
-                .WithRedirectUri($"msal{s_clientId}://auth")
+                .WithRedirectUri($"msal{ClientId}://auth")
                 .WithParentActivityOrWindow(() => Platform.CurrentActivity)
 #else
                 .WithRedirectUri($"https://login.microsoftonline.com/common/oauth2/nativeclient")
