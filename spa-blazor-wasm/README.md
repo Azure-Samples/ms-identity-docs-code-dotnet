@@ -57,15 +57,15 @@ Use the following settings for your app registration:
 1. Open the `./wwwroot/appsettings.json` file and modify the following code:
 
     ```json
+    "Authority": "https://login.microsoftonline.com/{ Enter_the_Directory_(tenant)_ID_here }",
     "ClientId": "{ Enter_the_Application_(client)_ID_here }",
-    "TenantId": "{ Enter_the_Directory_(tenant)_ID_here }",
     ```
 
    For example:
     
    ```json
+   "Authority": "https://login.microsoftonline.com/4567890a-bcde-f012-3456-789abcdef012",
    "ClientId": "01234567-89ab-cdef-0123-4567890abcde",
-   "TenantId": "4567890a-bcde-f012-3456-789abcdef012",
     ```
 
 
