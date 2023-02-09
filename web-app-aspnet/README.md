@@ -10,7 +10,7 @@ products:
 - azure
 - azure-active-directory
 - ms-graph
-urlFragment: ms-identity-docs-code-csharp
+urlFragment: ms-identity-docs-code-csharp-sign-in
 ---
 
 # ASP.NET Core 6.0 Web App - Sign-in user | Microsoft identity platform
