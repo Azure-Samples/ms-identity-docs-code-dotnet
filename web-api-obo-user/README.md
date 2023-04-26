@@ -1,4 +1,3 @@
-<!-- UNCOMMENT YAML FRONT MATTER TO DISPLAY IN SAMPLES BROWSER
 ---
 # Metadata required by https://docs.microsoft.com/samples/browse/
 # Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
@@ -13,8 +12,7 @@ products:
 - ms-graph
 urlFragment: ms-identity-docs-code-csharp
 ---
--->
-<!-- SAMPLE ID: DOCS-CODE-013 -->
+
 # ASP.NET Core minimal web API | web api | access control (protected routes), protected web API access (Microsoft Graph) | Microsoft identity platform
 
 <!-- Build badges here
