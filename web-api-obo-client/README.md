@@ -1,4 +1,3 @@
-<!-- Keeping yaml frontmatter commented out for now
 ---
 # Metadata required by https://docs.microsoft.com/samples/browse/
 # Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
@@ -13,8 +12,7 @@ products:
 - ms-graph
 urlFragment: ms-identity-docs-code-app-csharp-webapi
 ---
--->
-<!-- SAMPLE ID: DOCS-CODE-007 -->
+
 # ASP.NET Core minimal web API | Web API | Web API that accesses a protected web API (Microsoft Graph) | Microsoft identity platform
 
 <!-- Build badges here
