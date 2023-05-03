@@ -1,20 +1,18 @@
-<!-- Keeping yaml frontmatter commented out for now
 ---
 # Metadata required by https://docs.microsoft.com/samples/browse/
 # Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
 languages:
 - csharp
 page_type: sample
-name: "WinUI 3 Packaged Desktop App that makes a request to the Graph API after signing in the user"
-description: "This .NET 6 (C#) WinUI 3 Packaged Desktop App signs in the user and then makes a request to Microsoft Graph for the user's profile data."
+name: WinUI 3 Packaged Desktop App that makes a request to the Graph API after signing in the user
+description: This .NET 6 (C#) WinUI 3 Packaged Desktop App signs in the user and then makes a request to Microsoft Graph for the user's profile data.
 products:
 - azure
 - azure-active-directory
 - ms-graph
 urlFragment: ms-identity-docs-code-app-csharp-winui
 ---
--->
-<!-- SAMPLE ID: DOCS-CODE-027 -->
+
 # .NET (C#) | WinUI 3 Packaged Desktop App | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
 <!-- Build badges here

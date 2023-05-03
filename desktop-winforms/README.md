@@ -1,20 +1,18 @@
-<!-- Keeping yaml frontmatter commented out for now
 ---
 # Metadata required by https://docs.microsoft.com/samples/browse/
 # Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
 languages:
 - csharp
 page_type: sample
-name: "Windows Forms app that makes a request to the Graph API after signing in the user"
-description: "This .NET 6 Windows Forms app signs in the user and then makes a request to Microsoft Graph for the user's profile data."
+name: Windows Forms app that makes a request to the Graph API after signing in the user
+description: This .NET 6 Windows Forms app signs in the user and then makes a request to Microsoft Graph for the user's profile data.
 products:
 - azure
 - azure-active-directory
 - ms-graph
 urlFragment: ms-identity-docs-code-app-csharp-winforms
 ---
--->
-<!-- SAMPLE ID: DOCS-CODE-025 -->
+
 # .NET | Windows Forms | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
 <!-- Build badges here

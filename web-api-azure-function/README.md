@@ -1,20 +1,18 @@
-<!-- TO PUBLISH TO DOCS SAMPLES BROWSER: UPDATE AND THEN UNCOMMENT THE YAML FRONT-MATTER SECTION BELOW -->
-<!--
+---
 # Metadata required by https://docs.microsoft.com/samples/browse/
 # Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
 languages:
 - csharp
 page_type: sample
-name: "C# Azure Function that protects an HTTP trigger function with Easy Auth and access token scope validation."
-description: "This C# Azure Function protects its own HTTP Trigger function with Easy Auth and access token scope validation. The code in this sample is used by one or more articles on docs.microsoft.com."
+name: C# Azure Function that protects an HTTP trigger function with Easy Auth and access token scope validation.
+description: This C# Azure Function protects its own HTTP Trigger function with Easy Auth and access token scope validation. The code in this sample is used by one or more articles on docs.microsoft.com.
 products:
 - azure
 - azure-active-directory
 - azure-functions
 urlFragment: ms-identity-docs-code-csharp
 ---
--->
-<!-- SAMPLE ID: DOCS-CODE-004 -->
+
 # .NET (C#) | Azure function app | Protected web API | Microsoft identity platform
 
 <!-- Build badges here
