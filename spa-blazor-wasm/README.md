@@ -5,7 +5,7 @@ languages:
 - csharp
 page_type: sample
 name: ASP.NET Core 6.0 Blazor WebAssembly that accesses Microsoft Graph
-description: This ASP.NET Core 6.0 Blazor WebAssembly that sign-in and contacts Microsoft Graph on behalf of the user. The code in this sample is used by one or more articles on docs.microsoft.com.
+description: This ASP.NET Core 6.0 Blazor WebAssembly that signs in and contacts Microsoft Graph on behalf of the user. The code in this sample is used by one or more articles on docs.microsoft.com.
 products:
 - azure
 - azure-active-directory
