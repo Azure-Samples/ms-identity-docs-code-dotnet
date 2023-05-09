@@ -10,7 +10,7 @@ products:
 - azure
 - azure-active-directory
 - ms-graph
-urlFragment: ms-identity-docs-code-app-csharp-winforms
+urlFragment: ms-identity-docs-code-app-csharp-wpf
 ---
 
 # .NET (C#) | Windows Presentation Foundation (WPF) | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
