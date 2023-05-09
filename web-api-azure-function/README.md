@@ -10,7 +10,7 @@ products:
 - azure
 - azure-active-directory
 - azure-functions
-urlFragment: ms-identity-docs-code-csharp
+urlFragment: ms-identity-docs-code-azure-function-csharp
 ---
 
 # .NET (C#) | Azure function app | Protected web API | Microsoft identity platform
