@@ -1,19 +1,18 @@
-<!-- UNCOMMENT YAML FRONT MATTER TO DISPLAY IN SAMPLES BROWSER
 ---
 # Metadata required by https://docs.microsoft.com/samples/browse/
 # Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
 languages:
 - csharp
 page_type: sample
-name: "ASP.NET Core 6.0 Blazor WebAssembly that accesses Microsoft Graph"
-description: "This ASP.NET Core 6.0 Blazor WebAssembly that sign-in and contacts Microsoft Graph on behalf of the user. The code in this sample is used by one or more articles on docs.microsoft.com."
+name: ASP.NET Core 6.0 Blazor WebAssembly that accesses Microsoft Graph
+description: This ASP.NET Core 6.0 Blazor WebAssembly that sign-in and contacts Microsoft Graph on behalf of the user. The code in this sample is used by one or more articles on docs.microsoft.com.
 products:
 - azure
 - azure-active-directory
 - ms-graph
 urlFragment: ms-identity-docs-code-csharp
 ---
--->
+
 <!-- SAMPLE ID: DOCS-CODE-021 -->
 # ASP.NET Core 6.0 Blazor WebAssembly | standalone  app | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
