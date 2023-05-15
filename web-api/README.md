@@ -10,7 +10,7 @@ products:
 - azure
 - azure-active-directory
 - ms-graph
-urlFragment: ms-identity-docs-code-csharp
+urlFragment: ms-identity-docs-code-web-apicsharp
 ---
 
 # ASP.NET Core minimal web API | web API | access control (protected routes) | Microsoft identity platform
