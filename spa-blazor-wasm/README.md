@@ -10,7 +10,7 @@ products:
 - azure
 - azure-active-directory
 - ms-graph
-urlFragment: ms-identity-docs-code-csharp
+urlFragment: ms-identity-docs-code-spa-blazor-wasm-csharp
 ---
 
 <!-- SAMPLE ID: DOCS-CODE-021 -->
