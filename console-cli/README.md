@@ -1,19 +1,18 @@
-<!-- Keeping yaml frontmatter commented out for now
 ---
 # Metadata required by https://docs.microsoft.com/samples/browse/
 # Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
 languages:
 - csharp
 page_type: sample
-name: ".NET (C#) console application that makes a request to the Graph API via the Device Code flow"
-description: "This .NET 6 console application uses the device code flow for authentication and then makes a request to Microsoft Graph for the user's profile data."
+name: .NET (C#) console application that makes a request to the Graph API via the Device Code flow
+description: This .NET 6 console application uses the device code flow for authentication and then makes a request to Microsoft Graph for the user's profile data.
 products:
 - azure
 - azure-active-directory
 - ms-graph
-urlFragment: ms-identity-docs-code-app-csharp-winforms
+urlFragment: ms-identity-docs-code-console-cli-csharp
 ---
--->
+
 <!-- SAMPLE ID: DOCS-CODE-030 -->
 # .NET (C#) | console | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
