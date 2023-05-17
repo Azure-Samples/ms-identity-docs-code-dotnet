@@ -1,12 +1,11 @@
-<!-- UNCOMMENT YAML FRONT MATTER TO LIST IN SAMPLES BROWSER
 ---
 # Metadata required by https://docs.microsoft.com/samples/browse/
 # Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
 languages:
 - csharp
 page_type: sample
-name: ".NET MAUI Multi-platform App Sign-in user"
-description: "This is a .NET MAUI Multi-platform App Sign-in user that sign-in users. The code in this sample is used by one or more articles on docs.microsoft.com."
+name: .NET MAUI Multi-platform App Sign-in user
+description: This is a .NET MAUI Multi-platform App Sign-in user that sign-in users. The code in this sample is used by one or more articles on docs.microsoft.com.
 products:
 - azure
 - azure-active-directory
@@ -14,7 +13,7 @@ products:
 - dotnet-mobile
 urlFragment: ms-identity-docs-code-csharp-maui
 ---
--->
+
 <!-- SAMPLE ID: DOCS-CODE-029 (desktop) and DOCS-CODE-035 (mobile) -->
 # .NET MAUI Multi-platform App - Sign-in user | Microsoft identity platform
 
