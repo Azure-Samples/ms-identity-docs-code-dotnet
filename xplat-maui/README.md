@@ -10,7 +10,7 @@ products:
 - azure
 - azure-active-directory
 - ms-graph
-- dotnet-mobile
+- dotnet-maui
 urlFragment: ms-identity-docs-code-csharp-maui
 ---
 
