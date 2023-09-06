@@ -11,7 +11,7 @@ products:
 - azure-active-directory
 - ms-graph
 - dotnet-maui
-- ms-identity-platform
+- microsoft-identity-platform
 urlFragment: ms-identity-docs-code-csharp-maui
 ---
 
