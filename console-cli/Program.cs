@@ -4,10 +4,10 @@ using System.Text.Json;
 
 var config = new PublicClientApplicationOptions
 {
-    // 'Directory (tenant) ID' of app registration in the Azure portal - this value is a GUID
+    // 'Directory (tenant) ID' of app registration in the Admin center - this value is a GUID
     TenantId = "",
 
-    // 'Application (client) ID' of app registration in Azure portal - this value is a GUID
+    // 'Application (client) ID' of app registration in Admin center - this value is a GUID
     ClientId = ""
 };
 

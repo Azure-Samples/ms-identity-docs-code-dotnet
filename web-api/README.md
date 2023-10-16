@@ -10,7 +10,6 @@ products:
 - azure
 - azure-active-directory
 - ms-graph
-- microsoft-identity-platform
 urlFragment: ms-identity-docs-code-web-apicsharp
 ---
 
@@ -45,7 +44,7 @@ Use the following settings for your web API's app registration:
 | **Supported account types** | **Accounts in this organizational directory only (Single tenant)** | Required for this sample. <br/><br/> Tells the identity platform which identities this application supports; affects how security tokens like ID and access tokens are requested, formatted, and issued. |
 | **Application ID URI** | `api://{APPLICATION_CLIENT_ID}` | Suggested value for this sample. <br/><br/>  Replace `{APPLICATION_CLIENT_ID}` with the web API's **Application (client) ID**. |
 
-> :information_source: **Bold text** refers to a UI element in the Azure portal and `code formatting` indicates a value to enter or accept.
+> :information_source: **Bold text** refers to a UI element in the Microsoft Admin center and `code formatting` indicates a value to enter or accept.
 
 ### 2. Add scopes
 
@@ -60,8 +59,8 @@ Add the following scopes by using **Expose an API** in the web API's app registr
 In the _./appsettings.json_ file, replace these `{PLACEHOLDER}` values with the corresponding values from your web API's app registration:
 
 ```json
-"ClientId": "{APPLICATION_CLIENT_ID}",
-"TenantId": "{DIRECTORY_TENANT_ID}",
+"ClientId": "Enter_the_Application_Id_Here",
+"TenantId": "Enter_the_Tenant_Info_Here",
 ```
 
 For example:

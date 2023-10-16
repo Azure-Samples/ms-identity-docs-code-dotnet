@@ -10,7 +10,6 @@ products:
 - azure
 - azure-active-directory
 - ms-graph
-- microsoft-identity-platform
 urlFragment: ms-identity-docs-code-app-csharp-winforms
 ---
 
@@ -44,7 +43,7 @@ Use these settings in your app registration.
 | **Platform type**               | **Mobile and desktop applications**                                 | Required value for this sample                                                  |
 | **Redirect URIs**               | `http://localhost`                                                  | Required value for this sample                                                  |
 
-> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Microsoft Admin center, while `code formatting` indicates a value you enter into a text box in the Microsoft Admin center.
 
 ### 2. Open the project in Visual Studio
 
@@ -58,7 +57,7 @@ Finally, set the following values in _MainWindow.cs_.
 // 'Tenant ID' of your Azure AD instance - this value is a GUID
 TenantId = "",
 
-// 'Application (client) ID' of app registration in Azure portal - this value is a GUID
+// 'Application (client) ID' of app registration in Microsoft Admin center - this value is a GUID
 ClientId = ""
 ```
 
