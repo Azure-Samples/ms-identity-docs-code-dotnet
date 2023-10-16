@@ -10,7 +10,6 @@ products:
 - azure
 - azure-active-directory
 - ms-graph
-- microsoft-identity-platform
 urlFragment: ms-identity-docs-code-app-csharp-blazorserver
 ---
 

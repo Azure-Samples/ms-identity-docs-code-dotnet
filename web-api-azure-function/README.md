@@ -10,7 +10,6 @@ products:
 - azure
 - azure-active-directory
 - azure-functions
-- microsoft-identity-platform
 urlFragment: ms-identity-docs-code-azure-function-csharp
 ---
 
