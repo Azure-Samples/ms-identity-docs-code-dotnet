@@ -23,7 +23,7 @@ The web app in this scenario has been created using the ASP.NET Core 6.0 Razor t
 
 ## Prerequisites
 
-- An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 ## Setup
@@ -41,9 +41,9 @@ Use the following settings for your app registration:
 | **Platform type**              | `Web`                                              | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
 | **Redirect URIs**              | `https://localhost:5001/signin-oidc`               | Required value for this sample. <br/> You can change that later in your own implementation.                 |
 | **Front-channel logout URL**   | `https://localhost:5001/signout-oidc`              | Required value for this sample. <br/> You can change that later in your own implementation.                 |
-| **Client secret**              | _Value shown in Azure portal_                      | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).                 |
+| **Client secret**              | _Value shown in the admin center_                      | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).                 |
 
-> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
+> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Entra admin center, while `code formatting` indicates a value you enter into a text box or select in the admin center.
 
 ### 2. Configure the web app
 
@@ -51,9 +51,9 @@ Use the following settings for your app registration:
 1. Open the _appsettings.json_ file and modify the following code:
 
     ```json
-    "TenantId": "[Enter 'common', or 'organizations' or the Tenant ID (Obtained from the Azure portal. Select 'Endpoints' from the 'App registrations' blade and use the GUID in any of the URLs), e.g. da41245a5-11b3-996c-00a8-4d99re19f292]",
-    "ClientId": "[Enter the Client Id (Application ID obtained from the Azure portal), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]",
-    "ClientSecret": "[Copy the client secret added to the app from the Azure portal]",
+    "TenantId": "[Enter 'common', or 'organizations' or the Tenant ID (Obtained from the Entra admin center. Select 'Endpoints' from the 'App registrations' blade and use the GUID in any of the URLs), e.g. da41245a5-11b3-996c-00a8-4d99re19f292]",
+    "ClientId": "[Enter the Client Id (Application ID obtained from the admin center), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]",
+    "ClientSecret": "[Copy the client secret added to the app from the admin center]",
     ```
 
 ## Run the application

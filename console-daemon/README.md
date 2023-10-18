@@ -14,7 +14,6 @@ products:
 urlFragment: ms-identity-docs-code-dotnet-console
 ---
 -->
-<!-- SAMPLE ID: DOCS-CODE-010 -->
 # .NET | console | .NET (C#) console app that accesses a protected web API access (Microsoft Graph) | Microsoft identity platform
 
 <!-- Build badges here
@@ -45,7 +44,7 @@ Could not find a cached token, so fetching a new one.
 
 ## Prerequisites
 
-- An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 ## Setup
@@ -72,9 +71,9 @@ In _Program.cs_, update each variable with values from the app registration you 
 ```csharp
 // Full directory URL, in the form of https://login.microsoftonline.com/<tenant_id>
 Authority = "",
-// 'Application (client) ID' of app registration in Azure portal - this value is a GUID
+// 'Application (client) ID' of app registration in the Microsoft Entra admin center - this value is a GUID
 ClientId = "",
-// Client secret 'Value' (not its ID) from 'Client secrets' in app registration in Azure portal
+// Client secret 'Value' (not its ID) from 'Client secrets' in app registration in the Microsoft Entra admin center
 ClientSecret = "",
 // Client 'Object ID' of app registration in Azure portal - this value is a GUID
 ClientObjectId = ""

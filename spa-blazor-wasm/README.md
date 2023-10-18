@@ -30,7 +30,7 @@ The response to the request is presented to the user.
 
 ## Prerequisites
 
-- An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 ## Setup
@@ -48,7 +48,7 @@ Use the following settings for your app registration:
 | **Platform type**              | `Single-page application`                              | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
 | **Redirect URIs**              | `https://localhost:5001/authentication/login-callback` | Required value for this sample. <br/> You can change that later in your own implementation.                 |
 
-> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
+> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Microsoft Admin center, while `code formatting` indicates a value you enter into a text box or select in the Microsoft Admin center.
 
 ### 2. Configure the web app
 
@@ -56,8 +56,8 @@ Use the following settings for your app registration:
 1. Open the `./wwwroot/appsettings.json` file and modify the following code:
 
     ```json
-    "Authority": "https://login.microsoftonline.com/[Enter the Tenant Id Value From Azure Portal]",
-    "ClientId": "[Enter the Client Id (Application ID obtained from the Azure portal), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]",
+    "Authority": "https://login.microsoftonline.com/[Enter the Tenant Id Value From Microsoft Admin center]",
+    "ClientId": "[Enter the Client Id (Application ID obtained from the Microsoft Admin center), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]",
     ```
 
 ### 3. Install the tooling for ASP.NET Core Blazor

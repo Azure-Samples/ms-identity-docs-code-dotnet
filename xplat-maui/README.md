@@ -25,11 +25,11 @@ This sample demonstrates a Windows desktop and Android mobile .NET MAUI Multi-pl
 
 ![A screenshot on Android displaying a response from Microsoft Graph](./app.png)
 
-> :page_with_curl: This sample application backs one or more technical articles on docs.microsoft.com. <!-- TODO: Link to first tutorial in series when published. -->
+> :page_with_curl: This sample application backs one or more technical articles on docs.microsoft.com.
 
 ## Prerequisites
 
-- An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 - [.NET MAUI](https://docs.microsoft.com/en-us/dotnet/maui/get-started/installation)
 - **Install apps from any source** enabled in Windows' developer settings

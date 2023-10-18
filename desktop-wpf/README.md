@@ -25,7 +25,7 @@ This .NET Windows Presentation Foundation (WPF) application authenticates a user
 
 ## Prerequisites
 
-- Azure Active Directory (Azure AD) tenant and the permissions or role required for managing app registrations in the tenant.
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 - Visual Studio 2022, [configured for the .NET 6 desktop development workload](https://docs.microsoft.com/dotnet/desktop/winforms/get-started/create-app-visual-studio?view=netdesktop-6.0#prerequisites)
 
 ## Setup

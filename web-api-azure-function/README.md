@@ -30,7 +30,7 @@ Hello, world. You were able to access this because you provided a valid access t
 
 ## Prerequisites
 
-- Azure Active Directory (Azure AD) tenant and the permissions or role required for managing app registrations in the tenant.
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 - An empty [C# Azure function (v4)](https://docs.microsoft.com/azure/azure-functions/create-first-function-cli-csharp) deployed to Azure, and the permissions or role required to modify its settings.
 - [Azure Functions Core Tools](https://docs.microsoft.com/azure/azure-functions/functions-run-local)
@@ -50,11 +50,11 @@ Use these settings in your app registration.
 | **Platform type**              | _None_                                                               | No redirect URI required; don't select a platform.                              |
 | **Scopes defined by this API** | **Scope name**: `Greeting.Read`<br/>**Who can consent?**: **Admins and users**<br/>**Admin consent display name**: `Read API Greetings`<br/>**Admin consent description**: `Allows the user to see greetings from the API.`<br/>**User consent display name**: `Read API Greetings`<br/>**User consent description**: `Allows you to see greetings from the API.`<br/>**State**: **Enabled** | Required scope for this sample. |
 
-> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the admin center, while `code formatting` indicates a value you enter into a text box in the Azure admin center.
 
 ### 2. Enable Function app authentication
 
-Next, complete the steps in [Enable Azure Active Directory in your App Service app](https://docs.microsoft.com/azure/app-service/configure-authentication-provider-aad?toc=/azure/azure-functions/toc.json#-enable-azure-active-directory-in-your-app-service-app) to add Azure Active Directory as an identity provider for your API.
+Next, complete the steps in [Configure your App Service or Azure Functions app to use Microsoft Entra sign-in](https://docs.microsoft.com/azure/app-service/configure-authentication-provider-aad?toc=/azure/azure-functions/toc.json#-enable-azure-active-directory-in-your-app-service-app) to add Microsoft Entra as an identity provider for your API.
 
 Use these settings in your identity provider configuration.
 
@@ -62,15 +62,15 @@ Use these settings in your identity provider configuration.
 |--------------------------------:|:--------------------------------------------------------|:---------------------------------------------------------------------------------|
 | **Identity provider**           | **Microsoft**                                           | Required value for this sample.                                                  |
 | **App registration type**       | **Provide the details of an existing app registration** | Required value for this sample.                                                  |
-| **Application (client) ID**     | `<client-id>`                                           | Required value for this sample. <br/> 'Application (client) ID' of the API's app registration in Azure portal - this value is a GUID     |
+| **Application (client) ID**     | `<client-id>`                                           | Required value for this sample. <br/> 'Application (client) ID' of the API's app registration in admin center - this value is a GUID     |
 | **Client secret (recommended)** | _None_                                                  | Suggested value for this sample. <br/> This sample doesn't require this feature. |
 | **Issuer URL**                  | `https://login.microsoftonline.com/<tenant-id>/v2.0`    | Required value for this sample. <br/> Update to include 'Tenant ID' of your Azure AD instance - this value is a GUID                     |
-| **Allowed token audiences**     | `api://<client-id>`                                     | Required value for this sample. <br/> 'Application ID URI' of app registration in Azure portal - this value typically starts with api:// |
+| **Allowed token audiences**     | `api://<client-id>`                                     | Required value for this sample. <br/> 'Application ID URI' of app registration in admin center - this value typically starts with api:// |
 | **Restrict access**             | **Require authentication**                              | Required value for this sample.                                                  |
 | **Unauthenticated requests**    | **HTTP 401 Unauthorized: recommended for APIs**         | Suggested value for this sample.                                                 |
 | **Token store**                 | _Unselected_                                            | Suggested value for this sample.                                                 |
 
-> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure admin center, while `code formatting` indicates a value you enter into a text box in the Azure admin center.
 
 ### 3. Deploy the Functions app
 

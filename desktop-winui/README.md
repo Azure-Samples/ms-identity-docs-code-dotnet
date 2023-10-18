@@ -25,7 +25,7 @@ This .NET WinUI 3 Packaged Desktop App authenticates a user and then makes a req
 
 ## Prerequisites
 
-- Azure Active Directory (Azure AD) tenant and the permissions or role required for managing app registrations in the tenant.
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 - Visual Studio 2022, [configured with WinUI 3 workload and components](https://docs.microsoft.com/windows/apps/windows-app-sdk/set-up-your-development-environment?tabs=vs-2022-17-1-a%2Cvs-2022-17-1-b#required-workloads-and-components)
 
 ## Setup

@@ -15,10 +15,6 @@ urlFragment: ms-identity-docs-code-obo-user-csharp
 
 # ASP.NET Core minimal web API | web api | access control (protected routes), protected web API access (Microsoft Graph) | Microsoft identity platform
 
-<!-- Build badges here
-![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
--->
-
 This ASP.NET Core minimal web API uses the Microsoft identity platform to protect an endpoint (require authorized access), and also accesses Microsoft Graph on behalf of the user. The API uses [ASP.NET Core Identity](https://docs.microsoft.com/aspnet/core/security/authentication/identity?view=aspnetcore-6.0) interacting with the [Microsoft Authentication Library (MSAL)](https://docs.microsoft.com/azure/active-directory/develop/msal-overview) to protect its endpoint.
 
 ```console
@@ -42,12 +38,12 @@ $ curl https://localhost:5001/api/me -H "Authorization: Bearer {valid-access-tok
 
 ## Prerequisites
 
-- An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 ## Setup
 
-### 1. Register the web API application in Azure Active Directory (Azure AD)
+### 1. Register the web API application in Entra ID
 
 First, complete the steps in [Configure an application to expose a web API](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the sample API and expose a scope.
 
@@ -57,14 +53,14 @@ Use the following settings for your app registration:
 |------------------------------:|:--------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
 | **Name**                       | `active-directory-protected-api-access-protected-api`               | Suggested value for this sample. <br/> You can change the app name at any time.                             |
 | **Supported account types**    | **Accounts in this organizational directory only (Single tenant)**  | Required for this sample. <br/> Support for the Single tenant.                                              |
-| **Identifier URI**             | `api://{clientId}`                                                  | Suggested value for this sample. <br/> You must change the client id using the Value shown in Azure portal. |
+| **Identifier URI**             | `api://{clientId}`                                                  | Suggested value for this sample. <br/> You must change the client id using the value shown in the admin center. |
 | **Expose an API**              | **Scope name**: `user_impersonation`<br/>**Who can consent?**: **Admins and users**<br/>**Admin consent display name**: `Act on behalf of the user`<br/>**Admin consent description**: `Allows the API to act on behalf of the user.`<br/>**User consent display name**: `Act on your behalf`<br/>**User consent description**: `Allows the API to act on your behalf.`<br/>**State**: **Enabled**  | Add a new scope that reads as follows `api://{clientId}/user_impersonation`. Required value for this sample. |
 | **API Permissions**            | `https://graph.microsoft.com/User.Read`                             | Add a new delegated permission for `Microsoft Graph User.Read`. Required value for this sample.   |
-| **Client secret**              | _Value shown in Azure portal_                                       | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).                 |
+| **Client secret**              | _Value shown in the admin center._                                       | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).                 |
 
-> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
+> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the admin center., while `code formatting` indicates a value you enter into a text box or select in the admin center.
 
-### 2. Register a client application in Azure AD
+### 2. Register a client application in Entra ID
 
 Second, complete the steps in [Register an application with the Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the client sample app.
 
@@ -76,9 +72,9 @@ Use the following settings for your app registration:
 | **Supported account types**    | **Accounts in this organizational directory only (Single tenant)**  | Required for this sample. <br/> Support for the Single tenant.                                              |
 | **Platform type**              | **Web**                                                             | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
 | **API Permissions**            | `api://{clientId}/user_impersonation`                               | Add a delegated type permission by searching within the APIs using the new Application (client) ID from the previous step. Then select the `user_impersonation`. Required value for this sample. |
-| **Client secret**              | _Value shown in Azure portal_                                       | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).                 |
+| **Client secret**              | _Value shown in the admin center._                                        | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).                 |
 
-> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
+> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure admin center, while `code formatting` indicates a value you enter into a text box or select in the admin center.
 
 ### 3. Go back to the recently registered web API application
 

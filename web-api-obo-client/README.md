@@ -52,7 +52,7 @@ $ curl https://localhost:5001/api/application
 
 ## Prerequisites
 
-- An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 ## Setup
@@ -70,11 +70,11 @@ Use these settings in your app registration.
 | **Platform type**                 | _None_                                                                       | No redirect URI required; don't select a platform.                                                                    |
 | **Client secret**                 | _**Value** of the client secret (not its ID)_                                | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).        |
 
-> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Azure admin center, while `code formatting` indicates a value you enter into a text box in the admin center.
 
 ### 2. Configure the web API
 
-Open the _~/msal-client-credentials-flow/appsettings.json_ file in your code editor and modify the following values values with those from your [app's registration in the Azure portal](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#register-an-application):
+Open the _~/msal-client-credentials-flow/appsettings.json_ file in your code editor and modify the following values values with those from your [app's registration in the Azure admin center](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#register-an-application):
 
    ```json
    "ClientId": "Enter_the_Application_Id_here",
@@ -97,7 +97,6 @@ Execute the following command to get the app up and running:
 ### 2. Send request to the web API
 
 Once the app is running and listening for requests, execute the following command to send it a request.
-
 
 ```bash
 curl -X GET https://localhost:5001/api/application -ki

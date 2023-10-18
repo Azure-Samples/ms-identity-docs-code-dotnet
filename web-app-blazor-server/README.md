@@ -13,7 +13,6 @@ products:
 urlFragment: ms-identity-docs-code-app-csharp-blazorserver
 ---
 
-<!-- SAMPLE ID: DOCS-CODE-017 -->
 # ASP.NET Core | Blazor Server application | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
 <!-- Build badges here
@@ -26,7 +25,7 @@ This ASP.NET Core Blazor Server application application authenticates a user and
 
 ## Prerequisites
 
-- Azure Active Directory (Azure AD) tenant and the permissions or role required for managing app registrations in the tenant.
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 ## Setup
