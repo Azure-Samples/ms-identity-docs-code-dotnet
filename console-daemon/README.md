@@ -57,7 +57,7 @@ Use these settings in your app registration.
 
 | App registration <br/> setting   | Value for this sample app                                          | Notes                                                                                       |
 |---------------------------------:|:-------------------------------------------------------------------|:--------------------------------------------------------------------------------------------|
-| **Name**                         | `active-directory-dotnet-console-app-client-credential-flow`       | Suggested value for this sample. <br/> You can change the app name at any time.             |
+| **Name**                         | `identity-dotnet-console-app-client-credential-flow`       | Suggested value for this sample. <br/> You can change the app name at any time.             |
 | **Supported account types**      | **Accounts in this organizational directory only (Single tenant)** | Suggested value for this sample.                                                            |
 | **Platform type**                | _None_                                                             | No redirect URI required; don't select a platform.                                          |
 | **Client secret**                | _**Value** of the client secret (not its ID)_                      | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it). |
@@ -69,14 +69,14 @@ Use these settings in your app registration.
 In _Program.cs_, update each variable with values from the app registration you created in the previous step.
 
 ```csharp
-// Full directory URL, in the form of https://login.microsoftonline.com/<tenant_id>
-Authority = "",
-// 'Application (client) ID' of app registration in the Microsoft Entra admin center - this value is a GUID
-ClientId = "",
-// Client secret 'Value' (not its ID) from 'Client secrets' in app registration in the Microsoft Entra admin center
-ClientSecret = "",
-// Client 'Object ID' of app registration in Azure portal - this value is a GUID
-ClientObjectId = ""
+  // Full directory URL, in the form of https://login.microsoftonline.com/<tenant_id>
+  Authority = "https://login.microsoftonline.com/Enter_the_Tenant_ID_Here",
+  // 'Application (client) ID' of app registration in Microsoft Entra admin center - this value is a GUID
+  ClientId = "Enter_the_Application_Id_Here",
+  // Client secret 'Value' (not its ID) from 'Client secrets' in app registration in Microsoft Entra admin center
+  ClientSecret = "Enter_the_Client_Secrect_Here",
+  // Client 'Object ID' of app registration in  Microsoft Entra admin center - this value is a GUID
+  ClientObjectId = "Enter_the_ClientObject_Id_Here"
 ```
 
 ## Run the application
@@ -121,7 +121,7 @@ If you can't get the sample working, you've checked [Stack Overflow](http://stac
 ### All other issues
 
 > :warning: WARNING: Any issue in this repository _not_ limited to running one of its sample apps will be closed without being addressed.
-For all other requests, see [Support and help options for developers | Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/developer-support-help-options).
+For all other requests, see [Support and help options for developers](https://docs.microsoft.com/azure/active-directory/develop/developer-support-help-options).
 
 ## Contributing
 

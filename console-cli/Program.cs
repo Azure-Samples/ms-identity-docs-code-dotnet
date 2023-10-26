@@ -4,11 +4,11 @@ using System.Text.Json;
 
 var config = new PublicClientApplicationOptions
 {
-    // 'Directory (tenant) ID' of app registration in the Admin center - this value is a GUID
-    TenantId = "",
+    // 'Directory (tenant) ID' of app registration in the Microsoft Entra admin center - this value is a GUID
+    TenantId = "Enter_the_Tenant_ID_Here",
 
-    // 'Application (client) ID' of app registration in Admin center - this value is a GUID
-    ClientId = ""
+    // 'Application (client) ID' of app registration in Microsoft Entra admin center - this value is a GUID
+    ClientId = "Enter_the_Application_Id_Here"
 };
 
 // In order to take advantage of token caching, your MSAL client singleton must

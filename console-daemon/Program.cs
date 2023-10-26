@@ -6,13 +6,13 @@ using System.Text.Json;
 
 var config = new {
     // Full directory URL, in the form of https://login.microsoftonline.com/<tenant_id>
-    Authority = "",
-    // 'Application (client) ID' of app registration in Microsoft Admin center - this value is a GUID
-    ClientId = "",
-    // Client secret 'Value' (not its ID) from 'Client secrets' in app registration in Microsoft Admin center
-    ClientSecret = "",
-    // Client 'Object ID' of app registration in Microsoft Admin center - this value is a GUID
-    ClientObjectId = ""
+    Authority = "https://login.microsoftonline.com/Enter_the_Tenant_ID_Here",
+    // 'Application (client) ID' of app registration in Microsoft Entra admin center - this value is a GUID
+    ClientId = "Enter_the_Application_Id_Here",
+    // Client secret 'Value' (not its ID) from 'Client secrets' in app registration in Microsoft Entra admin center
+    ClientSecret = "Enter_the_ClientSecret_Id_Here",
+    // Client 'Object ID' of app registration in  Microsoft Entra admin center - this value is a GUID
+    ClientObjectId = "Enter_the_ClientObject_Id_Here"
 };
 
 // This app instance should be a long-lived instance because

@@ -43,7 +43,7 @@ Use these settings in your app registration.
 | **Platform type**               | **Web**                                                             | Required value for this sample                                                  |
 | **Redirect URIs**               | `http://localhost:5000/signin-oidc`                                 | Required value for this sample                                                  |
 
-> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Microsoft Admin center, while `code formatting` indicates a value you enter into a text box in the Microsoft Admin center.
 
 ### 2. Open the project in your code editor
 
@@ -54,9 +54,9 @@ Next, open the _Api.csproj_ project under the the sign-in-blazorserver folder in
 In _appsettings.json_, update each variable with values from the app registration you created earlier.
 
 ```json
-"TenantId": "[Enter 'common', or 'organizations' or the Tenant ID (Obtained from the Azure portal. Select 'Endpoints' from the 'App registrations' blade and use the GUID in any of the URLs), e.g. da41245a5-11b3-996c-00a8-4d99re19f292]",
-"ClientId": "[Enter the Client Id (Application ID obtained from the Azure portal), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]",
-"ClientSecret": "[Copy the client secret added to the app from the Azure portal]",
+"TenantId": "[Enter 'common', or 'organizations' or the Tenant ID (Obtained from the Microsoft Admin center. Select 'Endpoints' from the 'App registrations' blade and use the GUID in any of the URLs), e.g. da41245a5-11b3-996c-00a8-4d99re19f292]",
+"ClientId": "[Enter the Client Id (Application ID obtained from the Microsoft Admin center), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]",
+"ClientSecret": "[Copy the client secret added to the app from the Microsoft Admin center]",
 ```
 
 ## Run the application
@@ -78,7 +78,6 @@ In _appsettings.json_, update each variable with values from the app registratio
 1. Click Sign Out
 
    ![A screenshot of a Blazor Server application application guiding the user to click the "Sign Out" button.](./app-signed-out.png)
-
 
 ## About the code
 

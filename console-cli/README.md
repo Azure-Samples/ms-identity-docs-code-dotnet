@@ -13,7 +13,6 @@ products:
 urlFragment: ms-identity-docs-code-console-cli-csharp
 ---
 
-<!-- SAMPLE ID: DOCS-CODE-030 -->
 # .NET (C#) | console | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
 <!-- Build badges here
@@ -61,16 +60,16 @@ Use these settings in your app registration.
 | **Platform type**                | _None_                                                             | No redirect URI required; don't select a platform.                              |
 | **Allow public client flows**    | **Yes**                                                            | Required value for this sample.                                                 |
 
-> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Microsoft Admin center, while `code formatting` indicates a value you enter into a text box in the Admin center.
+> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Microsoft Entra admin center, while `code formatting` indicates a value you enter into a text box in the Microsoft Entra admin center.
 
 ### 2. Update the _Program.cs_ file with app registration values
 
 ```csharp
-// 'Directory (tenant) ID' of app registration in the Admin center - this value is a GUID
-TenantId = "",
+    // 'Directory (tenant) ID' of app registration in the Microsoft Entra admin center - this value is a GUID
+    TenantId = "Enter_the_Tenant_ID_Here",
 
-// 'Application (client) ID' of app registration in Admin center - this value is a GUID
-ClientId = ""
+    // 'Application (client) ID' of app registration in Microsoft Entra admin center - this value is a GUID
+    ClientId = "Enter_the_Application_Id_Here"
 ```
 
 ## Run the application
