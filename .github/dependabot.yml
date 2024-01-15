@@ -6,11 +6,8 @@
 version: 2
 updates:
   - package-ecosystem: "nuget"
-    directory: "/"
     schedule:
       interval: "daily"
-    allow:
-      - dependency-name: "Microsoft.Identity*"
     labels:
       - "dependabot"
       - "dependencies"
