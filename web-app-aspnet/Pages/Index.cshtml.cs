@@ -1,8 +1,7 @@
-﻿using System.Net;
-using System.Text.Json;
-using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.Json;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Web;
+using Microsoft.Identity.Abstractions;
 
 namespace sign_in_webapp.Pages;
 
@@ -11,10 +10,10 @@ public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
 
-    private readonly IDownstreamWebApi _downstreamWebApi;
+    private readonly IDownstreamApi  _downstreamWebApi;
 
     public IndexModel(ILogger<IndexModel> logger,
-                        IDownstreamWebApi downstreamWebApi)
+                        IDownstreamApi  downstreamWebApi)
     {
         _logger = logger;
         _downstreamWebApi = downstreamWebApi;
@@ -22,7 +21,7 @@ public class IndexModel : PageModel
 
     public async Task OnGet()
     {
-        using var response = await _downstreamWebApi.CallWebApiForUserAsync("DownstreamApi").ConfigureAwait(false);
+        using var response = await _downstreamWebApi.CallApiForUserAsync("DownstreamApi").ConfigureAwait(false);
         if (response.StatusCode == System.Net.HttpStatusCode.OK)
         {
             var apiResult = await response.Content.ReadFromJsonAsync<JsonDocument>().ConfigureAwait(false);
