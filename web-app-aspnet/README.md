@@ -45,7 +45,7 @@ Use the following settings for your app registration:
 | **Front-channel logout URL**  | `https://localhost:5001/signout-oidc`              | Required value for this sample.|
 | **CertificateThumbprint**     | _Value shown in Microsoft Entra admin center_      | Required value for this sample.|
 
-> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Microsoft Entra admin center, while `code formatting` indicates a value you enter into a text box or select in the Microsoft Entra admin center.
+> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the [Microsoft Entra admin center](https://entra.microsoft.com/#home), while `code formatting` indicates a value you enter into a text box or select in the Microsoft Entra admin center.
 
 ### 2. Configure the web app
 
@@ -84,7 +84,7 @@ Use the following settings for your app registration:
 
 ### 3. Sign out
 
-1. Click Sign out
+1. Select Sign out
 
 ![A screenshot of an ASP.NET Core 6.0 Web App indicating the user signed-out and allowing click "Sign in" to signin again.](./app-signedout.png)
 
