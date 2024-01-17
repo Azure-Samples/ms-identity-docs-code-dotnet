@@ -9,9 +9,10 @@ using Microsoft.Identity.Web.UI;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 IEnumerable<string>? initialScopes = builder.Configuration["DownstreamApi:Scopes"]?.Split(' ');
 
+
 builder.Services.AddMicrosoftIdentityWebAppAuthentication(builder.Configuration, "AzureAd")
     .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-        .AddDownstreamWebApi("DownstreamApi", builder.Configuration.GetSection("DownstreamApi"))
+        .AddDownstreamApi("DownstreamApi", builder.Configuration.GetSection("DownstreamApi"))
         .AddInMemoryTokenCaches();
 // </ms_docref_add_msal>
 
