@@ -10,39 +10,40 @@ products:
 - azure
 - azure-active-directory
 - ms-graph
-- microsoft-identity-platform
 urlFragment: ms-identity-docs-code-csharp-sign-in
 ---
 
 # ASP.NET Core 6.0 Web App - Sign-in user | Microsoft identity platform
 
-The web app in this scenario has been created using the ASP.NET Core 6.0 Razor template, and slightly modified to add authentication enabling the users sign-in that follows the [Open Id Connect](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc) standard protocol. To lite up Open Id, it is using [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0) middlewares.  In other words, a simple web app is secured by adding an authentication layer allowing users to sign-in with their Work and school (Azure AD) accounts, and as a result it can make web API calls to protected resources on behalf of the signed-in user.
+This web app, built with ASP.NET Core 6.0 Razor, has added sign-in features. It uses the [Open Id Connect](https://docs.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc) and [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0) for authentication. This allows users to sign in with their Microsoft Entra ID accounts. Once signed in, the app can access protected resources on the user’s behalf.
 
-![A screenshot of an ASP.NET Core 6.0 Web App displaying a response from Microsoft Graph.](./app-signedin.png)
+## Quickstart and tutorial guides for this sample
 
-> :page_with_curl: This sample application backs one or more technical articles on docs.microsoft.com. <!-- TODO: Link to first tutorial in series when published. -->
+- For a quickstart experience that gets you started fast, see [Quickstart: Sign in users and call the Microsoft Graph API from an ASP.NET Core web app](https://docs.microsoft.com/entra/identity-platform/tutorial-web-app-dotnet-register-app).
+
+- For a in-depth tutorial that walks you through this sample from start to finish, see [Tutorial: Sign in users and call the Microsoft Graph API from an ASP.NET Core web app](https://docs.microsoft.com/entra/identity-platform/tutorial-web-app-dotnet-register-app).
 
 ## Prerequisites
 
-* An Azure account with an active subscription. If you don't already have one, [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-* [.NET Core SDK 6.0+](https://dotnet.microsoft.com/download)
+- An Azure account with an active subscription. If you don't already have one, [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- [.NET SDK 6.0](https://dotnet.microsoft.com/download)
 
 ## Setup
 
 ### 1. Register the web API application in your Azure Active Directory
 
-First, complete the steps in [Register an application with the Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the sample app.
+First, complete the steps in [Register an application with the Microsoft identity platform](https://docs.microsoft.com/entra/identity-platform/tutorial-web-app-dotnet-register-app) to register a web application in the Microsoft identity platform.
 
 Use the following settings for your app registration:
 
 | App registration <br/> setting | Value for this sample app                          | Notes                                                                                                       |
 |:------------------------------:|:---------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
-| **Name**                       | `active-directory-dotnet-webapp-aspnetcore`        | Suggested value for this sample. <br/> You can change the app name at any time.                             |
-| **Supported account types**    | **My organization only**                           | Required for this sample. <br/> Support for the Single tenant.                                              |
-| **Platform type**              | `Web`                                              | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
-| **Redirect URIs**              | `https://localhost:5001/signin-oidc`               | Required value for this sample. <br/> You can change that later in your own implementation.                 |
-| **Front-channel logout URL**   | `https://localhost:5001/signout-oidc`              | Required value for this sample. <br/> You can change that later in your own implementation.                 |
-| **Client secret**              | _Value shown in Microsoft Entra admin center_                      | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).                 |
+| **Name**                      | `identity-client-web-app`                          | Suggested value for this sample. <br/> You can change the app name at any time.                           |
+| **Supported account types**   | **My organization only**                           | Required for this sample. <br/> Support for the Single tenant.                         |
+| **Platform type**             | `Web`                                              | Required value for this sample. <br/> Enables the required and optional settings for the app type.               |
+| **Redirect URIs**             | `https://localhost:5001/signin-oidc`               | Required value for this sample.|
+| **Front-channel logout URL**  | `https://localhost:5001/signout-oidc`              | Required value for this sample.|
+| **CertificateThumbprint**     | _Value shown in Microsoft Entra admin center_      | Required value for this sample.|
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Microsoft Entra admin center, while `code formatting` indicates a value you enter into a text box or select in the Microsoft Entra admin center.
 
@@ -52,9 +53,16 @@ Use the following settings for your app registration:
 1. Open the _appsettings.json_ file and modify the following code:
 
     ```json
-    "TenantId": "[Enter 'common', or 'organizations' or the Tenant ID (Obtained from the Microsoft Entra admin center. Select 'Endpoints' from the 'App registrations' blade and use the GUID in any of the URLs), e.g. da41245a5-11b3-996c-00a8-4d99re19f292]",
-    "ClientId": "[Enter the Client Id (Application ID obtained from the Microsoft Entra admin center), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]",
-    "ClientSecret": "[Copy the client secret added to the app from the Microsoft Entra admin center]",
+      "Instance": "https://login.microsoftonline.com/",
+      "TenantId": "Enter the tenant ID obtained from the Microsoft Entra Admin Center",
+      "ClientId": "Enter the client ID obtained from the Microsoft Entra Admin Center",
+      "ClientCertificates": [
+        {
+          "SourceType": "StoreWithThumbprint",
+          "CertificateStorePath": "CurrentUser/My",
+          "CertificateThumbprint": "Enter the certificate thumbprint obtained the Microsoft Entra Admin Center"
+        }   
+      ],
     ```
 
 ## Run the application
@@ -67,12 +75,14 @@ Use the following settings for your app registration:
    dotnet run
    ```
 
-### 2. Signin into the web app
+### 2. Sign in to the web app
 
 1. Once the web app is listening, navigate to https://localhost:5001
 1. Sign-in with your user credentials.
 
-### 3. Signout
+![A screenshot of an ASP.NET Core 6.0 Web App displaying a response from Microsoft Graph.](./media/app-signedin.png)
+
+### 3. Sign out
 
 1. Click Sign out
 
