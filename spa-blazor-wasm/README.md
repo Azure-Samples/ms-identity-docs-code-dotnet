@@ -4,35 +4,27 @@
 languages:
 - csharp
 page_type: sample
-name: ASP.NET Core 6.0 Blazor WebAssembly that accesses Microsoft Graph
-description: This ASP.NET Core 6.0 Blazor WebAssembly that signs in and contacts Microsoft Graph on behalf of the user. The code in this sample is used by one or more articles on docs.microsoft.com.
+name: ASP.NET Core 8.0 Blazor WebAssembly that accesses Microsoft Graph
+description: This ASP.NET Core 8.0 Blazor WebAssembly that signs in and contacts Microsoft Graph on behalf of the user. The code in this sample is used by one or more articles on docs.microsoft.com.
 products:
 - azure
 - azure-active-directory
 - ms-graph
-- microsoft-identity-platform
 urlFragment: ms-identity-docs-code-spa-blazor-wasm-csharp
 ---
 
-<!-- SAMPLE ID: DOCS-CODE-021 -->
-# ASP.NET Core 6.0 Blazor WebAssembly | standalone  app | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
+# ASP.NET Core 8.0 Blazor WebAssembly | standalone  app | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
-<!-- Build badges here
-![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
--->
-
-The standalone app in this scenario has been created using the ASP.NET Core 6.0 Blazor WebAssembly template, and slightly modified to be secured with Azure Active Directory. To lite up Authentication to use Work or School Accounts (SingleOrg), the app uses the [Microsoft Authentication Library (Microsoft.Authentication.WebAssembly.Msal)](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal). The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.  In other words, a simple standalone app is secured by adding an authentication layer allowing users to sign-in with their Work and school accounts, and as a result it can make web API calls to protected resources on behalf of the signed-in user.
+The standalone app in this scenario has been created using the ASP.NET Core 8.0 Blazor WebAssembly template, and slightly modified allow sign-in with a Microsoft Entra ID account. The app uses the [Microsoft Authentication Library (Microsoft.Authentication.WebAssembly.Msal)](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal). The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs. In other words, a simple standalone app is secured by adding an authentication layer allowing users to sign-in with their Work and school accounts, and as a result it can make web API calls to protected resources on behalf of the signed-in user.
 
 The response to the request is presented to the user.
 
-![A screenshot of an ASP.NET Core 6.0 Blazor WebAssembly application displaying a response from Microsoft Graph.](./app-signedin.png)
-
-> :page_with_curl: This sample application backs one or more technical articles on docs.microsoft.com. <!-- TODO: Link to first tutorial in series when published. -->
+![A screenshot of an ASP.NET Core 8.0 Blazor WebAssembly application displaying a response from Microsoft Graph.](./media/app-signedin.png)
 
 ## Prerequisites
 
-- An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
-- [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
+- An Azure account with an active subscription. If you don't already have one, [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- [.NET SDK](https://dotnet.microsoft.com/download)
 
 ## Setup
 
@@ -44,10 +36,10 @@ Use the following settings for your app registration:
 
 | App registration <br/> setting | Value for this sample app                              | Notes                                                                                                       |
 |:------------------------------:|:-------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
-| **Name**                       | `active-directory-dotnet-blazorwasm-aspnetcore`        | Suggested value for this sample. <br/> You can change the app name at any time.                             |
-| **Supported account types**    | **My organization only**                               | Required for this sample. <br/> Support for the Single tenant.                                              |
+| **Name**                       | `identity-client-app`                                  | Suggested value for this sample. <br/> You can change the app name at any time.                             |
+| **Supported account types**    | **Accounts in this organizational directory only (Default Directory only - Single tenant)** | Required for this sample. <br/> Support for the Single tenant.                                              |
 | **Platform type**              | `Single-page application`                              | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
-| **Redirect URIs**              | `https://localhost:5001/authentication/login-callback` | Required value for this sample. <br/> You can change that later in your own implementation.                 |
+| **Redirect URIs**              | `http://localhost:5000/authentication/login-callback` | Required value for this sample. <br/> You can change that later in your own implementation.                 |
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
@@ -56,9 +48,9 @@ Use the following settings for your app registration:
 1. Open the `BlazorWasm.csproj` under the the `sign-in-blazorwasm` folder in your code editor.
 1. Open the `./wwwroot/appsettings.json` file and modify the following code:
 
-    ```json
-    "Authority": "https://login.microsoftonline.com/[Enter the Tenant Id Value From Azure Portal]",
-    "ClientId": "[Enter the Client Id (Application ID obtained from the Azure portal), e.g. ba74781c2-53c2-442a-97c2-3d60re42f403]",
+    ```JSON
+    "Authority": "https://login.microsoftonline.com/Enter the tenant ID obtained from the Microsoft Entra admin center",
+    "ClientId": "Enter the client ID obtained from the Microsoft Entra admin center",
     ```
 
 ### 3. Install the tooling for ASP.NET Core Blazor
@@ -69,7 +61,7 @@ Use the following settings for your app registration:
    dotnet workload install wasm-tools
    ```
 
-   :link: For more information, please take a look [.NET WebAssembly build tools](https://docs.microsoft.com/en-us/aspnet/core/blazor/tooling?view=aspnetcore-6.0&pivots=linux#net-webassembly-build-tools)
+   :link: For more information, please take a look [.NET WebAssembly build tools](https://docs.microsoft.com/en-us/aspnet/core/blazor/tooling?view=aspnetcore-8.0&pivots=linux#net-webassembly-build-tools)
 
 ## Run the application
 
@@ -81,15 +73,15 @@ Use the following settings for your app registration:
    dotnet run
    ```
 
-### 2. Signin into the web app
+### 2. Sign in and sign out the web app
 
-1. Once the web app is listening, navigate to https://localhost:5001 and enter tour crendentials
+1. Once the web app is listening, navigate to `https://localhost:5001` and enter your credentials. We recommend using a private browser window to avoid conflicts with your current session.
 
-![A screenshot of an ASP.NET Core 6.0 Blazor WebAssembly application displaying a response from Microsoft Graph.](./app-signedin.png)
+![A screenshot of an ASP.NET Core 8.0 Blazor WebAssembly application displaying a response from Microsoft Graph.](./media/app-signedin.png)
 
-1. Click Logout
+1. Select Logout to sign-out, you can now close the browser.
 
-![A screenshot of an ASP.NET Core 6.0 Blazor WebAssembly application indicating the user signed-out and allowing click "Login" to signin again.](./app-signedout.png)
+![A screenshot of an ASP.NET Core 8.0 Blazor WebAssembly application indicating the user signed-out and allowing click "Login" to signin again.](./media/app-signedout.png)
 
 ## About the code
 
@@ -117,11 +109,3 @@ For all other requests, see [Support and help options for developers | Microsoft
 If you'd like to contribute to this sample, see [CONTRIBUTING.MD](/CONTRIBUTING.md).
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information, see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
-
-### Others
-
-1. Create the app on your own
-
-   ```bash
-   dotnet new blazorwasm --pwa --auth SingleOrg --aad-instance "https://login.microsoftonline.com/" --client-id ${AZURE_AD_APP_CLIENT_ID_BLAZORWASM} --tenant-id $(az account show --query tenantId --output tsv) --called-api-url "https://graph.microsoft.com/v1.0/me"
-   ```
