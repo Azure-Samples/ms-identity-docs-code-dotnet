@@ -26,7 +26,7 @@ This web app, built with ASP.NET Core 6.0 Razor, has added sign-in features. It 
 ## Prerequisites
 
 - An Azure account with an active subscription. If you don't already have one, [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- [.NET SDK 6.0](https://dotnet.microsoft.com/download)
+- [.NET SDK](https://dotnet.microsoft.com/download)
 
 ## Setup
 
