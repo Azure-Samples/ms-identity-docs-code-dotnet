@@ -15,9 +15,9 @@ urlFragment: ms-identity-docs-code-spa-blazor-wasm-csharp
 
 # ASP.NET Core 8.0 Blazor WebAssembly | standalone  app | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
-The standalone app in this scenario has been created using the ASP.NET Core 8.0 Blazor WebAssembly template, and slightly modified allow sign-in with a Microsoft Entra ID account. The app uses the [Microsoft Authentication Library (Microsoft.Authentication.WebAssembly.Msal)](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal). The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs. In other words, a simple standalone app is secured by adding an authentication layer allowing users to sign-in with their Work and school accounts, and as a result it can make web API calls to protected resources on behalf of the signed-in user.
+The standalone app in this scenario is created using the ASP.NET Core 8.0 Blazor WebAssembly template and modified to allow sign-in with a Microsoft Entra ID account. It uses the [Microsoft.Authentication.WebAssembly.Msal](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package to authenticate users and obtain tokens for calling protected APIs. In other words, the app adds an authentication layer that allows users to sign in with their Work and school accounts and make web API calls to protected resources on their behalf.
 
-The response to the request is presented to the user.
+> Note: This code sample uses the Microsoft.Authentication.WebAssembly.Msal package, which is a modified version of the Microsoft.Identity.Client library.
 
 ![A screenshot of an ASP.NET Core 8.0 Blazor WebAssembly application displaying a response from Microsoft Graph.](./media/app-signedin.png)
 
@@ -61,7 +61,7 @@ Use the following settings for your app registration:
    dotnet workload install wasm-tools
    ```
 
-   :link: For more information, please take a look [.NET WebAssembly build tools](https://docs.microsoft.com/en-us/aspnet/core/blazor/tooling?view=aspnetcore-8.0&pivots=linux#net-webassembly-build-tools)
+For more information, please refer to [.NET WebAssembly build tools](https://learn.microsoft.com/en-us/aspnet/core/blazor/tooling?view=aspnetcore-8.0&pivots=linux#net-webassembly-build-tools)
 
 ## Run the application
 
@@ -79,7 +79,7 @@ Use the following settings for your app registration:
 
 ![A screenshot of an ASP.NET Core 8.0 Blazor WebAssembly application displaying a response from Microsoft Graph.](./media/app-signedin.png)
 
-1. Select Logout to sign-out, you can now close the browser.
+1. Select Logout to sign-out. Once signed out, you can close the browser.
 
 ![A screenshot of an ASP.NET Core 8.0 Blazor WebAssembly application indicating the user signed-out and allowing click "Login" to signin again.](./media/app-signedout.png)
 
@@ -102,7 +102,7 @@ If you can't get the sample working, you've checked [Stack Overflow](http://stac
 
 > :warning: WARNING: Any issue _not_ limited to running this or another sample app will be closed without being addressed.
 
-For all other requests, see [Support and help options for developers | Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/developer-support-help-options).
+For all other requests, see [Support and help options for developers | Microsoft identity platform](https://learn.microsoft.com/azure/active-directory/develop/developer-support-help-options).
 
 ## Contributing
 
