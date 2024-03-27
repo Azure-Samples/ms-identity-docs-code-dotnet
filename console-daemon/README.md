@@ -20,8 +20,9 @@ urlFragment: ms-identity-docs-code-dotnet-console
 
 This .NET console application accesses protected web API (Microsoft Graph) as its own identity by using the [Microsoft Authentication Library (MSAL) for .NET](https://learn.microsoft.com/en-us/entra/msal/dotnet/). The application is written in C# and supports scenarios like cron jobs and direct command-line invocation.
 
-```console
-$ dotnet run
+```bash
+dotnet run
+
 Could not find a cached token, so fetching a new one.
 {
   "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
