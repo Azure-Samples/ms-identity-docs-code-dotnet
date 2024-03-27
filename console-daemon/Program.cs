@@ -7,11 +7,11 @@ using System.Text.Json;
 var config = new {
     // Full directory URL, in the form of https://login.microsoftonline.com/<tenant_id>
     Authority = "",
-    // 'Application (client) ID' of app registration in Azure portal - this value is a GUID
+    // 'Enter the client ID obtained from the Microsoft Entra Admin Center
     ClientId = "",
-    // Client secret 'Value' (not its ID) from 'Client secrets' in app registration in Azure portal
+    // Client secret 'Value' (not its ID) from 'Client secrets' in the Microsoft Entra Admin Center
     ClientSecret = "",
-    // Client 'Object ID' of app registration in Azure portal - this value is a GUID
+    // Client 'Object ID' of app registration in Microsoft Entra Admin Center - this value is a GUID
     ClientObjectId = ""
 };
 
