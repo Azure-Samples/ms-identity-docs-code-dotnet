@@ -54,7 +54,7 @@ Use these settings in your app registration.
 
 | App registration <br/> setting   | Value for this sample app       | Notes                                                                                  |
 |-----------------------------:|:------------------------------------|:---------------------------------------------------------------------------------------|
-| **Name**                     | `identity-dotnet-console-app`       | Suggested value for this sample. <br/> You can change the app name at any time.        |
+| **Name**                     | `identity-client-daemon-app`       | Suggested value for this sample. <br/> You can change the app name at any time.        |
 | **Supported account types**  | **Accounts in this organizational directory only (Single tenant)** | Suggested value for this sample.                        |
 | **Platform type**            | _None_                                                             | No redirect URI required; don't select a platform.      |
 | **Client secret**            | _**Value** of the client secret (not its ID)_                      | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it). |
