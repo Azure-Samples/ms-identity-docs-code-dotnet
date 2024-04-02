@@ -17,26 +17,22 @@ urlFragment: ms-identity-docs-code-dotnet-console
 <!-- SAMPLE ID: DOCS-CODE-010 -->
 # .NET | console | .NET (C#) console app that accesses a protected web API access (Microsoft Graph) | Microsoft identity platform
 
-<!-- Build badges here
-![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
--->
 
-> This sample application backs one or more technical articles on docs.microsoft.com.
+This .NET console application accesses protected web API (Microsoft Graph) as its own identity by using the [Microsoft Authentication Library (MSAL) for .NET](https://learn.microsoft.com/en-us/entra/msal/dotnet/). The application is written in C# and supports scenarios like cron jobs and direct command-line invocation.
 
-This .NET console application accesses protected web API (Microsoft Graph) as its own identity by using the [Microsoft Authentication Library (MSAL) for .NET](https://github.com/AzureAD/microsoft-authentication-library-for-csharp). The application is written in C# and supports scenarios like cron jobs and direct command-line invocation.
+```bash
+dotnet run
 
-```console
-$ dotnet run
 Could not find a cached token, so fetching a new one.
 {
   "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
-  "id": "6ed9c555-6dfd-4f35-b832-f1f634c0b876",
+  "id": "0aa1b222-3ccc-4d55-e666-f7g888h9i000",
   "deletedDateTime": null,
-  "appId": "59c06144-a668-4828-9ca8-ed6e117c8344",
+  "appId": "0aa1b222-3ccc-4d55-e666-f7g888h9i000",
   "applicationTemplateId": null,
   "disabledByMicrosoftStatus": null,
   "createdDateTime": "2021-01-17T15:30:55Z",
-  "displayName": "active-directory-dotnet-console-app-client-credential-flow",
+  "displayName": "identity-dotnet-console-app",
   "description": null,
   "groupMembershipClaims": null,
   ...
@@ -45,23 +41,23 @@ Could not find a cached token, so fetching a new one.
 
 ## Prerequisites
 
-- An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
+- An Azure account with an active subscription. If you don't already have one, [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 ## Setup
 
-### 1. Register the app
+### 1. Register the app with the Microsoft identity platform
 
 First, complete the steps in [Register an application with the Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the application.
 
 Use these settings in your app registration.
 
-| App registration <br/> setting   | Value for this sample app                                          | Notes                                                                                       |
-|---------------------------------:|:-------------------------------------------------------------------|:--------------------------------------------------------------------------------------------|
-| **Name**                         | `active-directory-dotnet-console-app-client-credential-flow`       | Suggested value for this sample. <br/> You can change the app name at any time.             |
-| **Supported account types**      | **Accounts in this organizational directory only (Single tenant)** | Suggested value for this sample.                                                            |
-| **Platform type**                | _None_                                                             | No redirect URI required; don't select a platform.                                          |
-| **Client secret**                | _**Value** of the client secret (not its ID)_                      | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it). |
+| App registration <br/> setting   | Value for this sample app       | Notes                                                                                  |
+|-----------------------------:|:------------------------------------|:---------------------------------------------------------------------------------------|
+| **Name**                     | `identity-client-daemon-app`       | Suggested value for this sample. <br/> You can change the app name at any time.        |
+| **Supported account types**  | **Accounts in this organizational directory only (Single tenant)** | Suggested value for this sample.                        |
+| **Platform type**            | _None_                                                             | No redirect URI required; don't select a platform.      |
+| **Client secret**            | _**Value** of the client secret (not its ID)_                      | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it). |
 
 > :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
 
@@ -71,13 +67,13 @@ In _Program.cs_, update each variable with values from the app registration you 
 
 ```csharp
 // Full directory URL, in the form of https://login.microsoftonline.com/<tenant_id>
-Authority = "",
-// 'Application (client) ID' of app registration in Azure portal - this value is a GUID
-ClientId = "",
-// Client secret 'Value' (not its ID) from 'Client secrets' in app registration in Azure portal
-ClientSecret = "",
-// Client 'Object ID' of app registration in Azure portal - this value is a GUID
-ClientObjectId = ""
+Authority = " https://login.microsoftonline.com/Enter the tenant ID obtained from the Microsoft Entra admin center",
+// 'Enter the client ID obtained from the Microsoft Entra Admin Center
+ClientId = "Enter the client ID obtained from the Microsoft Entra admin center",
+// Client secret 'Value' (not its ID) from 'Client secrets' in the Microsoft Entra Admin Center
+ClientSecret = "Enter the client secret value obtained from the Microsoft Entra admin center",
+// Client 'Object ID' of app registration in Microsoft Entra Admin Center - this value is a GUID
+ClientObjectId = "Enter the client Object ID obtained from the Microsoft Entra admin center"
 ```
 
 ## Run the application
@@ -86,18 +82,18 @@ ClientObjectId = ""
 dotnet run
 ```
 
-If everything worked, you should receive a response similar to this (output truncated for brevity):
+If successful, an output simialir to the following is displayed in the console (response shortened for brevity):
 
 ```json
 {
   "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
-  "id": "6ed9c555-6dfd-4f35-b832-f1f634c0b876",
+  "id": "0aa1b222-3ccc-4d55-e666-f7g888h9i000",
   "deletedDateTime": null,
-  "appId": "59c06144-a668-4828-9ca8-ed6e117c8344",
+  "appId": "0aa1b222-3ccc-4d55-e666-f7g888h9i000",
   "applicationTemplateId": null,
   "disabledByMicrosoftStatus": null,
   "createdDateTime": "2021-01-17T15:30:55Z",
-  "displayName": "active-directory-dotnet-console-app-client-credential-flow",
+  "displayName": "identity-dotnet-console-app",
   "description": null,
   "groupMembershipClaims": null,
   ...
