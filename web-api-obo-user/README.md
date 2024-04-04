@@ -35,7 +35,7 @@ $ curl https://localhost:5001/api/me -H "Authorization: Bearer {valid-access-tok
   "officeLocation": null,
   "preferredLanguage": null,
   "surname": null,
-  "id": "cff40dac-17ea-4183-9caf-65f2ee90c562"
+  "id": "00aa11bb-cc22-dd33-ee44-ff55ee66dd77"
 }
 ```
 

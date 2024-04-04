@@ -61,8 +61,8 @@ In the _./appsettings.json_ file, replace these `{PLACEHOLDER}` values with the 
 For example:
 
 ```json
-"ClientId": "00000000-11aa-bbbb-2222-33333ddddddd",
-"TenantId": "00000000-11aa-bbbb-2222-33333ddddddd",
+"ClientId": "00001111-aaaa-2222-bbbb-3333cccc4444",
+"TenantId": "dddd5555-eeee-6666-ffff-00001111aaaa",
 ```
 
 ## Run the application

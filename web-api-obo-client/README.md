@@ -26,9 +26,9 @@ This ASP.NET Core minimal web API issues a call to a protected web API (Microsof
 $ curl https://localhost:5001/api/application
 {
    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
-   "id": "537a552c-58b7-4468-abdf-a7cbfa000dde",
+   "id": "00aa11bb-cc22-dd33-ee44-ff55ee66dd77",
    "deletedDateTime": null,
-   "appId": "5b2c581d-e3ac-415e-a770-7f16254fdbf7",
+   "appId": "00001111-aaaa-2222-bbbb-3333cccc4444",
    "applicationTemplateId": null,
    "disabledByMicrosoftStatus": null,
    "createdDateTime": "2022-02-23T21:35:20Z",
@@ -110,9 +110,9 @@ If everything worked, you should receive a response from the downstream web API 
 $ curl https://localhost:5001/api/application -ki
 {
    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
-   "id": "537a552c-58b7-4468-abdf-a7cbfa000dde",
+   "id": "00aa11bb-cc22-dd33-ee44-ff55ee66dd77",
    "deletedDateTime": null,
-   "appId": "5b2c581d-e3ac-415e-a770-7f16254fdbf7",
+   "appId": "00001111-aaaa-2222-bbbb-3333cccc4444",
    "applicationTemplateId": null,
    "disabledByMicrosoftStatus": null,
    "createdDateTime": "2022-02-23T21:35:20Z",
