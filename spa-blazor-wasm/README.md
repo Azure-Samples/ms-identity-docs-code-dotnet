@@ -15,9 +15,9 @@ urlFragment: ms-identity-docs-code-spa-blazor-wasm-csharp
 
 # ASP.NET Core 8.0 Blazor WebAssembly | standalone  app | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
-The standalone app in this scenario is created using the ASP.NET Core 8.0 Blazor WebAssembly template and modified to allow sign-in with a Microsoft Entra ID account. It uses the [Microsoft.Authentication.WebAssembly.Msal](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package to authenticate users and obtain tokens for calling protected APIs. In other words, the app adds an authentication layer that allows users to sign in with their Work and school accounts and make web API calls to protected resources on their behalf.
+The standalone app in this scenario is created using the ASP.NET Core 8.0 Blazor WebAssembly template and modified to allow sign-in with a Microsoft Entra account. It uses the [Microsoft.Authentication.WebAssembly.MSAL](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package to authenticate users and obtain tokens for calling protected APIs. In other words, the app adds an authentication layer that allows users to sign in with their Work and school accounts and make web API calls to protected resources on their behalf.
 
-> Note: This code sample uses the Microsoft.Authentication.WebAssembly.Msal package, which is a modified version of the Microsoft.Identity.Client library.
+> Note: This code sample uses the Microsoft.Authentication.WebAssembly.MSAL package, which is a modified version of the Microsoft.Identity.Client library.
 
 ![A screenshot of an ASP.NET Core 8.0 Blazor WebAssembly application displaying a response from Microsoft Graph.](./media/app-signedin.png)
 
@@ -28,7 +28,9 @@ The standalone app in this scenario is created using the ASP.NET Core 8.0 Blazor
 
 ## Setup
 
-### 1. Register the web API application in your Azure Active Directory
+<a name='1-register-the-web-api-application-in-your-azure-active-directory'></a>
+
+### 1. Register the web API application in your Microsoft Entra ID
 
 First, complete the steps in [Register an application with the Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the sample app.
 
@@ -85,7 +87,7 @@ For more information, please refer to [.NET WebAssembly build tools](https://lea
 
 ## About the code
 
-This ASP.NET Core Web App is created using .NET Blazor WebAssembly. The app has two main routes, one is public while the another one is requiring the user to be authenticated in Azure Active Directory.
+This ASP.NET Core Web App is created using .NET Blazor WebAssembly. The app has two main routes, one is public while the another one is requiring the user to be authenticated in Microsoft Entra ID.
 
 When a user logs out, their browser is redirected to a public route confirming the user signed-out. After signing in, and if they've not previously done so, the user is asked to consent to the app's request for permission to access their data.
 

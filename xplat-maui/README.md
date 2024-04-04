@@ -30,7 +30,7 @@ This sample demonstrates a Windows desktop and Android mobile .NET MAUI Multi-pl
 
 ## Prerequisites
 
-- An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
+- A Microsoft Entra tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get a Microsoft Entra instance.
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 - [.NET MAUI](https://docs.microsoft.com/en-us/dotnet/maui/get-started/installation)
 - **Install apps from any source** enabled in Windows' developer settings
@@ -38,7 +38,9 @@ This sample demonstrates a Windows desktop and Android mobile .NET MAUI Multi-pl
 
 ## Setup
 
-### 1. Register the web API application in your Azure Active Directory
+<a name='1-register-the-web-api-application-in-your-azure-active-directory'></a>
+
+### 1. Register the web API application in your Microsoft Entra ID
 
 First, complete the steps in [Register an application with the Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the sample app.
 
@@ -98,7 +100,7 @@ Use the following settings for your app registration:
 
 This app uses the .NET MAUI Multi-platform App UI to provide a cross-platform experience in which the Microsoft Identity Client library is used to sign the user in and out of the application.
 
-When a signed-out user clicks the sign in button, the app offers a native Azure AD sign in experience. After signing in, and if they've not previously done so, the user is asked to consent to the app's request for permission to access their data.
+When a signed-out user clicks the sign in button, the app offers a native Microsoft Entra sign-in experience. After signing in, and if they've not previously done so, the user is asked to consent to the app's request for permission to access their data.
 
 While signing in, a new token is acquired and passed in an Authorization header as Bearer for a subsequent call to Microsoft Graph. When a signed-out user the account is removed from the client cleaning up the user's retrieved information.
 

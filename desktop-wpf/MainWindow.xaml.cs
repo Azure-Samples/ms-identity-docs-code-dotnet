@@ -28,7 +28,7 @@ namespace MsalExample
             _msalPublicClientApp = PublicClientApplicationBuilder
                 .CreateWithApplicationOptions(new PublicClientApplicationOptions
                 {
-                    // 'Tenant ID' of your Azure AD instance - this value is a GUID
+                    // 'Tenant ID' of your Microsoft Entra instance - this value is a GUID
                     TenantId = "",
 
                     // 'Application (client) ID' of app registration in Azure portal - this value is a GUID
