@@ -15,7 +15,7 @@ urlFragment: ms-identity-docs-code-csharp-sign-in
 
 # ASP.NET Core 6.0 Web App - Sign-in user | Microsoft identity platform
 
-This web app, built with ASP.NET Core 6.0 Razor, has added sign-in features. It uses the [Open Id Connect](https://docs.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc) and [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0) for authentication. This allows users to sign in with their Microsoft Entra ID accounts. Once signed in, the app can access protected resources on the user’s behalf.
+This web app, built with ASP.NET Core 6.0 Razor, has added sign-in features. It uses the [OpenID Connect](https://docs.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc) and [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0) for authentication. This allows users to sign in with their Microsoft Entra accounts. Once signed in, the app can access protected resources on the user’s behalf.
 
 ## Quickstart and tutorial guides for this sample
 
@@ -30,7 +30,9 @@ This web app, built with ASP.NET Core 6.0 Razor, has added sign-in features. It 
 
 ## Setup
 
-### 1. Register the web API application in your Azure Active Directory
+<a name='1-register-the-web-api-application-in-your-azure-active-directory'></a>
+
+### 1. Register the web API application in your Microsoft Entra ID
 
 First, complete the steps in [Register an application with the Microsoft identity platform](https://docs.microsoft.com/entra/identity-platform/tutorial-web-app-dotnet-register-app) to register a web application in the Microsoft identity platform.
 

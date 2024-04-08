@@ -22,7 +22,7 @@ The sample code provided here has been created using minimal web API in ASP.NET 
 
 ## Prerequisites
 
-- An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
+- A Microsoft Entra tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get a Microsoft Entra instance.
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 ## Setup
@@ -61,8 +61,8 @@ In the _./appsettings.json_ file, replace these `{PLACEHOLDER}` values with the 
 For example:
 
 ```json
-"ClientId": "00000000-11aa-bbbb-2222-33333ddddddd",
-"TenantId": "00000000-11aa-bbbb-2222-33333ddddddd",
+"ClientId": "00001111-aaaa-2222-bbbb-3333cccc4444",
+"TenantId": "dddd5555-eeee-6666-ffff-00001111aaaa",
 ```
 
 ## Run the application

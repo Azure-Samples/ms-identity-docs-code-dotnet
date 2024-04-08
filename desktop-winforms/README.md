@@ -26,7 +26,7 @@ This .NET Windows Forms application authenticates a user and then makes a reques
 
 ## Prerequisites
 
-- Azure Active Directory (Azure AD) tenant and the permissions or role required for managing app registrations in the tenant.
+- Microsoft Entra tenant and the permissions or role required for managing app registrations in the tenant.
 - Visual Studio 2022, [configured for the .NET 6 desktop development workload](https://docs.microsoft.com/dotnet/desktop/winforms/get-started/create-app-visual-studio?view=netdesktop-6.0#prerequisites)
 
 ## Setup
@@ -55,7 +55,7 @@ Next, open the _MsalExamples.csproj_ project in Visual Studio.
 Finally, set the following values in _MainWindow.cs_.
 
 ```csharp
-// 'Tenant ID' of your Azure AD instance - this value is a GUID
+// 'Tenant ID' of your Microsoft Entra instance - this value is a GUID
 TenantId = "",
 
 // 'Application (client) ID' of app registration in Azure portal - this value is a GUID

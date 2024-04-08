@@ -31,7 +31,7 @@ Hello, world. You were able to access this because you provided a valid access t
 
 ## Prerequisites
 
-- Azure Active Directory (Azure AD) tenant and the permissions or role required for managing app registrations in the tenant.
+- Microsoft Entra tenant and the permissions or role required for managing app registrations in the tenant.
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 - An empty [C# Azure function (v4)](https://docs.microsoft.com/azure/azure-functions/create-first-function-cli-csharp) deployed to Azure, and the permissions or role required to modify its settings.
 - [Azure Functions Core Tools](https://docs.microsoft.com/azure/azure-functions/functions-run-local)
@@ -55,7 +55,7 @@ Use these settings in your app registration.
 
 ### 2. Enable Function app authentication
 
-Next, complete the steps in [Enable Azure Active Directory in your App Service app](https://docs.microsoft.com/azure/app-service/configure-authentication-provider-aad?toc=/azure/azure-functions/toc.json#-enable-azure-active-directory-in-your-app-service-app) to add Azure Active Directory as an identity provider for your API.
+Next, complete the steps in [Enable Microsoft Entra ID in your App Service app](https://docs.microsoft.com/azure/app-service/configure-authentication-provider-aad?toc=/azure/azure-functions/toc.json#-enable-azure-active-directory-in-your-app-service-app) to add Microsoft Entra ID as an identity provider for your API.
 
 Use these settings in your identity provider configuration.
 
@@ -65,7 +65,7 @@ Use these settings in your identity provider configuration.
 | **App registration type**       | **Provide the details of an existing app registration** | Required value for this sample.                                                  |
 | **Application (client) ID**     | `<client-id>`                                           | Required value for this sample. <br/> 'Application (client) ID' of the API's app registration in Azure portal - this value is a GUID     |
 | **Client secret (recommended)** | _None_                                                  | Suggested value for this sample. <br/> This sample doesn't require this feature. |
-| **Issuer URL**                  | `https://login.microsoftonline.com/<tenant-id>/v2.0`    | Required value for this sample. <br/> Update to include 'Tenant ID' of your Azure AD instance - this value is a GUID                     |
+| **Issuer URL**                  | `https://login.microsoftonline.com/<tenant-id>/v2.0`    | Required value for this sample. <br/> Update to include 'Tenant ID' of your Microsoft Entra instance - this value is a GUID                     |
 | **Allowed token audiences**     | `api://<client-id>`                                     | Required value for this sample. <br/> 'Application ID URI' of app registration in Azure portal - this value typically starts with api:// |
 | **Restrict access**             | **Require authentication**                              | Required value for this sample.                                                  |
 | **Unauthenticated requests**    | **HTTP 401 Unauthorized: recommended for APIs**         | Suggested value for this sample.                                                 |

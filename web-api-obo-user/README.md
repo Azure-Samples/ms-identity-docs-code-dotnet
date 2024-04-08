@@ -35,7 +35,7 @@ $ curl https://localhost:5001/api/me -H "Authorization: Bearer {valid-access-tok
   "officeLocation": null,
   "preferredLanguage": null,
   "surname": null,
-  "id": "cff40dac-17ea-4183-9caf-65f2ee90c562"
+  "id": "00aa11bb-cc22-dd33-ee44-ff55ee66dd77"
 }
 ```
 
@@ -43,12 +43,14 @@ $ curl https://localhost:5001/api/me -H "Authorization: Bearer {valid-access-tok
 
 ## Prerequisites
 
-- An Azure Active Directory (Azure AD) tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get an Azure AD instance.
+- A Microsoft Entra tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get a Microsoft Entra instance.
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 ## Setup
 
-### 1. Register the web API application in Azure Active Directory (Azure AD)
+<a name='1-register-the-web-api-application-in-azure-active-directory-azure-ad'></a>
+
+### 1. Register the web API application in Microsoft Entra ID
 
 First, complete the steps in [Configure an application to expose a web API](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the sample API and expose a scope.
 
@@ -65,7 +67,9 @@ Use the following settings for your app registration:
 
 > :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
 
-### 2. Register a client application in Azure AD
+<a name='2-register-a-client-application-in-azure-ad'></a>
+
+### 2. Register a client application in Microsoft Entra ID
 
 Second, complete the steps in [Register an application with the Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app) to register the client sample app.
 

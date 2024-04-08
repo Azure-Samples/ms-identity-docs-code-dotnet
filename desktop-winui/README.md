@@ -26,7 +26,7 @@ This .NET WinUI 3 Packaged Desktop App authenticates a user and then makes a req
 
 ## Prerequisites
 
-- Azure Active Directory (Azure AD) tenant and the permissions or role required for managing app registrations in the tenant.
+- Microsoft Entra tenant and the permissions or role required for managing app registrations in the tenant.
 - Visual Studio 2022, [configured with WinUI 3 workload and components](https://docs.microsoft.com/windows/apps/windows-app-sdk/set-up-your-development-environment?tabs=vs-2022-17-1-a%2Cvs-2022-17-1-b#required-workloads-and-components)
 
 ## Setup
@@ -56,7 +56,7 @@ Finally, set the following values in _MainWindow.xaml.cs_.
 
 
 ```csharp
-// 'Tenant ID' of your Azure AD instance - this value is a GUID
+// 'Tenant ID' of your Microsoft Entra instance - this value is a GUID
 TenantId = "",
 
 // 'Application (client) ID' of app registration in Azure portal - this value is a GUID

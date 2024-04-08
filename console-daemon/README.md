@@ -26,9 +26,9 @@ dotnet run
 Could not find a cached token, so fetching a new one.
 {
   "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
-  "id": "0aa1b222-3ccc-4d55-e666-f7g888h9i000",
+  "id": "00aa11bb-cc22-dd33-ee44-ff55ee66dd77",
   "deletedDateTime": null,
-  "appId": "0aa1b222-3ccc-4d55-e666-f7g888h9i000",
+  "appId": "00001111-aaaa-2222-bbbb-3333cccc4444",
   "applicationTemplateId": null,
   "disabledByMicrosoftStatus": null,
   "createdDateTime": "2021-01-17T15:30:55Z",
@@ -87,9 +87,9 @@ If successful, an output simialir to the following is displayed in the console (
 ```json
 {
   "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#applications/$entity",
-  "id": "0aa1b222-3ccc-4d55-e666-f7g888h9i000",
+  "id": "00aa11bb-cc22-dd33-ee44-ff55ee66dd77",
   "deletedDateTime": null,
-  "appId": "0aa1b222-3ccc-4d55-e666-f7g888h9i000",
+  "appId": "00001111-aaaa-2222-bbbb-3333cccc4444",
   "applicationTemplateId": null,
   "disabledByMicrosoftStatus": null,
   "createdDateTime": "2021-01-17T15:30:55Z",

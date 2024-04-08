@@ -28,23 +28,23 @@ $ dotnet run
 To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code XXXXXXXXX to authenticate.
 {
   "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users/$entity",
-  "businessPhones": ["+1 (999) 5551001"],
+  "businessPhones": ["+1 (000) 1112222"],
   "displayName": "Contoso Employee",
   "givenName": "Contoso",
   "jobTitle": "Worker",
   "mail": "cemployee@contoso.com",
-  "mobilePhone": "1 999-555-1001",
+  "mobilePhone": "1 000-111-2222",
   "officeLocation": "Contoso Plaza/F30",
   "preferredLanguage": null,
   "surname": "Employee",
   "userPrincipalName": "contoso_employee@contoso.com",
-  "id": "e3a49d8b-d849-48eb-9947-37c1f9589812"
+  "id": "00aa11bb-cc22-dd33-ee44-ff55ee66dd77"
 }
 ```
 
 ## Prerequisites
 
-- Azure Active Directory (Azure AD) tenant and the permissions or role required for managing app registrations in the tenant.
+- Microsoft Entra tenant and the permissions or role required for managing app registrations in the tenant.
 - [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 ## Setup
@@ -85,17 +85,17 @@ Follow the device code flow instructions that are presented. If everything worke
 ```json
 {
   "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users/$entity",
-  "businessPhones": ["+1 (999) 5551001"],
+  "businessPhones": ["+1 (000) 1112222"],
   "displayName": "Contoso Employee",
   "givenName": "Contoso",
   "jobTitle": "Worker",
   "mail": "cemployee@contoso.com",
-  "mobilePhone": "1 999-555-1001",
+  "mobilePhone": "1 000-111-2222",
   "officeLocation": "Contoso Plaza/F30",
   "preferredLanguage": null,
   "surname": "Employee",
   "userPrincipalName": "contoso_employee@contoso.com",
-  "id": "e3a49d8b-d849-48eb-9947-37c1f9589812"
+  "id": "00aa11bb-cc22-dd33-ee44-ff55ee66dd77"
 }
 ```
 
