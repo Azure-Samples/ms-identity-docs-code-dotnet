@@ -8,9 +8,8 @@ name: "ASP.NET Core minimal web API that makes a request to the Graph API as its
 description: "This ASP.NET Core minimal web API sample demonstrates how to issue a call to a protected API using the client credentials flow.  A request will be issued to Microsoft Graph using the application's own identity."
 products:
 - azure
-- azure-active-directory
+- entra-id
 - ms-graph
-- microsoft-identity-platform
 urlFragment: ms-identity-docs-code-app-csharp-webapi
 ---
 
