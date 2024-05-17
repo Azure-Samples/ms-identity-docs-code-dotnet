@@ -8,9 +8,8 @@ name: WinUI 3 Packaged Desktop App that makes a request to the Graph API after s
 description: This .NET 6 (C#) WinUI 3 Packaged Desktop App signs in the user and then makes a request to Microsoft Graph for the user's profile data.
 products:
 - azure
-- azure-active-directory
+- entra-id
 - ms-graph
-- microsoft-identity-platform
 urlFragment: ms-identity-docs-code-app-csharp-winui
 ---
 
