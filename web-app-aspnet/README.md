@@ -8,7 +8,7 @@ name: "ASP.NET Core 6.0 Web App Sign-in user"
 description: "This is a ASP.NET Core 6.0 Web App that sign-in users. The code in this sample is used by one or more articles on docs.microsoft.com."
 products:
 - azure
-- azure-active-directory
+- entra-id
 - ms-graph
 urlFragment: ms-identity-docs-code-csharp-sign-in
 ---

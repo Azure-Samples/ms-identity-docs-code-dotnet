@@ -8,9 +8,8 @@ name: C# Azure Function that protects an HTTP trigger function with Easy Auth an
 description: This C# Azure Function protects its own HTTP Trigger function with Easy Auth and access token scope validation. The code in this sample is used by one or more articles on docs.microsoft.com.
 products:
 - azure
-- azure-active-directory
+- entra-id
 - azure-functions
-- microsoft-identity-platform
 urlFragment: ms-identity-docs-code-azure-function-csharp
 ---
 

@@ -8,9 +8,8 @@ name: Blazor Server application app that makes a request to the Graph API after 
 description: This ASP.NET Core 6 Blazor Server application app signs in the user and then makes a request to Microsoft Graph for the user's profile data.
 products:
 - azure
-- azure-active-directory
+- entra-id
 - ms-graph
-- microsoft-identity-platform
 urlFragment: ms-identity-docs-code-app-csharp-blazorserver
 ---
 

@@ -8,9 +8,8 @@ name: .NET (C#) console application that makes a request to the Graph API via th
 description: This .NET 6 console application uses the device code flow for authentication and then makes a request to Microsoft Graph for the user's profile data.
 products:
 - azure
-- azure-active-directory
+- entra-id
 - ms-graph
-- microsoft-identity-platform
 urlFragment: ms-identity-docs-code-console-cli-csharp
 ---
 

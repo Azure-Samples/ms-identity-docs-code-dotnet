@@ -8,9 +8,8 @@ name: Windows Presentation Foundation (WPF) app that makes a request to the Grap
 description: This .NET 6 (C#) Windows Presentation Foundation (WPF) app signs in the user and then makes a request to Microsoft Graph for the user's profile data.
 products:
 - azure
-- azure-active-directory
+- entra-id
 - ms-graph
-- microsoft-identity-platform
 urlFragment: ms-identity-docs-code-app-csharp-wpf
 ---
 
