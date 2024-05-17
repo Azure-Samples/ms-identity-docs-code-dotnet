@@ -8,9 +8,8 @@ name: ASP.NET Core minimal web API that protects API
 description: This ASP.NET Core minimal web API protects an API endpoint. The code in this sample is used by one or more articles on docs.microsoft.com.
 products:
 - azure
-- azure-active-directory
+- entra-id
 - ms-graph
-- microsoft-identity-platform
 urlFragment: ms-identity-docs-code-web-apicsharp
 ---
 
