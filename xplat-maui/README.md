@@ -8,10 +8,9 @@ name: .NET MAUI Multi-platform App Sign-in user
 description: This .NET Multi-platform App UI (.NET MAUI) app signs in the user and then makes a request to Microsoft Graph for the user's profile data. The code in this sample is used by one or more articles on docs.microsoft.com.
 products:
 - azure
-- azure-active-directory
+- entra-id
 - ms-graph
 - dotnet-maui
-- microsoft-identity-platform
 urlFragment: ms-identity-docs-code-csharp-maui
 ---
 
