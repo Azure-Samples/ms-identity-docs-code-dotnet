@@ -6,51 +6,19 @@
 version: 2
 updates:
   - package-ecosystem: "nuget"
-    directory: "/console-cli"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "nuget"
-    directory: "/console-daemon"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "nuget"
-    directory: "/desktop-winforms"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "nuget"
-    directory: "/desktop-winui"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "nuget"
-    directory: "/desktop-wpf"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "nuget"
-    directory: "/spa-blazor-wasm"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "nuget"
-    directory: "/web-api-obo-client"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "nuget"
-    directory: "/web-api-obo-user"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "nuget"
-    directory: "/web-api"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "nuget"
-    directory: "/web-app-aspnet"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "nuget"
-    directory: "/web-app-blazor-server"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "nuget"
-    directory: "/xplat-maui"
+    directories:
+    - "/console-cli"
+    - "/console-daemon"
+    - "/desktop-winforms"
+    - "/desktop-winui"
+    - "/desktop-wpf"
+    - "/spa-blazor-wasm"
+    - "/web-api-obo-client"
+    - "/web-api-obo-user"
+    - "/web-api"
+    - "/web-app-aspnet"
+    - "/web-app-blazor-server"
+    - "/xplat-maui"
     schedule:
       interval: "daily"
     labels:
