@@ -1,8 +1,8 @@
 using System.Text.Json;
 // <ms_docref_import_types>
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.Identity.Web;
+using Microsoft.Identity.Abstractions;
 // </ms_docref_import_types>
 
 // <ms_docref_add_msal>
@@ -15,15 +15,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"))
                 .EnableTokenAcquisitionToCallDownstreamApi()
                 .AddInMemoryTokenCaches()
-                .AddDownstreamWebApi("GraphApi", builder.Configuration.GetSection("GraphApi"));
+                .AddDownstreamApi("GraphApi", builder.Configuration.GetSection("GraphApi"));
 // </ms_docref_add_msal>
 
 WebApplication app = builder.Build();
 
 // <ms_docref_protect_endpoint>
-app.MapGet("api/application", async (IDownstreamWebApi downstreamWebApi) =>
+app.MapGet("api/application", async (IDownstreamApi downstreamApi) =>
     {
-      using var response = await downstreamWebApi.CallWebApiForAppAsync("GraphApi").ConfigureAwait(false);
+      using var response = await downstreamApi.CallApiForAppAsync("GraphApi").ConfigureAwait(false);
 
       if (response.StatusCode == System.Net.HttpStatusCode.OK)
       {
