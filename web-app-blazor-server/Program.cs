@@ -1,9 +1,3 @@
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 
@@ -12,7 +6,7 @@ IEnumerable<string>? initialScopes = builder.Configuration["DownstreamApi:Scopes
 
 builder.Services.AddMicrosoftIdentityWebAppAuthentication(builder.Configuration, "AzureAd")
     .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-        .AddDownstreamWebApi("GraphApi", builder.Configuration.GetSection("GraphApi"))
+        .AddDownstreamApi("GraphApi", builder.Configuration.GetSection("GraphApi"))
         .AddInMemoryTokenCaches();
 
 builder.Services.AddControllersWithViews()
