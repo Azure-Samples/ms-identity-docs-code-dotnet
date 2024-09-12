@@ -31,7 +31,7 @@ Hello, world. You were able to access this because you provided a valid access t
 ## Prerequisites
 
 - Microsoft Entra tenant and the permissions or role required for managing app registrations in the tenant.
-- [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 - An empty [C# Azure function (v4)](https://docs.microsoft.com/azure/azure-functions/create-first-function-cli-csharp) deployed to Azure, and the permissions or role required to modify its settings.
 - [Azure Functions Core Tools](https://docs.microsoft.com/azure/azure-functions/functions-run-local)
 

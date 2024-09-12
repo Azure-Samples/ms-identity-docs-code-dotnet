@@ -2,7 +2,9 @@ using System.Text.Json;
 // <ms_docref_import_types>
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Identity.Abstractions;
 using Microsoft.Identity.Web;
+
 // </ms_docref_import_types>
 
 // <ms_docref_add_msal>
@@ -14,7 +16,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 // the on-behalf-of access token, per user-assertion, based on the provided access
 // token to this API.
                 .AddInMemoryTokenCaches()
-                .AddDownstreamWebApi("GraphApi", builder.Configuration.GetSection("GraphApi"));
+                .AddDownstreamApi("GraphApi", builder.Configuration.GetSection("GraphApi"));
 builder.Services.AddAuthorization();
 // </ms_docref_add_msal>
 
@@ -25,8 +27,9 @@ app.UseAuthorization();
 // </ms_docref_enable_authz_capabilities>
 
 // <ms_docref_protect_endpoint>
-app.MapGet("/api/me", [Authorize()] async (IDownstreamWebApi downstreamWebApi) => {
-  var response = await downstreamWebApi.CallWebApiForUserAsync("GraphApi").ConfigureAwait(false);
+app.MapGet("/api/me", [Authorize()] async (IDownstreamApi downstreamWebApi) =>
+{
+  var response = await downstreamWebApi.CallApiForUserAsync("GraphApi").ConfigureAwait(false);
 
   var graphApiResponse = await response.Content.ReadFromJsonAsync<JsonDocument>().ConfigureAwait(false);
   return JsonSerializer.Serialize(graphApiResponse, new JsonSerializerOptions { WriteIndented = true });

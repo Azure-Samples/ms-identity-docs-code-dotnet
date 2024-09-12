@@ -19,7 +19,7 @@ urlFragment: ms-identity-docs-code-obo-user-csharp
 ![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
 -->
 
-This ASP.NET Core minimal web API uses the Microsoft identity platform to protect an endpoint (require authorized access), and also accesses Microsoft Graph on behalf of the user. The API uses [ASP.NET Core Identity](https://docs.microsoft.com/aspnet/core/security/authentication/identity?view=aspnetcore-6.0) interacting with the [Microsoft Authentication Library (MSAL)](https://docs.microsoft.com/azure/active-directory/develop/msal-overview) to protect its endpoint.
+This ASP.NET Core minimal web API uses the Microsoft identity platform to protect an endpoint (require authorized access), and also accesses Microsoft Graph on behalf of the user. The API uses [ASP.NET Core Identity](https://docs.microsoft.com/aspnet/core/security/authentication/identity?view=aspnetcore-8.0) interacting with the [Microsoft Authentication Library (MSAL)](https://docs.microsoft.com/azure/active-directory/develop/msal-overview) to protect its endpoint.
 
 ```console
 $ curl https://localhost:5001/api/me -H "Authorization: Bearer {valid-access-token}"
@@ -43,7 +43,7 @@ $ curl https://localhost:5001/api/me -H "Authorization: Bearer {valid-access-tok
 ## Prerequisites
 
 - A Microsoft Entra tenant. You can [open an Azure account for free](https://azure.microsoft.com/free) to get a Microsoft Entra instance.
-- [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 
 ## Setup
 
