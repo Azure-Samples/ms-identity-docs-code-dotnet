@@ -4,11 +4,11 @@ using System.Text.Json;
 
 var config = new PublicClientApplicationOptions
 {
-    // 'Directory (tenant) ID' of app registration in the Azure portal - this value is a GUID
-    TenantId = "",
+    // 'Directory (tenant) ID' of the app registration in the Microsoft Entra Admin Center
+    TenantId = "Enter the client ID obtained from the Microsoft Entra admin center",
 
-    // 'Application (client) ID' of app registration in Azure portal - this value is a GUID
-    ClientId = ""
+    // 'Application (client) ID' of the app registration in the Microsoft Entra Admin Center
+    ClientId = "Enter the tenant ID obtained from the Microsoft Entra admin center"
 };
 
 // In order to take advantage of token caching, your MSAL client singleton must
@@ -35,7 +35,7 @@ if (accounts.Any())
     }
     catch (MsalUiRequiredException)
     {
-        // No usable cached token was found for this scope + account or Azure AD insists in
+        // No usable cached token was found for this scope + account or Entra ID insists in
         // an interactive user flow.
     }
 }
