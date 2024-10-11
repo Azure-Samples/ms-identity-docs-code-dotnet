@@ -5,7 +5,7 @@ languages:
 - csharp
 page_type: sample
 name: .NET (C#) console application that makes a request to the Graph API via the Device Code flow
-description: This .NET 6 console application uses the device code flow for authentication and then makes a request to Microsoft Graph for the user's profile data.
+description: This .NET8 console application uses the device code flow for authentication and then makes a request to Microsoft Graph for the user's profile data.
 products:
 - azure
 - entra-id
@@ -16,11 +16,7 @@ urlFragment: ms-identity-docs-code-console-cli-csharp
 <!-- SAMPLE ID: DOCS-CODE-030 -->
 # .NET (C#) | console | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
-<!-- Build badges here
-![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
--->
-
-This .NET 6 (C#) console application authenticates a user via the device code flow, and then makes a request to the Graph API as the authenticated user. The response to the request is printed to the console.
+This .NET8 (C#) console application authenticates a user via the device code flow, and then makes a request to the Graph API as the authenticated user. The response to the request is printed to the console.
 
 ```console
 $ dotnet run
@@ -44,7 +40,7 @@ To sign in, use a web browser to open the page https://microsoft.com/devicelogin
 ## Prerequisites
 
 - Microsoft Entra tenant and the permissions or role required for managing app registrations in the tenant.
-- [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
+- [.NET8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 
 ## Setup
 
