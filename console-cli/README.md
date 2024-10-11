@@ -40,7 +40,7 @@ To sign in, use a web browser to open the page https://microsoft.com/devicelogin
 ## Prerequisites
 
 - Microsoft Entra tenant and the permissions or role required for managing app registrations in the tenant.
-- [.NET8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 
 ## Setup
 

@@ -4,8 +4,8 @@
 languages:
 - csharp
 page_type: sample
-name: "ASP.NET Core 6.0 Web App Sign-in user"
-description: "This is a ASP.NET Core 6.0 Web App that sign-in users. The code in this sample is used by one or more articles on docs.microsoft.com."
+name: "ASP.NET Core 8.0 Web App Sign-in user"
+description: "This is a ASP.NET Core 8.0 Web App that sign-in users. The code in this sample is used by one or more articles on docs.microsoft.com."
 products:
 - azure
 - entra-id
@@ -13,9 +13,9 @@ products:
 urlFragment: ms-identity-docs-code-csharp-sign-in
 ---
 
-# ASP.NET Core 6.0 Web App - Sign-in user | Microsoft identity platform
+# ASP.NET Core 8.0 Web App - Sign-in user | Microsoft identity platform
 
-This web app, built with ASP.NET Core 6.0 Razor, has added sign-in features. It uses the [OpenID Connect](https://docs.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc) and [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0) for authentication. This allows users to sign in with their Microsoft Entra accounts. Once signed in, the app can access protected resources on the user’s behalf.
+This web app, built with ASP.NET Core 8.0 Razor, has added sign-in features. It uses the [OpenID Connect](https://docs.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc) and [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-8.0) for authentication. This allows users to sign in with their Microsoft Entra accounts. Once signed in, the app can access protected resources on the user’s behalf.
 
 ## Quickstart and tutorial guides for this sample
 
@@ -82,19 +82,19 @@ Use the following settings for your app registration:
 1. Once the web app is listening, navigate to https://localhost:5001
 1. Sign-in with your user credentials.
 
-![A screenshot of an ASP.NET Core 6.0 Web App displaying a response from Microsoft Graph.](./media/app-signedin.png)
+![A screenshot of an ASP.NET Core 8.0 Web App displaying a response from Microsoft Graph.](./media/app-signedin.png)
 
 ### 3. Sign out
 
 1. Select Sign out
 
-![A screenshot of an ASP.NET Core 6.0 Web App indicating the user signed-out and allowing click "Sign in" to signin again.](./app-signedout.png)
+![A screenshot of an ASP.NET Core 8.0 Web App indicating the user signed-out and allowing click "Sign in" to signin again.](./app-signedout.png)
 
 ## About the code
 
-The ASP.NET Core 6.0 Web App will allow users to sign-in, so it can retrieve a Security Token scoped specifically for the Microsoft Graph API, and will use that token to access the user's information. For more information about the proposed scenario, please take a look at the following diagram:
+The ASP.NET Core 8.0 Web App will allow users to sign-in, so it can retrieve a Security Token scoped specifically for the Microsoft Graph API, and will use that token to access the user's information. For more information about the proposed scenario, please take a look at the following diagram:
 
-:link: For more information about how to proctect your projects, please let's take a look at https://docs.microsoft.com/en-us/azure/active-directory/develop/sample-v2-code. To know more about how this sample has been generated, please visit https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/?view=aspnetcore-6.0
+:link: For more information about how to proctect your projects, please let's take a look at https://docs.microsoft.com/en-us/azure/active-directory/develop/sample-v2-code. To know more about how this sample has been generated, please visit https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/?view=aspnetcore-8.0
 
 ## Reporting problems
 
