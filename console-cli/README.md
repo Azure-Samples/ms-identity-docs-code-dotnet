@@ -13,10 +13,9 @@ products:
 urlFragment: ms-identity-docs-code-console-cli-csharp
 ---
 
-<!-- SAMPLE ID: DOCS-CODE-030 -->
 # .NET (C#) | console | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
-This .NET8 (C#) console application authenticates a user via the device code flow, and then makes a request to the Graph API as the authenticated user. The response to the request is printed to the console.
+This .NET 8 (C#) console application authenticates a user via the device code flow, and then makes a request to the Graph API as the authenticated user. The response to the request is printed to the console.
 
 ```console
 $ dotnet run

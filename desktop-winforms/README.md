@@ -15,10 +15,6 @@ urlFragment: ms-identity-docs-code-app-csharp-winforms
 
 # .NET | Windows Forms | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
-<!-- Build badges here
-![Build passing.](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Code coverage.](https://img.shields.io/badge/coverage-100%25-brightgreen.svg) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
--->
-
 This .NET Windows Forms application authenticates a user and then makes a request to the Graph API as the authenticated user. The response to the request is presented to the user.
 
 ![A screenshot of a Windows Forms application displaying a response from Microsoft Graph.](./app.png)
@@ -54,16 +50,16 @@ Next, open the _MsalExamples.csproj_ project in Visual Studio.
 Finally, set the following values in _MainWindow.cs_.
 
 ```csharp
-// 'Tenant ID' of your Microsoft Entra instance - this value is a GUID
-TenantId = "",
+// Enter the tenant ID obtained from the Microsoft Entra Admin Center
+TenantId = "Enter the client ID obtained from the Microsoft Entra admin center",
 
-// 'Application (client) ID' of app registration in Azure portal - this value is a GUID
-ClientId = ""
+// Enter the client ID obtained from the Microsoft Entra Admin Center
+ClientId = "Enter the tenant ID obtained from the Microsoft Entra admin center"
 ```
 
 ## Run the application
 
-Run the application by pressing <kbd>F5</kbd> in Visual Studio.
+Run the application by pressing **F5** in Visual Studio.
 
 The appliction will open allowing you to click the **Sign In (if needed) & Call Graph** button to use the authentication flow.
 
@@ -71,7 +67,7 @@ The appliction will open allowing you to click the **Sign In (if needed) & Call 
 
 ## About the code
 
-This .NET 8 Windows Forms application presents a button that initiates an authentication flow using the Microsoft Authentication Library (MSAL). The user completes this flow in their default web browser.  Upon successful authentication, an HTTP GET request to the Microsoft Graph /me endpoint is issued with the user's access token in the HTTP header. The response from the GET request is then displayed to the user. The MSAL client first looks to its token cache, refreshing if necessary, before acquiring a new access token.
+This .NET 8 Windows Forms application presents a button that initiates an authentication flow using the Microsoft Authentication Library (MSAL). The user completes this flow in their default web browser. Upon successful authentication, an HTTP GET request to the Microsoft Graph /me endpoint is issued with the user's access token in the HTTP header. The response from the GET request is then displayed to the user. The MSAL client first looks to its token cache, refreshing if necessary, before acquiring a new access token.
 
 ## Reporting problems
 
@@ -79,14 +75,13 @@ This .NET 8 Windows Forms application presents a button that initiates an authen
 
 If you can't get the sample working, you've checked [Stack Overflow](http://stackoverflow.com/questions/tagged/msal), and you've already searched the issues in this sample's repository, open an issue report the problem.
 
-1. Search the [GitHub issues](/issues) in the repository - your problem might already have been reported or have an answer.
-1. Nothing similar? [Open an issue](/issues/new) that clearly explains the problem you're having running the sample app.
+1. Search the [GitHub issues](../../issues) in the repository - your problem might already have been reported or have an answer.
+1. Nothing similar? [Open an issue](../../issues/new) that clearly explains the problem you're having running the sample app.
 
 ### All other issues
 
 > :warning: WARNING: Any issue in this repository _not_ limited to running one of its sample apps will be closed without being addressed.
-
-For all other requests, see [Support and help options for developers | Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/developer-support-help-options).
+For all other requests, see [Support and help options for developers | Microsoft identity platform](https://learn.microsoft.com/entra/identity-platform/developer-support-help-options).
 
 ## Contributing
 

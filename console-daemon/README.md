@@ -1,4 +1,3 @@
-<!-- Updated, but leaving commented out until we're ready to ship in samples browser
 ---
 # Metadata required by https://docs.microsoft.com/samples/browse/
 # Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
@@ -13,8 +12,7 @@ products:
 - ms-graph
 urlFragment: ms-identity-docs-code-dotnet-console
 ---
--->
-<!-- SAMPLE ID: DOCS-CODE-010 -->
+
 # .NET | console | .NET (C#) console app that accesses a protected web API access (Microsoft Graph) | Microsoft identity platform
 
 
@@ -118,7 +116,7 @@ If you can't get the sample working, you've checked [Stack Overflow](http://stac
 ### All other issues
 
 > :warning: WARNING: Any issue in this repository _not_ limited to running one of its sample apps will be closed without being addressed.
-For all other requests, see [Support and help options for developers | Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/developer-support-help-options).
+For all other requests, see [Support and help options for developers | Microsoft identity platform](https://learn.microsoft.com/entra/identity-platform/developer-support-help-options).
 
 ## Contributing
 

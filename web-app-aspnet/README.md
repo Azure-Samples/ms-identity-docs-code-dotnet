@@ -19,18 +19,16 @@ This web app, built with ASP.NET Core 8.0 Razor, has added sign-in features. It 
 
 ## Quickstart and tutorial guides for this sample
 
-- For a quickstart experience that gets you started fast, see [Quickstart: Sign in users and call the Microsoft Graph API from an ASP.NET Core web app](https://docs.microsoft.com/entra/identity-platform/tutorial-web-app-dotnet-register-app).
+- For a quickstart experience that gets you started fast, see [Quickstart: Sign in users and call the Microsoft Graph API from an ASP.NET Core web app](https://learn.microsoft.com/entra/identity-platform/quickstart-web-app-dotnet-core-sign-in).
 
 - For a in-depth tutorial that walks you through this sample from start to finish, see [Tutorial: Sign in users and call the Microsoft Graph API from an ASP.NET Core web app](https://docs.microsoft.com/entra/identity-platform/tutorial-web-app-dotnet-register-app).
 
 ## Prerequisites
 
 - An Azure account with an active subscription. If you don't already have one, [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- [.NET SDK](https://dotnet.microsoft.com/download)
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download)
 
 ## Setup
-
-<a name='1-register-the-web-api-application-in-your-azure-active-directory'></a>
 
 ### 1. Register the web API application in your Microsoft Entra ID
 
