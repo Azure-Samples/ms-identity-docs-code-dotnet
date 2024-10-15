@@ -75,3 +75,17 @@ jobs:
             dotnet build $project --no-restore --configuration Release
             dotnet test $project --no-build --configuration Release
           done
+
+  # Job to enable auto-merge after all tests pass
+  auto-merge:
+    needs: [build-winui, build-maui, build]  # Ensure all other jobs complete first
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Enable auto-merge for Dependabot PRs
+        if: github.actor == 'dependabot[bot]' && success()  # Only auto-merge Dependabot PRs that pass tests
+        uses: peter-evans/enable-pull-request-automerge@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ github.event.pull_request.number }}
+          merge-method: squash  # Choose your preferred merge method: squash, rebase, merge
