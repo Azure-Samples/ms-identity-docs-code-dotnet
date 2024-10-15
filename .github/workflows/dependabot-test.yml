@@ -10,7 +10,9 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # Use a Windows runner for projects that require Windows-specific dependencies
+  build-winui:
+    runs-on: windows-latest  # Change to Windows runner
 
     steps:
       - name: Checkout code
@@ -19,12 +21,30 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.x'  # Specify the .NET version you're using (e.g., 5.x, 6.x, 7.x)
+          dotnet-version: '8.x'  # Specify your .NET version
 
-      # Find all .csproj files in the subdirectories and loop over them
-      - name: Restore, Build, and Test All Projects
+      # Restore, Build, and Test WinUI Project on Windows runner
+      - name: Restore and Build WinUI Project
         run: |
-          for project in $(find . -name '*.csproj'); do
+          dotnet restore desktop-winui/WinUIApp.csproj
+          dotnet build desktop-winui/WinUIApp.csproj --no-restore --configuration Release
+          dotnet test desktop-winui/WinUIApp.csproj --no-build --configuration Release
+
+  # Add additional steps for other project types that do not require Windows runners
+  build-other-projects:
+    runs-on: ubuntu-latest  # Use Ubuntu for other project types if they don't need Windows
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x'
+
+      - name: Restore, Build, and Test All Other Projects
+        run: |
+          for project in $(find . -name '*.csproj' | grep -v 'desktop-winui'); do
             echo "Processing project: $project"
             dotnet restore $project
             dotnet build $project --no-restore --configuration Release
