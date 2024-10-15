@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-winui:
-    runs-on: windows-latest  # Change to Windows runner
+    runs-on: windows-latest  # Use Windows runner for WinUI projects
 
     steps:
       - name: Checkout code
@@ -21,16 +21,42 @@ jobs:
         with:
           dotnet-version: '8.x'  # Specify your .NET version
 
-      # Restore, Build, and Test WinUI Project on Windows runner
+      # Restore, Build, and Test WinUI Project
       - name: Restore and Build WinUI Project
         run: |
           dotnet restore desktop-winui/WinUIApp.csproj
           dotnet build desktop-winui/WinUIApp.csproj --no-restore --configuration Release
           dotnet test desktop-winui/WinUIApp.csproj --no-build --configuration Release
 
-  # Add additional steps for other project types that do not require Windows runners
+  build-maui:
+    runs-on: windows-latest  # MAUI requires Windows for Android builds
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x'  # Specify your .NET version
+
+      # Install MAUI-specific workloads (android and wasm-tools)
+      - name: Install MAUI Workloads
+        run: |
+          dotnet workload install android
+          dotnet workload install wasm-tools
+
+      # Restore, Build, and Test MAUI Project
+      - name: Restore and Build MAUI Project
+        run: |
+          dotnet workload restore xplat-maui/XPlat.csproj  # Restore necessary workloads
+          dotnet restore xplat-maui/XPlat.csproj           # Restore dependencies
+          dotnet build xplat-maui/XPlat.csproj --no-restore --configuration Release
+          dotnet test xplat-maui/XPlat.csproj --no-build --configuration Release
+
   build:
     runs-on: ubuntu-latest  # Use Ubuntu for other project types if they don't need Windows
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -40,9 +66,10 @@ jobs:
         with:
           dotnet-version: '8.x'
 
+      # Restore, Build, and Test All Other Projects (excluding WinUI and MAUI)
       - name: Restore, Build, and Test All Other Projects
         run: |
-          for project in $(find . -name '*.csproj' | grep -v 'desktop-winui'); do
+          for project in $(find . -name '*.csproj' | grep -v 'desktop-winui' | grep -v 'xplat-maui'); do
             echo "Processing project: $project"
             dotnet restore $project
             dotnet build $project --no-restore --configuration Release
