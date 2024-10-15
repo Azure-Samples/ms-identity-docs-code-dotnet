@@ -1,0 +1,31 @@
+name: Verify Dependabot Update (.NET)
+
+on:
+  pull_request:
+    branches:
+      - main   # The branch Dependabot will open PRs against
+    types:
+      - opened
+      - synchronize  # Triggered when the PR is updated, such as after a rebase or commit
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x'  # Specify the .NET version you're using (e.g., 5.x, 6.x, 7.x)
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build solution
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Run tests
+        run: dotnet test --no-build --verbosity normal --configuration Release
