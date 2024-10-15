@@ -32,11 +32,11 @@ namespace WinUIApp
             msalPublicClientApp = PublicClientApplicationBuilder
                 .CreateWithApplicationOptions(new PublicClientApplicationOptions
                 {
-                     // 'Tenant ID' of your Microsoft Entra instance - this value is a GUID
-                     TenantId = "",
+                    // Enter the tenant ID obtained from the Microsoft Entra admin center
+                    TenantId = "9bdb2e6b-ea2d-482a-a6cb-2d5259122009",
 
-                     // 'Application (client) ID' of app registration in Azure portal - this value is a GUID
-                     ClientId = ""
+                    // Enter the client ID obtained from the Microsoft Entra admin center
+                    ClientId = "f0d83d6c-b580-41e0-947f-56faadea64c0"
                 })
                 .WithDefaultRedirectUri()
                 .Build();

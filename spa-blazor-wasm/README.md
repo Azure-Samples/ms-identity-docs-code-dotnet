@@ -43,7 +43,7 @@ Use the following settings for your app registration:
 | **Platform type**              | `Single-page application`                              | Required value for this sample. <br/> Enables the required and optional settings for the app type.          |
 | **Redirect URIs**              | `http://localhost:5000/authentication/login-callback` | Required value for this sample. <br/> You can change that later in your own implementation.                 |
 
-> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box or select in the Azure portal.
+> :information_source: **Bold text** in the table matches (or is similar to) a UI element in the Microsoft Entra admin center, while `code formatting` indicates a value you enter into a text box or select in the Microsoft Entra admin center.
 
 ### 2. Configure the web app
 

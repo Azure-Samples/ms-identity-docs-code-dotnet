@@ -70,11 +70,11 @@ Use these settings in your app registration.
 | **Platform type**                 | _None_                                                                       | No redirect URI required; don't select a platform.                                                                    |
 | **Client secret**                 | _**Value** of the client secret (not its ID)_                                | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it).        |
 
-> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Microsoft Entra admin center, while `code formatting` indicates a value you enter into a text box in the Microsoft Entra admin center.
 
 ### 2. Configure the web API
 
-Open the _~/msal-client-credentials-flow/appsettings.json_ file in your code editor and modify the following values values with those from your [app's registration in the Azure portal](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#register-an-application):
+Open the _~/msal-client-credentials-flow/appsettings.json_ file in your code editor and modify the following values values with those from your [app's registration in the Microsoft Entra admin center](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#register-an-application):
 
    ```json
    "ClientId": "Enter_the_Application_Id_here",

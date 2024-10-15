@@ -39,7 +39,7 @@ Use these settings in your app registration.
 | **Platform type**               | **Mobile and desktop applications**                                 | Required value for this sample                                                  |
 | **Redirect URIs**               | `http://localhost`                                                  | Required value for this sample                                                  |
 
-> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Microsoft Entra admin center, while `code formatting` indicates a value you enter into a text box in the Microsoft Entra admin center.
 
 ### 2. Open the project in Visual Studio
 
@@ -50,10 +50,10 @@ Next, open the _MsalExamples.csproj_ project in Visual Studio.
 Finally, set the following values in _MainWindow.cs_.
 
 ```csharp
-// Enter the tenant ID obtained from the Microsoft Entra Admin Center
+// Enter the tenant ID obtained from the Microsoft Entra admin center
 TenantId = "Enter the client ID obtained from the Microsoft Entra admin center",
 
-// Enter the client ID obtained from the Microsoft Entra Admin Center
+// Enter the client ID obtained from the Microsoft Entra admin center
 ClientId = "Enter the tenant ID obtained from the Microsoft Entra admin center"
 ```
 

@@ -44,7 +44,7 @@ Use these settings in your app registration.
 | **Platform type**               | **Web**                                                             | Required value for this sample                                                  |
 | **Redirect URIs**               | `http://localhost:5000/signin-oidc`                                 | Required value for this sample                                                  |
 
-> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Microsoft Entra admin center, while `code formatting` indicates a value you enter into a text box in the Microsoft Entra admin center.
 
 ### 2. Open the project in your code editor
 
@@ -55,9 +55,9 @@ Next, open the _Api.csproj_ project under the the sign-in-blazorserver folder in
 In _appsettings.json_, update each variable with values from the app registration you created earlier.
 
 ```json
-"TenantId": "[Enter 'common', or 'organizations' or the Tenant ID obtained from the Azure portal]",
-"ClientId": "[Enter the Client Id (Application ID) obtained from the Azure portal]",
-"ClientSecret": "[Copy the client secret added to the app from the Azure portal]",
+"TenantId": "[Enter 'common', or 'organizations' or the Tenant ID obtained from the Microsoft Entra admin center]",
+"ClientId": "[Enter the Client Id (Application ID) obtained from the Microsoft Entra admin center]",
+"ClientSecret": "[Copy the client secret added to the app from the Microsoft Entra admin center]",
 ```
 
 ## Run the application

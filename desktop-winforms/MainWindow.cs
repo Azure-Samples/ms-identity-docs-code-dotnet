@@ -23,10 +23,10 @@ namespace MsalExample
             msalPublicClientApp = PublicClientApplicationBuilder
                 .CreateWithApplicationOptions(new PublicClientApplicationOptions
                 {
-                    // Enter the tenant ID obtained from the Microsoft Entra Admin Center
+                    // Enter the tenant ID obtained from the Microsoft Entra admin center
                     TenantId = "Enter the client ID obtained from the Microsoft Entra admin center",
 
-                    // Enter the client ID obtained from the Microsoft Entra Admin Center
+                    // Enter the client ID obtained from the Microsoft Entra admin center
                     ClientId = "Enter the tenant ID obtained from the Microsoft Entra admin center"
                 })
                 .WithDefaultRedirectUri() // http://localhost
