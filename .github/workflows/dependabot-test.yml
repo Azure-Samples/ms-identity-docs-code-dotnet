@@ -3,10 +3,10 @@ name: Verify Dependabot Update (.NET)
 on:
   pull_request:
     branches:
-      - main   # The branch Dependabot will open PRs against
+      - main
     types:
       - opened
-      - synchronize  # Triggered when the PR is updated, such as after a rebase or commit
+      - synchronize
 
 jobs:
   build:
@@ -19,13 +19,14 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.x'  # Specify the .NET version you're using (e.g., 5.x, 6.x, 7.x)
+          dotnet-version: '6.x'  # Specify the .NET version you're using (e.g., 5.x, 6.x, 7.x)
 
-      - name: Restore dependencies
-        run: dotnet restore
-
-      - name: Build solution
-        run: dotnet build --no-restore --configuration Release
-
-      - name: Run tests
-        run: dotnet test --no-build --verbosity normal --configuration Release
+      # Find all .csproj files in the subdirectories and loop over them
+      - name: Restore, Build, and Test All Projects
+        run: |
+          for project in $(find . -name '*.csproj'); do
+            echo "Processing project: $project"
+            dotnet restore $project
+            dotnet build $project --no-restore --configuration Release
+            dotnet test $project --no-build --configuration Release
+          done
