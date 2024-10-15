@@ -33,10 +33,10 @@ namespace WinUIApp
                 .CreateWithApplicationOptions(new PublicClientApplicationOptions
                 {
                     // Enter the tenant ID obtained from the Microsoft Entra admin center
-                    TenantId = "9bdb2e6b-ea2d-482a-a6cb-2d5259122009",
+                    TenantId = "Enter the tenant ID obtained from the Microsoft Entra admin center",
 
                     // Enter the client ID obtained from the Microsoft Entra admin center
-                    ClientId = "f0d83d6c-b580-41e0-947f-56faadea64c0"
+                    ClientId = "Enter the client ID obtained from the Microsoft Entra admin center"
                 })
                 .WithDefaultRedirectUri()
                 .Build();
