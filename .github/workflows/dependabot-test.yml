@@ -9,8 +9,6 @@ on:
       - synchronize
 
 jobs:
-  build:
-    # Use a Windows runner for projects that require Windows-specific dependencies
   build-winui:
     runs-on: windows-latest  # Change to Windows runner
 
@@ -31,7 +29,7 @@ jobs:
           dotnet test desktop-winui/WinUIApp.csproj --no-build --configuration Release
 
   # Add additional steps for other project types that do not require Windows runners
-  build-other-projects:
+  build:
     runs-on: ubuntu-latest  # Use Ubuntu for other project types if they don't need Windows
     steps:
       - name: Checkout code
