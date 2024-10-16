@@ -13,10 +13,9 @@ products:
 urlFragment: ms-identity-docs-code-console-cli-csharp
 ---
 
-<!-- SAMPLE ID: DOCS-CODE-030 -->
 # .NET (C#) | console | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
-This .NET8 (C#) console application authenticates a user via the device code flow, and then makes a request to the Graph API as the authenticated user. The response to the request is printed to the console.
+This .NET 8 (C#) console application authenticates a user via the device code flow, and then makes a request to the Graph API as the authenticated user. The response to the request is printed to the console.
 
 ```console
 $ dotnet run
@@ -57,15 +56,15 @@ Use these settings in your app registration.
 | **Platform type**                | _None_                                                             | No redirect URI required; don't select a platform.                              |
 | **Allow public client flows**    | **Yes**                                                            | Required value for this sample.                                                 |
 
-> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Microsoft Entra admin center, while `code formatting` indicates a value you enter into a text box in the Microsoft Entra admin center.
 
 ### 2. Update the _Program.cs_ file with app registration values
 
 ```csharp
-// 'Directory (tenant) ID' of app registration in the Azure portal - this value is a GUID
+// 'Directory (tenant) ID' of app registration in the Microsoft Entra admin center - this value is a GUID
 TenantId = "",
 
-// 'Application (client) ID' of app registration in Azure portal - this value is a GUID
+// 'Application (client) ID' of app registration in Microsoft Entra admin center - this value is a GUID
 ClientId = ""
 ```
 

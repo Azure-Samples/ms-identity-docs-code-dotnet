@@ -31,7 +31,7 @@ namespace MsalExample
                     // 'Tenant ID' of your Microsoft Entra instance - this value is a GUID
                     TenantId = "",
 
-                    // 'Application (client) ID' of app registration in Azure portal - this value is a GUID
+                    // 'Application (client) ID' of app registration in Microsoft Entra admin center - this value is a GUID
                     ClientId = ""
                 })
                 .WithDefaultRedirectUri() // http://localhost

@@ -23,22 +23,22 @@ namespace MsalExample
             msalPublicClientApp = PublicClientApplicationBuilder
                 .CreateWithApplicationOptions(new PublicClientApplicationOptions
                 {
-                    // 'Tenant ID' of your Microsoft Entra instance - this value is a GUID
-                    TenantId = "",
+                    // Enter the tenant ID obtained from the Microsoft Entra admin center
+                    TenantId = "Enter the client ID obtained from the Microsoft Entra admin center",
 
-                    // 'Application (client) ID' of app registration in Azure portal - this value is a GUID
-                    ClientId = ""
+                    // Enter the client ID obtained from the Microsoft Entra admin center
+                    ClientId = "Enter the tenant ID obtained from the Microsoft Entra admin center"
                 })
                 .WithDefaultRedirectUri() // http://localhost
                 .Build();
         }
 
-        /// <summary>
-        /// Handle the "Sign In" button click. This will acquire an access token scoped to
-        /// Microsoft Graph, either from the cache or from an interactive session. It will
-        /// then use that access token in an HTTP request to Microsoft Graph and display
-        /// the results.
-        /// </summary>
+        // <summary>
+        // Handle the "Sign In" button click. This will acquire an access token scoped to
+        // Microsoft Graph, either from the cache or from an interactive session. It will
+        // then use that access token in an HTTP request to Microsoft Graph and display
+        // the results.
+        // </summary>
         private async void SignInButton_Click(object sender, EventArgs e)
         {
             AuthenticationResult? msalAuthenticationResult = null;

@@ -4,10 +4,10 @@ using System.Text.Json;
 
 var config = new PublicClientApplicationOptions
 {
-    // 'Directory (tenant) ID' of the app registration in the Microsoft Entra Admin Center
+    // 'Directory (tenant) ID' of the app registration in the Microsoft Entra admin center
     TenantId = "Enter the client ID obtained from the Microsoft Entra admin center",
 
-    // 'Application (client) ID' of the app registration in the Microsoft Entra Admin Center
+    // 'Application (client) ID' of the app registration in the Microsoft Entra admin center
     ClientId = "Enter the tenant ID obtained from the Microsoft Entra admin center"
 };
 

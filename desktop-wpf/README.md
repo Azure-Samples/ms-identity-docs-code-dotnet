@@ -43,7 +43,7 @@ Use these settings in your app registration.
 | **Platform type**               | **Mobile and desktop applications**                                 | Required value for this sample                                                  |
 | **Redirect URIs**               | `http://localhost`                                                  | Required value for this sample                                                  |
 
-> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Microsoft Entra admin center, while `code formatting` indicates a value you enter into a text box in the Microsoft Entra admin center.
 
 ### 2. Open the project in Visual Studio
 
@@ -57,7 +57,7 @@ Finally, set the following values in _MainWindow.xaml.cs_.
 // 'Tenant ID' of your Microsoft Entra instance - this value is a GUID
 TenantId = "",
 
-// 'Application (client) ID' of app registration in Azure portal - this value is a GUID
+// 'Application (client) ID' of app registration in Microsoft Entra admin center - this value is a GUID
 ClientId = ""
 ```
 

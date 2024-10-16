@@ -1,4 +1,3 @@
-<!-- Updated, but leaving commented out until we're ready to ship in samples browser
 ---
 # Metadata required by https://docs.microsoft.com/samples/browse/
 # Metadata properties: https://review.docs.microsoft.com/help/contribute/samples/process/onboarding?branch=main#add-metadata-to-readme
@@ -13,8 +12,7 @@ products:
 - ms-graph
 urlFragment: ms-identity-docs-code-dotnet-console
 ---
--->
-<!-- SAMPLE ID: DOCS-CODE-010 -->
+
 # .NET | console | .NET (C#) console app that accesses a protected web API access (Microsoft Graph) | Microsoft identity platform
 
 
@@ -59,7 +57,7 @@ Use these settings in your app registration.
 | **Platform type**            | _None_                                                             | No redirect URI required; don't select a platform.      |
 | **Client secret**            | _**Value** of the client secret (not its ID)_                      | :warning: Record this value immediately! <br/> It's shown only _once_ (when you create it). |
 
-> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Azure portal, while `code formatting` indicates a value you enter into a text box in the Azure portal.
+> :information_source: **Bold text** in the tables above matches (or is similar to) a UI element in the Microsoft Entra admin center, while `code formatting` indicates a value you enter into a text box in the Microsoft Entra admin center.
 
 ### 2. Update application code with values from app registration
 
@@ -68,11 +66,11 @@ In _Program.cs_, update each variable with values from the app registration you 
 ```csharp
 // Full directory URL, in the form of https://login.microsoftonline.com/<tenant_id>
 Authority = " https://login.microsoftonline.com/Enter the tenant ID obtained from the Microsoft Entra admin center",
-// 'Enter the client ID obtained from the Microsoft Entra Admin Center
+// 'Enter the client ID obtained from the Microsoft Entra admin center
 ClientId = "Enter the client ID obtained from the Microsoft Entra admin center",
-// Client secret 'Value' (not its ID) from 'Client secrets' in the Microsoft Entra Admin Center
+// Client secret 'Value' (not its ID) from 'Client secrets' in the Microsoft Entra admin center
 ClientSecret = "Enter the client secret value obtained from the Microsoft Entra admin center",
-// Client 'Object ID' of app registration in Microsoft Entra Admin Center - this value is a GUID
+// Client 'Object ID' of app registration in Microsoft Entra admin center - this value is a GUID
 ClientObjectId = "Enter the client Object ID obtained from the Microsoft Entra admin center"
 ```
 
@@ -118,7 +116,7 @@ If you can't get the sample working, you've checked [Stack Overflow](http://stac
 ### All other issues
 
 > :warning: WARNING: Any issue in this repository _not_ limited to running one of its sample apps will be closed without being addressed.
-For all other requests, see [Support and help options for developers | Microsoft identity platform](https://docs.microsoft.com/azure/active-directory/develop/developer-support-help-options).
+For all other requests, see [Support and help options for developers | Microsoft identity platform](https://learn.microsoft.com/entra/identity-platform/developer-support-help-options).
 
 ## Contributing
 
