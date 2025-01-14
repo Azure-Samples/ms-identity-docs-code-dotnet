@@ -7,8 +7,7 @@ using Microsoft.Identity.Web.UI;
 
 // <ms_docref_add_msal>
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-IEnumerable<string>? initialScopes = builder.Configuration["DownstreamApi:Scopes"]?.Split(' ');
-
+IEnumerable<string>? initialScopes = builder.Configuration.GetSection("DownstreamApi:Scopes").Get<IEnumerable<string>>();
 
 builder.Services.AddMicrosoftIdentityWebAppAuthentication(builder.Configuration, "AzureAd")
     .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
