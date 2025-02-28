@@ -14,8 +14,8 @@ namespace XPlat
 {
     public partial class MainPage : ContentPage
     {
-        private static readonly string s_clientId = "360dfb4b-6b02-4d88-95d4-cc39ffa892af";
-        private static readonly string s_tenant = "2e8b3d19-4003-46a5-ab56-80eefc62fae4";
+        private static readonly string s_clientId = "APPLICATION_(CLIENT)_ID";
+        private static readonly string s_tenant = "TENANT_ID";
         private static readonly string s_authority = "https://login.microsoftonline.com/" + s_tenant;
 
         // The MSAL Public client app
