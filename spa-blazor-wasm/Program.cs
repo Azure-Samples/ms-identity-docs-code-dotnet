@@ -26,4 +26,4 @@ builder.Services.AddScoped(sp =>
     return new HttpClient(authorizationMessageHandler);
 });
 
-await builder.Build().RunAsync(CoreDispatcherPriority.Normal);
+await builder.Build().RunAsync();
