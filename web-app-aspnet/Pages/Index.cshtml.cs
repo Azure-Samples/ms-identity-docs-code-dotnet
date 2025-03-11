@@ -21,7 +21,7 @@ public class IndexModel : PageModel
 
     public async Task OnGet()
     {
-        using var response = await _downstreamWebApi.CallApiForUserAsync("DownstreamApi").ConfigureAwait(false);
+        using var response = await _downstreamWebApi.CallApiForUserAsync("MicrosoftGraph").ConfigureAwait(false);
         if (response.StatusCode == System.Net.HttpStatusCode.OK)
         {
             var apiResult = await response.Content.ReadFromJsonAsync<JsonDocument>().ConfigureAwait(false);
