@@ -11,7 +11,7 @@ IEnumerable<string>? initialScopes = builder.Configuration.GetSection("Downstrea
 
 builder.Services.AddMicrosoftIdentityWebAppAuthentication(builder.Configuration, "AzureAd")
     .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-        .AddDownstreamApi("DownstreamApi", builder.Configuration.GetSection("DownstreamApi"))
+        .AddDownstreamApis(builder.Configuration.GetSection("DownstreamApis"))
         .AddInMemoryTokenCaches();
 // </ms_docref_add_msal>
 
