@@ -7,12 +7,13 @@ using Microsoft.Identity.Web.UI;
 
 // <ms_docref_add_msal>
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-IEnumerable<string>? initialScopes = builder.Configuration.GetSection("DownstreamApi:Scopes").Get<IEnumerable<string>>();
+IEnumerable<string>? initialScopes = builder.Configuration.GetSection("DownstreamApis:MicrosoftGraph:Scopes").Get<IEnumerable<string>>();
 
 builder.Services.AddMicrosoftIdentityWebAppAuthentication(builder.Configuration, "AzureAd")
     .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-        .AddDownstreamApis(builder.Configuration.GetSection("DownstreamApis"))
         .AddInMemoryTokenCaches();
+builder.Services.AddDownstreamApis(builder.Configuration.GetSection("DownstreamApis"));
+
 // </ms_docref_add_msal>
 
 // <ms_docref_add_default_controller_for_sign-in-out>

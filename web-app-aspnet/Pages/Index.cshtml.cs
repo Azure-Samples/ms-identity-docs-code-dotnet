@@ -5,7 +5,7 @@ using Microsoft.Identity.Abstractions;
 
 namespace sign_in_webapp.Pages;
 
-[AuthorizeForScopes(ScopeKeySection = "DownstreamApi:Scopes")]
+[AuthorizeForScopes(ScopeKeySection = "DownstreamApis:MicrosoftGraph:Scopes")]
 public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
