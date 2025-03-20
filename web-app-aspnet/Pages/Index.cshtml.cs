@@ -5,7 +5,7 @@ using Microsoft.Identity.Abstractions;
 
 namespace sign_in_webapp.Pages;
 
-[AuthorizeForScopes(ScopeKeySection = "DownstreamApi:Scopes")]
+[AuthorizeForScopes(ScopeKeySection = "DownstreamApis:MicrosoftGraph:Scopes")]
 public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
@@ -21,7 +21,7 @@ public class IndexModel : PageModel
 
     public async Task OnGet()
     {
-        using var response = await _downstreamWebApi.CallApiForUserAsync("DownstreamApi").ConfigureAwait(false);
+        using var response = await _downstreamWebApi.CallApiForUserAsync("MicrosoftGraph").ConfigureAwait(false);
         if (response.StatusCode == System.Net.HttpStatusCode.OK)
         {
             var apiResult = await response.Content.ReadFromJsonAsync<JsonDocument>().ConfigureAwait(false);
