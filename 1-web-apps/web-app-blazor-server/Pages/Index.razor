@@ -1,0 +1,48 @@
+﻿@using Microsoft.Identity.Abstractions;
+@using Microsoft.Identity.Web;
+@using System.Text.Json
+@inject IDownstreamApi downstreamApi
+@inject MicrosoftIdentityConsentAndConditionalAccessHandler ConsentHandler
+
+@page "/"
+
+<PageTitle>ASP.NET Core 6.0 Blazor Server | user sign-in, protected web API access (Microsoft Graph) | Microsoft
+  identity platform</PageTitle>
+
+<h1>Welcome to User Sign In ASP.NET Core Blazor Server</h1>
+
+<AuthorizeView>
+  <Authorized>
+    @if (graphApiResponse != null)
+    {
+      <p>Before rendering the page, the controller was able to make a call to
+        Microsoft Graph's <code>/me</code> API for your user and received the
+        following:</p>
+
+      <p>
+      <pre><code class="language-js">@JsonSerializer.Serialize(graphApiResponse, new JsonSerializerOptions { WriteIndented = true })</code></pre>
+      </p>
+
+      <p>Refreshing this page will continue to use the cached access token acquired for Microsoft Graph, which is valid
+        for future page views will attempt to refresh this token as it nears its expiration.</p>
+    }
+
+    @code {
+    private JsonDocument graphApiResponse = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+      try
+      {
+        using var response = await downstreamApi.CallApiForUserAsync("GraphApi").ConfigureAwait(false);
+        response.EnsureSuccessStatusCode();
+        graphApiResponse = await response.Content.ReadFromJsonAsync<JsonDocument>().ConfigureAwait(false);
+      }
+      catch (Exception ex)
+      {
+        ConsentHandler.HandleException(ex);
+      }
+    }
+    }
+  </Authorized>
+</AuthorizeView>

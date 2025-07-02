@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using System.Text.Json
+@inject HttpClient Http
+
+@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h1>Welcome to User Sign In ASP.NET Core Blazor WebAssembly</h1>
+
+<AuthorizeView>
+  <NotAuthorized>
+    <div>This page can be accessed by all users, authenticated or not.</div>
+    <p>Click <a href="authentication/login">Log in</a> to sign into the application. Navigating to it while not logged in will automatically initiate the login process. Please note that it doesn't require that your user has any specific application roles assigned, and will access Microsoft Graph on your behalf.</p>
+  </NotAuthorized>
+  <Authorized>
+    @if (graphApiResponse != null)
+    {
+         <p>Before rendering the page, the controller was able to make a call to
+         Microsoft Graph's <code>/me</code> API for your user and received the
+         following:</p>
+
+         <p><pre><code class="language-js">@JsonSerializer.Serialize(graphApiResponse, new JsonSerializerOptions { WriteIndented = true })</code></pre></p>
+
+         <p>Refreshing this page will continue to use the cached access token acquired for Microsoft Graph, which is valid for future page views will attempt to refresh this token as it nears its expiration.</p>
+    }
+
+    @code {
+      private JsonDocument? graphApiResponse = null;
+
+      protected override async Task OnInitializedAsync()
+      {
+        try
+        {
+          using var response = await Http.GetAsync("https://graph.microsoft.com/v1.0/me");
+          response.EnsureSuccessStatusCode();
+          graphApiResponse = await response.Content.ReadFromJsonAsync<JsonDocument>().ConfigureAwait(false);
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+          exception.Redirect();
+        }
+      }
+
+    }
+  </Authorized>
+</AuthorizeView>

@@ -1,0 +1,95 @@
+{
+  "Sample": {
+    "Title": "Sharing the MSAL token cache between a web app and a background console worker app",
+    "Level": 400,
+    "Client": "ASP.NET Core Web App",
+    "Service": "Microsoft Graph",
+    "RepositoryUrl": "ms-identity-dotnet-advanced-token-cache",
+    "Endpoint": "AAD v2.0",
+    "name": "Sharing the MSAL token cache between a web app and a background console worker app",
+    "Description": "This sample demonstrates how to share the MSAL token cache between a web app and a background console worker app and continue to act on-behalf of users in their absence.",
+    "Languages": [ "csharp" ],
+    "Products": [ "aspnet-core", "azure-active-directory", "microsoft-identity-web","microsoft-graph-api" ]
+  },
+
+  /*
+    This section describes the Microsoft Entra applications to configure, and their dependencies
+  */
+  "AADApps": [
+    {
+      "Id": "webApp",
+      "Name": "WebApp-SharedTokenCache",
+      "Kind": "WebApp",
+      "HomePage": "https://localhost:44321/",
+      "ReplyUrls": "https://localhost:44321/signin-oidc",
+      "LogoutUrl": "https://localhost:44321/signout-oidc",
+      "PasswordCredentials": "Auto",
+      "RequiredResourcesAccess": [
+        {
+          "Resource": "Microsoft Graph",
+          "DelegatedPermissions": [ "User.Read" ]
+        }
+      ],
+      "ManualSteps": [
+        {
+          "Comment": "Please follow the steps in the readme , 'Register the Background Worker project with your Microsoft Entra tenant' to add support in the app registration for the console app "
+        }
+      ]
+    }
+  ],
+
+  /*
+    This section describes how to update the code in configuration files from the apps coordinates, once the apps
+    are created in Microsoft Entra.
+    Each section describes a configuration file, for one of the apps, it's type (XML, JSon, plain text), its location
+    with respect to the root of the sample, and the mappping (which string in the config file is mapped to which value
+  */
+  "CodeConfiguration": [
+    {
+      "App": "webApp",
+      "SettingKind": "Text",
+      "SettingFile": "\\..\\WebApp\\appsettings.json",
+      "Mappings": [
+        {
+          "key": "ClientId",
+          "value": ".AppId"
+        },
+        {
+          "key": "TenantId",
+          "value": "$tenantId"
+        },
+        {
+          "key": "Domain",
+          "value": "$tenantName"
+        },
+        {
+          "key": "ClientSecret",
+          "value": ".AppKey"
+        }
+      ]
+    },
+    {
+      "App": "webApp",
+      "SettingKind": "Text",
+      "SettingFile": "\\..\\BackgroundWorker\\appsettings.json",
+      "Mappings": [
+        {
+          "key": "ClientId",
+          "value": ".AppId"
+        },
+        {
+          "key": "TenantId",
+          "value": "$tenantId"
+        },
+        {
+          "key": "Domain",
+          "value": "$tenantName"
+        },
+        {
+          "key": "ClientSecret",
+          "value": ".AppKey"
+        }
+      ]
+    }
+  ]
+}

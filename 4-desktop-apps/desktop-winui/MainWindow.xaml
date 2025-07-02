@@ -1,0 +1,23 @@
+﻿<Window
+    x:Class="WinUIApp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinUIApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel MaxWidth="800" MaxHeight="600" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button x:Name="signInButton" Click="SignIn_Click" HorizontalAlignment="Center">Sign In (if needed) &amp; Call Graph</Button>
+        <TextBlock MaxWidth="800" Visibility="Visible" x:Name="signInCallToActionTextBlock"><Run Text="This application will access Microsoft Graph, if you authorize it to do so."/><LineBreak/><Run/><LineBreak/><Run Text="Click the Sign In button above to get started."/></TextBlock>
+
+        <StackPanel x:Name="authorizedPanel" Visibility="Collapsed" Orientation="Vertical">
+            <TextBlock Text="Microsoft Graph Response:" />
+            <ScrollViewer Margin="20" MaxWidth="800" MaxHeight="200" VerticalScrollMode="Enabled" IsVerticalRailEnabled="True">
+                <TextBlock MaxWidth="750" TextWrapping="WrapWholeWords" x:Name="graphCallResultTextBlock"></TextBlock>
+            </ScrollViewer>
+            <TextBlock HorizontalAlignment="Left" x:Name="tokenAcquisitionTextBlock"></TextBlock>
+            <Button x:Name="signOutButton" Click="SignOut_Click" HorizontalAlignment="Right">Sign Out</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

@@ -1,0 +1,63 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XPlat.MainPage"
+             BackgroundColor="{DynamicResource SecondaryColor}">
+
+    <ScrollView>
+        <Grid RowSpacing="25" RowDefinitions="Auto,Auto,Auto,*"
+              Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
+
+            <Label 
+                Text="Welcome to User Sign In .NET Multi-platform App UI"
+                Grid.Row="0"
+                SemanticProperties.HeadingLevel="Level1"
+                SemanticProperties.Description="Welcome to dot net Multi platform App UI"
+                FontSize="32"
+                HorizontalOptions="Center" />
+
+            <Button 
+                Text="Sign In (If needed) &amp; Call Graph"
+                IsVisible="True"
+                FontAttributes="Bold"
+                Grid.Row="1"
+                SemanticProperties.Hint="Click to Sign In with your work or school account"
+                Clicked="OnSignInClicked"
+                x:Name="SignInButton"
+                HorizontalOptions="Center" />
+            <Grid RowSpacing="25" RowDefinitions="Auto,Auto,Auto,Auto,*"
+                Row="2"
+                x:Name="AuthenticatedGrid"
+                IsVisible="false">
+                <Label 
+                    Grid.Row="0"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    Text="Microsoft Graph Response:"
+                    HorizontalOptions="Center" />
+
+                <Label 
+                    Grid.Row="1"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    x:Name="GraphResultsLabel"
+                    HorizontalOptions="Center" />
+
+                <Label 
+                    Grid.Row="2"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    x:Name="AccessTokenSourceLabel"
+                    HorizontalOptions="Center" />
+
+                <Button 
+                    Text="Sign Out"
+                    FontAttributes="Bold"
+                    Grid.Row="3"
+                    SemanticProperties.Hint="Click to Sign Out with your work or school account"
+                    Clicked="OnSignOutClicked"
+                    x:Name="SignOutButton"
+                    HorizontalOptions="Center" />
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>

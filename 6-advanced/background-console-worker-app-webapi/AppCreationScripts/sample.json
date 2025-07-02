@@ -1,0 +1,128 @@
+{
+  "Sample": {
+    "Title": "Share the MSAL token cache between a web API and a background console worker app",
+    "Level": 400,
+    "Client": "ASP.NET Core Web Api",
+    "Service": "Microsoft Graph",
+    "RepositoryUrl": "ms-identity-dotnet-advanced-token-cache",
+    "Endpoint": "AAD v2.0",
+    "description": "An ASP.Net Core sample that shows how web APIs can share the token cache with their background services and continue to act on-behalf of users in their absence.",
+    "Languages": [ "csharp","javascript" ],
+    "Products": [ "aspnet-core", "azure-active-directory", "microsoft-identity-web","microsoft-graph-api" ]
+  },
+
+  "AADApps": [
+    {
+      "Id": "service",
+      "Name": "WebApi-SharedTokenCache",
+      "Kind": "WebApi",
+      "Audience": "AzureADMyOrg",
+      "HomePage": "https://localhost:44351/api/profile",
+      "PasswordCredentials": "Auto",
+      "OptionalClaims": {
+        "AccessTokenClaims": [ "idtyp" ]
+      },
+      "Scopes": [ "Profile.Read", "Profile.ReadWrite" ],
+      "RequiredResourcesAccess": [
+        {
+          "Resource": "Microsoft Graph",
+          "DelegatedPermissions": [ "User.Read" ]
+        }
+      ],
+      "ManualSteps": [
+        {
+          "Comment": "Please follow through the manual steps outlined in 'Step 3: Register the Background Worker project with your Microsoft Entra tenant' of the README.MD"
+        }
+      ]
+    },
+    {
+      "Id": "client",
+      "Name": "ProfileSPA-SharedTokenCache",
+      "Kind": "SinglePageApplication",
+      "Audience": "AzureADMyOrg",
+      "HomePage": "http://localhost:3000",
+      "ReplyUrls": "http://localhost:3000, http://localhost:3000/redirect.html",
+      "RequiredResourcesAccess": [
+        {
+          "Resource": "Microsoft Graph",
+          "DelegatedPermissions": [ "User.Read" ]
+        },
+        {
+          "Resource": "service",
+          "DelegatedPermissions": [ "Profile.Read", "Profile.ReadWrite" ]
+        }
+      ]
+    }
+  ],
+  "CodeConfiguration": [
+    {
+      "App": "service",
+      "SettingKind": "Text",
+      "SettingFile": "\\..\\WebAPI\\appsettings.json",
+      "Mappings": [
+        {
+          "key": "Domain",
+          "value": "$tenantName"
+        },
+        {
+          "key": "TenantId",
+          "value": "$tenantId"
+        },
+        {
+          "key": "ClientId",
+          "value": "service.AppId"
+        },
+        {
+          "key": "ClientSecret",
+          "value": "service.AppKey"
+        }
+      ]
+    },
+    {
+      "App": "client",
+      "SettingKind": "Replace",
+      "SettingFile": "\\..\\SPA\\src\\authConfig.js",
+      "Mappings": [
+        {
+          "key": "Enter the Client Id (aka 'Application ID')",
+          "value": "client.AppId"
+        },
+        {
+          "key": "Enter the Authority, e.g 'https://login.microsoftonline.com/{tid}'",
+          "value": "('https://login.microsoftonline.com/'+ $tenantId)"
+        },
+        {
+          "key": "Enter the API scopes as declared in the app registration 'Expose an Api' blade in the form of 'api://{client_id}/.default'",
+          "value": "service.ScopeDefault"
+        },
+        {
+          "key": "Enter the WebAPI URI, e.g. 'https://localhost:44351/api/profile'",
+          "value": "service.HomePage"
+        }
+      ]
+    },
+    {
+      "App": "service",
+      "SettingKind": "Text",
+      "SettingFile": "\\..\\BackgroundWorker\\appsettings.json",
+      "Mappings": [
+        {
+          "key": "ClientId",
+          "value": ".AppId"
+        },
+        {
+          "key": "TenantId",
+          "value": "$tenantId"
+        },
+        {
+          "key": "Domain",
+          "value": "$tenantName"
+        },
+        {
+          "key": "ClientSecret",
+          "value": ".AppKey"
+        }
+      ]
+    }
+  ]
+}

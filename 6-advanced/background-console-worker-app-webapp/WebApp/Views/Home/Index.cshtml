@@ -1,0 +1,38 @@
+﻿@using Newtonsoft.Json.Linq
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>@ViewData["Title"]</h2>
+<br />
+<h3>User profile returned from Microsoft Graph</h3>
+<table class="table table-striped table-condensed" style="font-family: monospace">
+    <tr>
+        <th>Property</th>
+        <th>Value</th>
+    </tr>
+    @{
+        var me = ViewData["me"] as Microsoft.Graph.User;
+        var properties = me.GetType().GetProperties();
+        foreach (var child in properties)
+        {
+            object value = child.GetValue(me);
+            string stringRepresentation;
+            if (!(value is string) && value is IEnumerable<string>)
+            {
+                stringRepresentation = "["
+                    + string.Join(", ", (value as IEnumerable<string>).OfType<object>().Select(c => c.ToString()))
+                    + "]";
+            }
+            else
+            {
+                stringRepresentation = value?.ToString();
+            }
+
+            <tr>
+                <td> @child.Name </td>
+                <td> @stringRepresentation </td>
+            </tr>
+        }
+    }
+</table>
