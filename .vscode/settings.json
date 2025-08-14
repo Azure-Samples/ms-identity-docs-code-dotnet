@@ -1,0 +1,23 @@
+{
+    "chat.mcp.serverSampling": {
+        "ms-identity-docs-code-dotnet/.vscode/mcp.json: dev-rel-mcp": {
+            "allowedModels": [
+                "copilot/claude-opus-4",
+                "copilot/claude-opus-41",
+                "copilot/claude-3.5-sonnet",
+                "copilot/claude-3.7-sonnet",
+                "copilot/claude-3.7-sonnet-thought",
+                "copilot/claude-sonnet-4",
+                "copilot/gemini-2.0-flash-001",
+                "copilot/gemini-2.5-pro",
+                "copilot/gpt-4.1",
+                "copilot/gpt-4o",
+                "copilot/gpt-5",
+                "copilot/gpt-5-mini",
+                "copilot/o3",
+                "copilot/o3-mini",
+                "copilot/o4-mini"
+            ]
+        }
+    }
+}

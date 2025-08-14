@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "dev-rel-mcp": {
+          "command": "node",
+          "args": ["build/index.js"],
+          "cwd": "C:\\repos\\dev-rel-mcp"
+    }
+  }
+}
