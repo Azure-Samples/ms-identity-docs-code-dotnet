@@ -49,7 +49,7 @@ Use the following settings for your app registration:
 
 ### 2. Configure the web app
 
-1. Open the _~/sign-in-webapp/WebApp.csrpoj_ in your code editor.
+1. Open the _~/sign-in-webapp/WebApp.csproj_ in your code editor.
 1. Open the _appsettings.json_ file and modify the following code:
 
     ```json
