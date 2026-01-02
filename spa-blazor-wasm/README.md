@@ -4,8 +4,8 @@
 languages:
 - csharp
 page_type: sample
-name: ASP.NET Core 8.0 Blazor WebAssembly that accesses Microsoft Graph
-description: This ASP.NET Core 8.0 Blazor WebAssembly that signs in and contacts Microsoft Graph on behalf of the user. The code in this sample is used by one or more articles on docs.microsoft.com.
+name: ASP.NET Core in .NET 8 Blazor WebAssembly that accesses Microsoft Graph
+description: This ASP.NET Core in .NET 8 Blazor WebAssembly app that signs in and contacts Microsoft Graph on behalf of the user. The code in this sample is used by one or more articles on docs.microsoft.com.
 products:
 - azure
 - entra-id
@@ -13,7 +13,7 @@ products:
 urlFragment: ms-identity-docs-code-spa-blazor-wasm-csharp
 ---
 
-# ASP.NET Core 8.0 Blazor WebAssembly | standalone  app | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
+# ASP.NET Core in .NET 8 Blazor WebAssembly | standalone  app | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform
 
 The standalone app in this scenario is created using the ASP.NET Core 8.0 Blazor WebAssembly template and modified to allow sign-in with a Microsoft Entra account. It uses the [Microsoft.Authentication.WebAssembly.MSAL](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package to authenticate users and obtain tokens for calling protected APIs. In other words, the app adds an authentication layer that allows users to sign in with their Work and school accounts and make web API calls to protected resources on their behalf.
 
